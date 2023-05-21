@@ -5,8 +5,9 @@ namespace Aureola.Accessories
 {
     public class RuntimeStorageService : IStorageService
     {
-        protected Dictionary<string, int> _intValues = new Dictionary<string, int>();
+        protected Dictionary<string, bool> _boolValues = new Dictionary<string, bool>();
         protected Dictionary<string, float> _floatValues = new Dictionary<string, float>();
+        protected Dictionary<string, int> _intValues = new Dictionary<string, int>();
         protected Dictionary<string, string> _stringValues = new Dictionary<string, string>();
 
         public void Set(string key, int value)
@@ -22,6 +23,11 @@ namespace Aureola.Accessories
         public void Set(string key, string value)
         {
             _stringValues[key] = value;
+        }
+
+        public void Set(string key, bool value)
+        {
+            _boolValues[key] = value;
         }
 
         public int Get(string key, int defaultValue)
@@ -51,10 +57,20 @@ namespace Aureola.Accessories
             return _stringValues[key];
         }
 
+        public bool Get(string key, bool defaultValue)
+        {
+            if (!_boolValues.ContainsKey(key)) {
+                return defaultValue;
+            }
+
+            return _boolValues[key];
+        }
+
         public void Clear()
         {
-            _intValues = new Dictionary<string, int>();
+            _boolValues = new Dictionary<string, bool>();
             _floatValues = new Dictionary<string, float>();
+            _intValues = new Dictionary<string, int>();
             _stringValues = new Dictionary<string, string>();
         }
     }

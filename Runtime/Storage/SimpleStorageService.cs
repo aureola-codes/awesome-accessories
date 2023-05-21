@@ -19,6 +19,11 @@ namespace Aureola.Accessories
             PlayerPrefs.SetString(key, value);
         }
 
+        public void Set(string key, bool value)
+        {
+            PlayerPrefs.SetInt(key, value ? 1 : 0);
+        }
+
         public int Get(string key, int defaultValue)
         {
             return PlayerPrefs.GetInt(key, defaultValue);
@@ -32,6 +37,11 @@ namespace Aureola.Accessories
         public string Get(string key, string defaultValue)
         {
             return PlayerPrefs.GetString(key, defaultValue);
+        }
+
+        public bool Get(string key, bool defaultValue)
+        {
+            return PlayerPrefs.GetInt(key, defaultValue ? 1 : 0) == 1;
         }
 
         public void Clear()
