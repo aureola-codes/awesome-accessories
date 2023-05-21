@@ -1,30 +1,37 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
 namespace Aureola.Accessories
 {
+    [RequireComponent(typeof(TMP_Text))]
     public class DigitalClock : MonoBehaviour
     {
         private TMP_Text _textComponent;
+        [SerializeField] private string _format = "HH:mm";
 
         private void Awake()
         {
             _textComponent = GetComponent<TMP_Text>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            InvokeRepeating("UpdateTime", 0f, 1f);
+            StartCoroutine(UpdateTime());
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            CancelInvoke("UpdateTime");
+            StopCoroutine(UpdateTime());
         }
 
-        private void UpdateTime()
+        private IEnumerator UpdateTime()
         {
-            _textComponent.text = System.DateTime.UtcNow.ToLocalTime().ToString("HH:mm");
+            while (true)
+            {
+                _textComponent.text = System.DateTime.UtcNow.ToLocalTime().ToString(_format);
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }
