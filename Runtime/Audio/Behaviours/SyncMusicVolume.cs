@@ -32,7 +32,7 @@ namespace Aureola.Accessories
 
         private void SyncVolume()
         {
-            _audioSource.volume = AudioManager.instance?.GetMusicVolume() ?? 1f;
+            _audioSource.volume = AudioManager.instance?.musicVolumeAdjusted ?? 1f;
         }
     }
 }

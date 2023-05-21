@@ -4,17 +4,17 @@ namespace Aureola.Accessories
 {
     public class AudioService : MonoBehaviour
     {
-        protected bool _isDirty = false;
+        private AudioSource _musicPlayer;
+        private AudioSource _soundPlayer;
+        private AudioSource _voicePlayer;
 
-        protected float _masterVolume = 1f;
-        protected float _musicVolume = 0.5f;
-        protected float _soundVolume = 0.5f;
-        protected float _voiceVolume = 0.5f;
+        private float _masterVolume = 1f;
+        private float _musicVolume = 0.5f;
+        private float _soundVolume = 0.5f;
+        private float _voiceVolume = 0.5f;
 
-        [Header("Audio Sources")]
-        [SerializeField] protected AudioSource _musicPlayer;
-        [SerializeField] protected AudioSource _soundPlayer;
-        [SerializeField] protected AudioSource _voicePlayer;
+        public delegate void OnUpdate();
+        public OnUpdate onUpdate;
 
         public bool isMusicPlaying {
             get => _musicPlayer.isPlaying;
@@ -27,42 +27,67 @@ namespace Aureola.Accessories
         public bool isVoicePlaying {
             get => _voicePlayer.isPlaying;
         }
-        
-        protected void OnEnable()
-        {
-            PubSubManager.instance?.Subscribe(Channel.SETTINGS, OnSettingsUpdated);
-        }
 
-        protected void OnDisable()
-        {
-            PubSubManager.instance?.Unsubscribe(Channel.SETTINGS, OnSettingsUpdated);
-        }
-
-        protected void LateUpdate()
-        {
-            if (_isDirty) {
-                _isDirty = false;
-                PubSubManager.instance?.Send(Channel.AUDIO, new AudioEvent());
+        public float masterVolume {
+            get => _masterVolume;
+            set {
+                _masterVolume = value;
+                _musicPlayer.volume = musicVolume;
+                _soundPlayer.volume = soundVolume;
+                _voicePlayer.volume = voiceVolume;
+                onUpdate?.Invoke();
             }
         }
 
-        protected void OnSettingsUpdated(IGameEvent data)
-        {
-            if (data.GetType() == typeof(SettingsEvent)) {
-                var eventData = (SettingsEvent) data;
-                var settingsData = (SettingsData) eventData.settings;
-
-                SetMasterVolume(settingsData.masterVolume);
-                SetMusicVolume(settingsData.musicVolume);
-                SetSoundVolume(settingsData.soundVolume);
-                SetVoiceVolume(settingsData.voiceVolume);
+        public float musicVolume {
+            get => _musicVolume;
+            set {
+                _musicVolume = value;
+                _musicPlayer.volume = musicVolumeAdjusted;
+                onUpdate?.Invoke();
             }
+        }
+
+        public float soundVolume {
+            get => _soundVolume;
+            set {
+                _soundVolume = value;
+                _soundPlayer.volume = soundVolumeAdjusted;
+                onUpdate?.Invoke();
+            }
+        }
+
+        public float voiceVolume {
+            get => _voiceVolume;
+            set {
+                _voiceVolume = value;
+                _voicePlayer.volume = voiceVolumeAdjusted;
+                onUpdate?.Invoke();
+            }
+        }
+
+        public float musicVolumeAdjusted {
+            get => _musicVolume * _masterVolume;
+        }
+
+        public float soundVolumeAdjusted {
+            get => _soundVolume * _masterVolume;
+        }
+
+        public float voiceVolumeAdjusted {
+            get => _voiceVolume * _masterVolume;
+        }
+
+        public AudioService(AudioSource musicPlayer, AudioSource soundPlayer, AudioSource voicePlayer)
+        {
+            _musicPlayer = musicPlayer;
+            _soundPlayer = soundPlayer;
+            _voicePlayer = voicePlayer;
         }
 
         public void PlayMusic(AudioClip music)
         {
             _musicPlayer.clip = music;
-
             if (!_musicPlayer.isPlaying) {
                 _musicPlayer.Play();
             }
@@ -98,50 +123,6 @@ namespace Aureola.Accessories
         public void StopVoice()
         {
             _voicePlayer.Stop();
-        }
-
-        public void SetMasterVolume(float newVolume)
-        {
-            _masterVolume = newVolume;
-            SetMusicVolume(_musicVolume);
-            SetSoundVolume(_soundVolume);
-            SetVoiceVolume(_voiceVolume);
-        }
-
-        public void SetMusicVolume(float newVolume)
-        {
-            _musicVolume = newVolume;
-            _musicPlayer.volume = GetMusicVolume();
-            _isDirty = true;
-        }
-
-        public float GetMusicVolume()
-        {
-            return _musicVolume * _masterVolume;
-        }
-
-        public void SetSoundVolume(float newVolume)
-        {
-            _soundVolume = newVolume;
-            _soundPlayer.volume = GetSoundVolume();
-            _isDirty = true;
-        }
-
-        public float GetSoundVolume()
-        {
-            return _soundVolume * _masterVolume;
-        }
-
-        public void SetVoiceVolume(float newVolume)
-        {
-            _voiceVolume = newVolume;
-            _voicePlayer.volume = GetVoiceVolume();
-            _isDirty = true;
-        }
-
-        public float GetVoiceVolume()
-        {
-            return _voiceVolume * _masterVolume;
         }
     }
 }
