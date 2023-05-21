@@ -17,7 +17,7 @@ namespace Aureola.Accessories
 
         private void Awake()
         {
-            _instance = new ConfigService();
+            _instance = new ConfigService(new RuntimeStorageService());
             _instance.Load(_configFile);
         }
     }
