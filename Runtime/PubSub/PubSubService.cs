@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class PubSubService : MonoBehaviour
+    public class PubSubService
     {
-        protected Dictionary<string, GameEventDelegate> _channels = new Dictionary<string, GameEventDelegate>();
-        [SerializeField] protected bool _debugging = true;
-
+        private bool _debugging = false;
+        private Dictionary<string, GameEventDelegate> _channels = new Dictionary<string, GameEventDelegate>();
+        
         public delegate void GameEventDelegate(IGameEvent eventData);
+
+        public PubSubService(bool debugging = false)
+        {
+            _debugging = debugging;
+        }
 
         public bool Exists(string channelName)
         {

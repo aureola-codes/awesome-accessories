@@ -2,18 +2,21 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class PubSubManager : PubSubService
+    public class PubSubManager : MonoBehaviour
     {
-        private static PubSubManager _instance;
+        private static PubSubService _instance;
 
-        public static PubSubManager instance
+        [Header("Settings")]
+        [SerializeField] private bool _debugging = false;
+
+        public static PubSubService instance
         {
             get => _instance;
         }
 
         private void Awake()
         {
-            _instance = this;
+            _instance = new PubSubService(_debugging);
         }
     }
 }
