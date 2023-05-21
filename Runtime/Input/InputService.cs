@@ -3,9 +3,14 @@ using UnityEngine.EventSystems;
 
 namespace Aureola.Accessories
 {
-    public class InputService : MonoBehaviour
+    public class InputService
     {
-        [SerializeField] protected EventSystem _eventSystem;
+        [SerializeField] private EventSystem _eventSystem;
+
+        public InputService(EventSystem eventSystem)
+        {
+            _eventSystem = eventSystem;
+        }
 
         public void Enable()
         {
