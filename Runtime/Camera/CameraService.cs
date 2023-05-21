@@ -2,9 +2,14 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class CameraService : MonoBehaviour
+    public class CameraService
     {
-        [SerializeField] protected Camera _camera;
+        private Camera _camera;
+
+        public CameraService(Camera camera)
+        {
+            _camera = camera;
+        }
 
         public void EnableCamera()
         {

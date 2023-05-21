@@ -2,18 +2,21 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class CameraManager : CameraService
+    public class CameraManager : MonoBehaviour
     {
-        private static CameraManager _instance;
+        private static CameraService _instance;
+
+        [Header("Settings")]
+        [SerializeField] private Camera _camera;
         
-        public static CameraManager instance
+        public static CameraService instance
         {
             get => _instance;
         }
 
         private void Awake()
         {
-            _instance = this;
+            _instance = new CameraService(_camera);
         }
     }
 }
