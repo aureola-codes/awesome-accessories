@@ -2,18 +2,18 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class TimeScaleManager : TimeScaleService
+    public class TimeScaleManager : MonoBehaviour
     {
-        private static TimeScaleManager _instance;
+        private static TimeScaleService _instance;
 
-        public static TimeScaleManager instance
+        public static TimeScaleService instance
         {
             get => _instance;
         }
 
         private void Awake()
         {
-            _instance = this;
+            _instance = new TimeScaleService();
         }
     }
 }

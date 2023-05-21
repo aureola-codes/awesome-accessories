@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {   
-    public class TimeScaleService : MonoBehaviour
+    public class TimeScaleService
     {
         public void Pause()
         {
@@ -23,20 +23,6 @@ namespace Aureola.Accessories
         public void ChangeTimeScale(float timeScale)
         {
             Time.timeScale = timeScale;
-        }
-
-        public void ChangeTimeScale(float timeScale, float duration = 5f)
-        {
-            Time.timeScale = timeScale;
-
-            StopAllCoroutines();
-            StartCoroutine(RevertTimeScale(duration));
-        }
-
-        protected IEnumerator RevertTimeScale(float duration)
-        {
-            yield return new WaitForSeconds(duration);
-            Time.timeScale = 1f;
         }
     }
 }
