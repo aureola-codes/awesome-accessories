@@ -1,37 +1,41 @@
-using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class ScreenshotService : MonoBehaviour
+    public class ScreenshotService
     {
-        protected string _screenshotPath;
+        private string _screenshotPath;
 
-        [SerializeField] protected KeyCode _key;
-        [SerializeField] protected string _folder = "my-folder";
-
-        protected void Start()
+        public ScreenshotService(string folder)
         {
-            _screenshotPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures) + "/" + _folder;
+            _screenshotPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures) + "/" + folder;
             System.IO.Directory.CreateDirectory(_screenshotPath);
         }
 
-        protected void Update()
+        public ScreenshotService(string folder, string basePath)
         {
-            if (Input.GetKeyDown(_key)) {
-                StartCoroutine(CaptureScreenshot());
-            }
+            _screenshotPath = basePath + "/" + folder;
+            System.IO.Directory.CreateDirectory(_screenshotPath);
+        }
+        
+        public void CaptureScreenshot()
+        {
+            #pragma warning disable CS4014
+            CaptureScreenshotAsync();
+            #pragma warning restore CS4014
         }
 
-        protected IEnumerator CaptureScreenshot()
+        public async Task CaptureScreenshotAsync()
         {
-            yield return null;
+            await Task.Run(() => {
+                ScreenCapture.CaptureScreenshot(_screenshotPath + "/" + GetFileName());
+            });
+        }
 
-            string directory = _screenshotPath + "/";
-            string filename = "screenshot-w" + Screen.width + "-h" + Screen.height + "-" + System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss") + ".png";
-            ScreenCapture.CaptureScreenshot(directory + filename);
-
-            Debug.Log("Screenshot taken: " + directory + filename);
+        private string GetFileName()
+        {
+            return "screenshot-w" + Screen.width + "-h" + Screen.height + "-" + System.DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss") + ".png";
         }
     }
 }
