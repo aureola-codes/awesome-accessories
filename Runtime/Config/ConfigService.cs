@@ -5,16 +5,18 @@ using UnityEngine.AddressableAssets;
 
 namespace Aureola.Accessories
 {
-    public class ConfigService : MonoBehaviour
+    public class ConfigService
     {
-        protected Dictionary<string, float> _floatValues = new Dictionary<string, float>();
-        protected Dictionary<string, string> _stringValues = new Dictionary<string, string>();
+        private Dictionary<string, float> _floatValues = new Dictionary<string, float>();
+        private Dictionary<string, string> _stringValues = new Dictionary<string, string>();
 
-        [SerializeField] protected AssetReference _configFile;
-
-        protected void Start()
+        public void Load(AssetReference configFile, bool clear = false)
         {
-            _configFile.LoadAssetAsync<TextAsset>().Completed += handle => {
+            if (clear) {
+                Clear();
+            }
+
+            configFile.LoadAssetAsync<TextAsset>().Completed += handle => {
                 var jsonObject = JSON.Parse(handle.Result.text);
                 foreach (var keyValuePair in jsonObject) {
                     if (keyValuePair.Value.IsString) {
@@ -60,6 +62,12 @@ namespace Aureola.Accessories
 
             Debug.LogWarning("Configuration value not found: " + key);
             return defaultValue;
+        }
+
+        public void Clear()
+        {
+            _floatValues = new Dictionary<string, float>();
+            _stringValues = new Dictionary<string, string>();
         }
     }
 }

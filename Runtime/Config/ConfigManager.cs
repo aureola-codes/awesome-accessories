@@ -1,19 +1,24 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Aureola.Accessories
 {
-    public class ConfigManager : ConfigService
+    public class ConfigManager : MonoBehaviour
     {
-        private static ConfigManager _instance;
+        private static ConfigService _instance;
 
-        public static ConfigManager instance
+        [Header("Settings")]
+        [SerializeField] private AssetReference _configFile;
+
+        public static ConfigService instance
         {
             get => _instance;
         }
 
         private void Awake()
         {
-            _instance = this;
+            _instance = new ConfigService();
+            _instance.Load(_configFile);
         }
     }
 }
