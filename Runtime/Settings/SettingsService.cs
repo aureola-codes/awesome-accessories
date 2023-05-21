@@ -1,44 +1,39 @@
+using System;
 using UnityEngine;
 
 namespace Aureola.Accessories
 {
     public class SettingsService : MonoBehaviour
     {
-        protected const string STORAGE_KEY = "settings";
-        protected bool _shouldSave = false;
+        private const string STORAGE_KEY = "settings";
 
-        protected ISettingsData _settings;
-        protected IStorageService _storage;
+        private ISettingsData _settings;
+        private IStorageService _storage;
 
-        protected void Start()
+        public delegate void OnUpdate(ISettingsData settings);
+        public OnUpdate onUpdate;
+
+        public SettingsService(IStorageService storage)
+        {
+            _storage = storage;
+        }
+
+        public SettingsService(IStorageService storage, ISettingsData settings)
+        {
+            _storage = storage;
+            Register(settings);
+        }
+
+        public void Register(ISettingsData settings)
+        {
+            _settings = settings;
+        }
+
+        public void Load()
         {
             string settingsData = _storage.Get(STORAGE_KEY, "");
             if (settingsData != "") {
-                settings = _settings.FromJson(settingsData);
-            }
-        }
-
-        protected void LateUpdate()
-        {
-            if (_shouldSave) {
-                _shouldSave = false;
-                _storage.Set(STORAGE_KEY, JsonUtility.ToJson(_settings));
-            }
-        }
-
-        public IStorageService storage
-        {
-            set {
-                _storage = value;
-            }
-        }
-
-        public ISettingsData settings
-        {
-            set {
-                _settings = value;
-                _shouldSave = true;
-
+                _settings = _settings.FromJson(settingsData);
                 Broadcast();
             }
         }
@@ -47,19 +42,15 @@ namespace Aureola.Accessories
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);
-
-                _shouldSave = true;
-                Broadcast();
+                SaveAndBroadcast();
             }
         }
 
         public void Set(string key, float value)
         {
             if (Get(key, value) != value) {
-                GetField(key).SetValue(_settings, value);
-                        
-                _shouldSave = true;
-                Broadcast();
+                GetField(key).SetValue(_settings, value);    
+                SaveAndBroadcast();
             }
         }
 
@@ -67,9 +58,7 @@ namespace Aureola.Accessories
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);
-
-                _shouldSave = true;
-                Broadcast();
+                SaveAndBroadcast();
             }
         }
 
@@ -77,9 +66,7 @@ namespace Aureola.Accessories
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);
-                
-                _shouldSave = true;
-                Broadcast();
+                SaveAndBroadcast();
             }
         }
 
@@ -112,14 +99,31 @@ namespace Aureola.Accessories
             Set(key, !Get(key, false));
         }
 
-        protected System.Reflection.FieldInfo GetField(string fieldName)
+        public void Clear()
+        {
+            _settings = (ISettingsData) Activator.CreateInstance(_settings.GetType());
+            SaveAndBroadcast();
+        }
+
+        private System.Reflection.FieldInfo GetField(string fieldName)
         {
             return _settings.GetType().GetField(fieldName);
         }
-        
-        protected void Broadcast()
+
+        private void Save()
         {
-            PubSubManager.instance?.Send(Channel.SETTINGS, new SettingsEvent(_settings));
+            _storage.Set(STORAGE_KEY, JsonUtility.ToJson(_settings));
+        }
+
+        private void Broadcast()
+        {
+            onUpdate?.Invoke(_settings);
+        }
+
+        private void SaveAndBroadcast() 
+        {
+            Save();
+            Broadcast();
         }
     }
 }

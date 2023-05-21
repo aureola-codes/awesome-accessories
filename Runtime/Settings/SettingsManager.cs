@@ -2,20 +2,24 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class SettingsManager : SettingsService
+    public class SettingsManager : MonoBehaviour
     {
-        private static SettingsManager _instance;
+        private static SettingsService _instance;
 
-        public static SettingsManager instance
+        public static SettingsService instance
         {
             get => _instance;
         }
 
         private void Awake()
         {
-            _instance = this;
-            _instance.storage = SimpleStorageManager.instance;
-            _instance.settings = new SettingsData();
+            _instance = new SettingsService(new SimpleStorageService(), new SettingsData());
+            _instance.onUpdate += OnUpdate;
+        }
+
+        private void OnUpdate(ISettingsData settingsData)
+        {
+            PubSubManager.instance?.Send(Channel.SETTINGS, new SettingsEvent(settingsData));
         }
     }
 }
