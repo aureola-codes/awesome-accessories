@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class SimpleStorageService : MonoBehaviour, IStorageService
+    public class SimpleStorageService : IStorageService
     {
         public void Set(string key, int value)
         {

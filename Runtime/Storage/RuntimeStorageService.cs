@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class RuntimeStorageService : MonoBehaviour, IStorageService
+    public class RuntimeStorageService : IStorageService
     {
         protected Dictionary<string, int> _intValues = new Dictionary<string, int>();
         protected Dictionary<string, float> _floatValues = new Dictionary<string, float>();

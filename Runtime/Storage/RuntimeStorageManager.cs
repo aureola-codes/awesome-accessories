@@ -2,18 +2,18 @@ using UnityEngine;
 
 namespace Aureola.Accessories
 {
-    public class RuntimeStorageManager : RuntimeStorageService
+    public class RuntimeStorageManager : MonoBehaviour
     {
-        private static RuntimeStorageManager _instance;
+        private static RuntimeStorageService _instance;
 
-        public static RuntimeStorageManager instance
+        public static RuntimeStorageService instance
         {
             get => _instance;
         }
 
         private void Awake()
         {
-            _instance = this;
+            _instance = new RuntimeStorageService();
         }
     }
 }
