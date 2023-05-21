@@ -5,10 +5,16 @@ namespace Aureola.Accessories
 {
     public class RuntimeStorageService : IStorageService
     {
-        protected Dictionary<string, bool> _boolValues = new Dictionary<string, bool>();
-        protected Dictionary<string, float> _floatValues = new Dictionary<string, float>();
-        protected Dictionary<string, int> _intValues = new Dictionary<string, int>();
-        protected Dictionary<string, string> _stringValues = new Dictionary<string, string>();
+        private Dictionary<string, bool> _boolValues = new Dictionary<string, bool>();
+        private Dictionary<string, float> _floatValues = new Dictionary<string, float>();
+        private Dictionary<string, int> _intValues = new Dictionary<string, int>();
+        private Dictionary<string, string> _stringValues = new Dictionary<string, string>();
+        private Dictionary<string, Vector2> _vector2Values = new Dictionary<string, Vector2>();
+        private Dictionary<string, Vector3> _vector3Values = new Dictionary<string, Vector3>();
+        private Dictionary<string, Vector4> _vector4Values = new Dictionary<string, Vector4>();
+        private Dictionary<string, Color> _colorValues = new Dictionary<string, Color>();
+        private Dictionary<string, Color32> _color32Values = new Dictionary<string, Color32>();
+        private Dictionary<string, Quaternion> _quaternionValues = new Dictionary<string, Quaternion>();
 
         public void Set(string key, int value)
         {
@@ -32,32 +38,32 @@ namespace Aureola.Accessories
 
         public void Set(string key, Vector2 value)
         {
-            _stringValues[key] = $"{value.x},{value.y}";
+            _vector2Values[key] = value;
         }
 
         public void Set(string key, Vector3 value)
         {
-            _stringValues[key] = $"{value.x},{value.y},{value.z}";
+            _vector3Values[key] = value;
         }
 
         public void Set(string key, Vector4 value)
         {
-            _stringValues[key] = $"{value.x},{value.y},{value.z},{value.w}";
+            _vector4Values[key] = value;
         }
 
         public void Set(string key, Color value)
         {
-            _stringValues[key] = $"{value.r},{value.g},{value.b},{value.a}";
+            _colorValues[key] = value;
         }
 
         public void Set(string key, Color32 value)
         {
-            _stringValues[key] = $"{value.r},{value.g},{value.b},{value.a}";
+            _color32Values[key] = value;
         }
 
         public void Set(string key, Quaternion value)
         {
-            _stringValues[key] = $"{value.x},{value.y},{value.z},{value.w}";
+            _quaternionValues[key] = value;
         }
 
         public int Get(string key, int defaultValue)
@@ -98,94 +104,70 @@ namespace Aureola.Accessories
 
         public Vector2 Get(string key, Vector2 defaultValue)
         {
-            if (!_stringValues.ContainsKey(key)) {
+            if (!_vector2Values.ContainsKey(key)) {
                 return defaultValue;
             }
 
-            var split = _stringValues[key].Split(',');
-            if (split.Length != 2) {
-                return defaultValue;
-            }
-
-            return new Vector2(float.Parse(split[0]), float.Parse(split[1]));
+            return _vector2Values[key];
         }
 
         public Vector3 Get(string key, Vector3 defaultValue)
         {
-            if (!_stringValues.ContainsKey(key)) {
+            if (!_vector3Values.ContainsKey(key)) {
                 return defaultValue;
             }
 
-            var split = _stringValues[key].Split(',');
-            if (split.Length != 3) {
-                return defaultValue;
-            }
-
-            return new Vector3(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2]));
+            return _vector3Values[key];
         }
 
         public Vector4 Get(string key, Vector4 defaultValue)
         {
-            if (!_stringValues.ContainsKey(key)) {
+            if (!_vector4Values.ContainsKey(key)) {
                 return defaultValue;
             }
 
-            var split = _stringValues[key].Split(',');
-            if (split.Length != 4) {
-                return defaultValue;
-            }
-
-            return new Vector4(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2]), float.Parse(split[3]));
+            return _vector4Values[key];
         }
 
         public Color Get(string key, Color defaultValue)
         {
-            if (!_stringValues.ContainsKey(key)) {
+            if (!_colorValues.ContainsKey(key)) {
                 return defaultValue;
             }
 
-            var split = _stringValues[key].Split(',');
-            if (split.Length != 4) {
-                return defaultValue;
-            }
-
-            return new Color(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2]), float.Parse(split[3]));
+            return _colorValues[key];
         }
 
         public Color32 Get(string key, Color32 defaultValue)
         {
-            if (!_stringValues.ContainsKey(key)) {
+            if (!_color32Values.ContainsKey(key)) {
                 return defaultValue;
             }
 
-            var split = _stringValues[key].Split(',');
-            if (split.Length != 4) {
-                return defaultValue;
-            }
-
-            return new Color32(byte.Parse(split[0]), byte.Parse(split[1]), byte.Parse(split[2]), byte.Parse(split[3]));
+            return _color32Values[key];
         }
 
         public Quaternion Get(string key, Quaternion defaultValue)
         {
-            if (!_stringValues.ContainsKey(key)) {
+            if (!_quaternionValues.ContainsKey(key)) {
                 return defaultValue;
             }
 
-            var split = _stringValues[key].Split(',');
-            if (split.Length != 4) {
-                return defaultValue;
-            }
-
-            return new Quaternion(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2]), float.Parse(split[3]));
+            return _quaternionValues[key];
         }
 
         public void Clear()
         {
-            _boolValues = new Dictionary<string, bool>();
-            _floatValues = new Dictionary<string, float>();
-            _intValues = new Dictionary<string, int>();
-            _stringValues = new Dictionary<string, string>();
+            _boolValues.Clear();
+            _floatValues.Clear();
+            _intValues.Clear();
+            _stringValues.Clear();
+            _vector2Values.Clear();
+            _vector3Values.Clear();
+            _vector4Values.Clear();
+            _colorValues.Clear();
+            _color32Values.Clear();
+            _quaternionValues.Clear();
         }
     }
 }
