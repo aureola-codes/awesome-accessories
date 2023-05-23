@@ -27,6 +27,7 @@ This package should work in all currently supported Unity versions. Please let m
 - [Settings Manager](/Runtime/Settings/)
 - [Storage Manager](/Runtime/Storage/)
 - [TimeScale Manager](/Runtime/TimeScale/)
+- [Translation Manager](/Runtime/Translation/)
 - [Video Manager](/Runtime/Video/)
 - [WebRequest Service](/Runtime/WebRequest/)
 

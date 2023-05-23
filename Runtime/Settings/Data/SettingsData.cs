@@ -9,6 +9,7 @@ namespace Aureola.Settings
         public float musicVolume = 1f;
         public float soundVolume = 1f;
         public float voiceVolume = 1f;
+        public string language = "EN";
 
         public ISettingsData FromJson(string jsonString)
         {
