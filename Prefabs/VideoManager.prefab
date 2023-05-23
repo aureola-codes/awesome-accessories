@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5788921282517226051}
   - component: {fileID: 5788921282517226052}
   m_Layer: 0
-  m_Name: CameraManager
+  m_Name: VideoManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5788921282517226050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dbcda9ee8b8a4de29fc7899d495d795, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ed91c68fc8fd44a1a53f89f7273cf3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
