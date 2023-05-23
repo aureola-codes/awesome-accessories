@@ -1,7 +1,6 @@
+using Aureola.Interface;
 
-
-
-namespace Aureola.Accessories
+namespace Aureola.Scenes
 {
     public class ExitSceneButton : ClickableButton
     {

@@ -1,23 +1,23 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Aureola.Accessories
+namespace Aureola.Interface
 {
-    public class InputManager : MonoBehaviour
+    public class InterfaceManager : MonoBehaviour
     {
-        private static InputService _instance;
+        private static InterfaceService _instance;
 
         [Header("Settings")]
         [SerializeField] private EventSystem _eventSystem;
 
-        public static InputService instance
+        public static InterfaceService instance
         {
             get => _instance;
         }
 
         private void Awake()
         {
-            _instance = new InputService(_eventSystem);
+            _instance = new InterfaceService(_eventSystem);
         }
     }
 }

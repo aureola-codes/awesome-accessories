@@ -1,6 +1,7 @@
+using Aureola.TimeScale;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Audio
 {
     [RequireComponent(typeof(AudioSource))]
     public class MuteOnPause : MonoBehaviour

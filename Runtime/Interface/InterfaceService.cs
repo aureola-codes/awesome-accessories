@@ -1,23 +1,23 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Aureola.Accessories
+namespace Aureola.Interface
 {
-    public class InputService
+    public class InterfaceService
     {
         [SerializeField] private EventSystem _eventSystem;
 
-        public InputService(EventSystem eventSystem)
+        public InterfaceService(EventSystem eventSystem)
         {
             _eventSystem = eventSystem;
         }
 
-        public void Enable()
+        public void EnableInput()
         {
             _eventSystem.enabled = true;
         }
 
-        public void Disable()
+        public void DisableInput()
         {
             _eventSystem.enabled = false;
         }

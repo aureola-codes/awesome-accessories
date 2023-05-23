@@ -1,6 +1,8 @@
+using Aureola.PubSub;
+using Aureola.Storage;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Settings
 {
     public class SettingsManager : MonoBehaviour
     {

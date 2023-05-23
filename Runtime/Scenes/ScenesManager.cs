@@ -1,10 +1,10 @@
-
+using Aureola.Interface;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Aureola.Accessories
+namespace Aureola.Scenes
 {
     public class ScenesManager : MonoBehaviour
     {
@@ -194,7 +194,7 @@ namespace Aureola.Accessories
             }
 
             if (_ops.Count == 0) {
-                InputManager.instance?.Enable();
+                InterfaceManager.instance?.EnableInput();
                 return;
             }
             
@@ -203,7 +203,7 @@ namespace Aureola.Accessories
 
             _processedScene = operation.scene;
 
-            InputManager.instance?.Disable();
+            InterfaceManager.instance?.DisableInput();
 
             if (operation.type == OperationType.Exit) {
                 SceneBehaviour sceneBehaviour = GetSceneBehaviour(operation.scene);

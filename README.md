@@ -19,16 +19,15 @@ This package should work in all currently supported Unity versions. Please let m
 ## Table of Contents
 
 - [Audio Manager](/Runtime/Audio/)
-- [Camera Manager](/Runtime/Camera/)
 - [Config Manager](/Runtime/Config/)
-- [Input Manager](/Runtime/Input/)
-- [Interface Behaviours](/Runtime/Interface/)
+- [Interface Manager](/Runtime/Interface/)
 - [PubSub Manager](/Runtime/PubSub/)
 - [Scenes Manager](/Runtime/Scenes/)
 - [Screenshot Manager](/Runtime/Screenshot/)
 - [Settings Manager](/Runtime/Settings/)
 - [Storage Manager](/Runtime/Storage/)
 - [TimeScale Manager](/Runtime/TimeScale/)
+- [Video Manager](/Runtime/Video/)
 - [WebRequest Service](/Runtime/WebRequest/)
 
 ## Installation

@@ -1,6 +1,8 @@
+using Aureola.PubSub;
+using Aureola.Settings;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Audio
 {
     public class AudioManager : MonoBehaviour
     {

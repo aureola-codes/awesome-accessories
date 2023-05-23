@@ -1,7 +1,8 @@
+using Aureola.Storage;
 using System;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Settings
 {
     public class SettingsService : MonoBehaviour
     {

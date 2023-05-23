@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.Networking;
 
-namespace Aureola.Accessories
+namespace Aureola.WebRequest
 {
     public class WebRequestData
     {

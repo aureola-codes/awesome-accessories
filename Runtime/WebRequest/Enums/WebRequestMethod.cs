@@ -1,4 +1,4 @@
-namespace Aureola.Accessories
+namespace Aureola.WebRequest
 {
     public enum WebRequestMethod
     {

@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using System.IO;
 
-namespace Aureola.Accessories
+namespace Aureola
 {
     public class CreateJsonFile
     {

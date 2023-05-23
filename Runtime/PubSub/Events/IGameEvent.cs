@@ -1,4 +1,4 @@
-namespace Aureola.Accessories
+namespace Aureola.PubSub
 {
     public interface IGameEvent
     {

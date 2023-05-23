@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.TimeScale
 {   
     public class TimeScaleService
     {

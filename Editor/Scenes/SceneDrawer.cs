@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Scenes
 {
     [CustomPropertyDrawer (typeof (SceneAttribute))]
     public class SceneDrawer : PropertyDrawer

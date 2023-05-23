@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Storage
 {
     public class SimpleStorageManager : MonoBehaviour
     {

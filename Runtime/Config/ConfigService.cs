@@ -1,9 +1,10 @@
+using Aureola.Storage;
 using SimpleJSON;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Aureola.Accessories
+namespace Aureola.Config
 {
     public class ConfigService : IStorageService
     {

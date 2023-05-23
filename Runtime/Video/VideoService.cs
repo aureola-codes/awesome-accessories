@@ -1,12 +1,12 @@
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Video
 {
-    public class CameraService
+    public class VideoService
     {
         private Camera _camera;
 
-        public CameraService(Camera camera)
+        public VideoService(Camera camera)
         {
             _camera = camera;
         }

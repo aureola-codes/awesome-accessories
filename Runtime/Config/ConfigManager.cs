@@ -1,7 +1,8 @@
+using Aureola.Storage;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Aureola.Accessories
+namespace Aureola.Config
 {
     public class ConfigManager : MonoBehaviour
     {

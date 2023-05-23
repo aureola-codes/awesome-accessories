@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Settings
 {
     [System.Serializable]
     public class SettingsData : ISettingsData

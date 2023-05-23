@@ -1,4 +1,6 @@
-namespace Aureola.Accessories
+using Aureola.PubSub;
+
+namespace Aureola.Settings
 {
     public class SettingsEvent : IGameEvent
     {

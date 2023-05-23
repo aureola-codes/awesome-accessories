@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Interface
 {
     [RequireComponent(typeof(TMP_Text))]
     public class TextAutoHeight : MonoBehaviour

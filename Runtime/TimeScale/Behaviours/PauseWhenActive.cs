@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.TimeScale
 {
     public class PauseWhenActive : MonoBehaviour
     {

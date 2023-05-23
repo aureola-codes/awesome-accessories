@@ -1,9 +1,7 @@
-
-
-
+using Aureola.Interface;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Scenes
 {
     public class SceneButton : ClickableButton
     {

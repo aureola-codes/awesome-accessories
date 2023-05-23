@@ -1,7 +1,7 @@
 using System.Text;
 using UnityEngine.Networking;
 
-namespace Aureola.Accessories
+namespace Aureola.WebRequest
 {
     public class WebRequestService
     {

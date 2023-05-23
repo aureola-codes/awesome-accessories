@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.PubSub
 {
     public class PubSubManager : MonoBehaviour
     {

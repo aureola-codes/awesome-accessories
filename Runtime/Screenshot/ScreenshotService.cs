@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Screenshot
 {
     public class ScreenshotService
     {

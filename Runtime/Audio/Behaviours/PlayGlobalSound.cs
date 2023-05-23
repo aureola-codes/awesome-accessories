@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Audio
 {
     public class PlayGlobalSound : MonoBehaviour
     {

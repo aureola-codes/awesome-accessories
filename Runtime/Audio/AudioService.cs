@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola.Audio
 {
     public class AudioService : MonoBehaviour
     {

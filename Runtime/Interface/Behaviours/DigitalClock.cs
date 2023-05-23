@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-namespace Aureola.Accessories
+namespace Aureola.Interface
 {
     [RequireComponent(typeof(TMP_Text))]
     public class DigitalClock : MonoBehaviour

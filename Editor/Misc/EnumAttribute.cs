@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aureola.Accessories
+namespace Aureola
 {
     public class EnumAttribute : PropertyAttribute
     {
