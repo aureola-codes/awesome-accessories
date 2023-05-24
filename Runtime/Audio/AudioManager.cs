@@ -39,7 +39,7 @@ namespace Aureola.Audio
         {
             if (_isDirty) {
                 _isDirty = false;
-                PubSubManager.instance?.Send(Channel.AUDIO, new AudioEvent());
+                PubSubManager.instance?.Send(Channel.AUDIO, new VolumeChanged());
             }
         }
 

@@ -16,15 +16,15 @@ namespace Aureola.Audio
         private void OnEnable()
         {
             SyncVolume();
-            PubSubManager.instance?.Subscribe(Channel.AUDIO, typeof(AudioEvent), OnAudioEvent);
+            PubSubManager.instance?.Subscribe(Channel.AUDIO, typeof(VolumeChanged), OnVolumeChanged);
         }
 
         private void OnDisable()
         {
-           PubSubManager.instance?.Unsubscribe(Channel.AUDIO, typeof(AudioEvent), OnAudioEvent);
+           PubSubManager.instance?.Unsubscribe(Channel.AUDIO, typeof(VolumeChanged), OnVolumeChanged);
         }
 
-        private void OnAudioEvent(IGameEvent gameEvent)
+        private void OnVolumeChanged(IGameEvent gameEvent)
         {
             SyncVolume();
         }
