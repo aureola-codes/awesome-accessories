@@ -33,6 +33,15 @@ namespace Aureola.PubSub
             }
         }
 
+        public void Subscribe(string channelName, GameEventDelegate callback, IGameEvent specificEvent)
+        {
+            Subscribe(channelName, (IGameEvent gameEvent) => {
+                if (gameEvent.GetType() == specificEvent.GetType()) {
+                    callback(gameEvent);
+                }
+            });
+        }
+
         public void Unsubscribe(string channelName, GameEventDelegate callback)
         {
             if (Exists(channelName)) {
@@ -42,6 +51,15 @@ namespace Aureola.PubSub
             if (_debugging) {
                 Debug.Log(channelName + ": Listener removed " + callback);
             }
+        }
+
+        public void Unsubscribe(string channelName, GameEventDelegate callback, IGameEvent specificEvent)
+        {
+            Unsubscribe(channelName, (IGameEvent gameEvent) => {
+                if (gameEvent.GetType() == specificEvent.GetType()) {
+                    callback(gameEvent);
+                }
+            });
         }
 
         public void Send(string channelName, IGameEvent data)
