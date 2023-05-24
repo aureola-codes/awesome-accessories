@@ -27,12 +27,12 @@ namespace Aureola.Audio
 
         private void OnEnable()
         {
-            PubSubManager.instance?.Subscribe(Channel.SETTINGS, typeof(SettingsEvent), OnSettingsUpdated);
+            PubSubManager.instance?.Subscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
         }
 
         private void OnDisable()
         {
-            PubSubManager.instance?.Unsubscribe(Channel.SETTINGS, typeof(SettingsEvent), OnSettingsUpdated);
+            PubSubManager.instance?.Unsubscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
         }
 
         private void LateUpdate()
@@ -45,7 +45,7 @@ namespace Aureola.Audio
 
         private void OnSettingsUpdated(IGameEvent data)
         {
-            var eventData = (SettingsEvent) data;
+            var eventData = (SettingsUpdated) data;
             var settingsData = (SettingsData) eventData.settings;
 
             _instance.masterVolume = settingsData.masterVolume;

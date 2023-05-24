@@ -49,12 +49,12 @@ namespace Aureola.Translation
 
         private void OnEnable()
         {
-            PubSubManager.instance?.Subscribe(Channel.SETTINGS, typeof(SettingsEvent), OnSettingsEvent);
+            PubSubManager.instance?.Subscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
         }
 
         private void OnDisable()
         {
-            PubSubManager.instance?.Unsubscribe(Channel.SETTINGS, typeof(SettingsEvent), OnSettingsEvent);
+            PubSubManager.instance?.Unsubscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
         }
 
         private void OnLanguageChanged(string language)
@@ -62,10 +62,10 @@ namespace Aureola.Translation
             PubSubManager.instance?.Send(Channel.TRANSLATION, new LanguageChanged(language));
         }
 
-        private void OnSettingsEvent(IGameEvent gameEvent)
+        private void OnSettingsUpdated(IGameEvent gameEvent)
         {
-            var settingsEvent = (SettingsEvent) gameEvent;
-            var settingsData = (SettingsData) settingsEvent.settings;
+            var SettingsUpdated = (SettingsUpdated) gameEvent;
+            var settingsData = (SettingsData) SettingsUpdated.settings;
 
             _instance.ChangeLanguage(settingsData.language);
         }

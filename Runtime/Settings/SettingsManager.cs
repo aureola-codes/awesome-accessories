@@ -21,7 +21,7 @@ namespace Aureola.Settings
 
         private void OnUpdate(ISettingsData settingsData)
         {
-            PubSubManager.instance?.Send(Channel.SETTINGS, new SettingsEvent(settingsData));
+            PubSubManager.instance?.Send(Channel.SETTINGS, new SettingsUpdated(settingsData));
         }
     }
 }

@@ -2,10 +2,10 @@ using Aureola.PubSub;
 
 namespace Aureola.Settings
 {
-    public class SettingsEvent : IGameEvent
+    public class SettingsUpdated : IGameEvent
     {
         public ISettingsData settings;
-        public SettingsEvent(ISettingsData settings)
+        public SettingsUpdated(ISettingsData settings)
         {
             this.settings = settings;
         }
