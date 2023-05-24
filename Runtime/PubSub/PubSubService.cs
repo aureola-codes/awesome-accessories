@@ -55,6 +55,8 @@ namespace Aureola.PubSub
             }
         }
 
+        public void Publish(string channelName, IGameEvent data) => Send(channelName, data);
+
         public void Clear(string channelName)
         {
             _channels.Remove(channelName);
