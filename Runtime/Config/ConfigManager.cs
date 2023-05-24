@@ -1,3 +1,4 @@
+using Aureola.PubSub;
 using Aureola.Storage;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -19,7 +20,13 @@ namespace Aureola.Config
         private void Awake()
         {
             _instance = new ConfigService(new RuntimeStorageService());
+            _instance.onLoaded += OnConfigLoaded;
             _instance.Load(_configFile);
+        }
+
+        private void OnConfigLoaded()
+        {
+            PubSubManager.instance?.Send(Channel.CONFIG, new ConfigLoaded());
         }
     }
 }

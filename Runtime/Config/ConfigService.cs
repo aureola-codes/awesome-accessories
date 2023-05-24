@@ -10,6 +10,9 @@ namespace Aureola.Config
     {
         private IStorageService _storage;
 
+        public delegate void OnLoaded();
+        public OnLoaded onLoaded;
+
         public ConfigService(IStorageService storage)
         {
             _storage = storage;
@@ -56,6 +59,7 @@ namespace Aureola.Config
                 }
 
                 Addressables.Release(handle);
+                onLoaded?.Invoke();
             };
         }
 
