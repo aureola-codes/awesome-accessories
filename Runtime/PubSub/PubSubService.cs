@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,10 +34,10 @@ namespace Aureola.PubSub
             }
         }
 
-        public void Subscribe(string channelName, GameEventDelegate callback, IGameEvent specificEvent)
+        public void Subscribe(string channelName, Type eventType, GameEventDelegate callback)
         {
             Subscribe(channelName, (IGameEvent gameEvent) => {
-                if (gameEvent.GetType() == specificEvent.GetType()) {
+                if (gameEvent.GetType() == eventType) {
                     callback(gameEvent);
                 }
             });
@@ -53,10 +54,10 @@ namespace Aureola.PubSub
             }
         }
 
-        public void Unsubscribe(string channelName, GameEventDelegate callback, IGameEvent specificEvent)
+        public void Unsubscribe(string channelName, Type eventType, GameEventDelegate callback)
         {
             Unsubscribe(channelName, (IGameEvent gameEvent) => {
-                if (gameEvent.GetType() == specificEvent.GetType()) {
+                if (gameEvent.GetType() == eventType) {
                     callback(gameEvent);
                 }
             });

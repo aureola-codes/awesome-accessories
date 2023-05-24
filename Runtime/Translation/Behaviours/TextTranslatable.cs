@@ -22,22 +22,20 @@ namespace Aureola.Translation
         {
             Render();
             if (autoUpdate) {
-                PubSubManager.instance?.Subscribe(Channel.TRANSLATION, OnLanguageChanged);
+                PubSubManager.instance?.Subscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
             }
         }
 
         private void OnDisable()
         {
             if (autoUpdate) {
-                PubSubManager.instance?.Unsubscribe(Channel.TRANSLATION, OnLanguageChanged);
+                PubSubManager.instance?.Unsubscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
             }
         }
 
         private void OnLanguageChanged(IGameEvent gameEvent)
         {
-            if (gameEvent.GetType() == typeof(LanguageChanged)) {
-                Render();
-            }
+            Render();
         }
 
         private void Render()
