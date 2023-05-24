@@ -21,6 +21,7 @@ This package should work in all currently supported Unity versions. Please let m
 - [Audio Manager](/Runtime/Audio/)
 - [Config Manager](/Runtime/Config/)
 - [Interface Manager](/Runtime/Interface/)
+- [Loader Service](/Runtime/Loader/)
 - [PubSub Manager](/Runtime/PubSub/)
 - [Scenes Manager](/Runtime/Scenes/)
 - [Screenshot Manager](/Runtime/Screenshot/)
