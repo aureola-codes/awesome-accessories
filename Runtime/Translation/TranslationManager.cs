@@ -31,6 +31,7 @@ namespace Aureola.Translation
         private void Awake()
         {
             _instance = new TranslationService(_basePath, _defaultLanguage);
+            _instance.onUpdated += OnLanguageChanged;
 
              // Register all supported languages.
             foreach (var supportedLanguage in _supportedLanguages) {
@@ -48,12 +49,17 @@ namespace Aureola.Translation
 
         private void OnEnable()
         {
-            PubSubManager.instance.Subscribe(Channel.SETTINGS, OnSettingsEvent);
+            PubSubManager.instance?.Subscribe(Channel.SETTINGS, OnSettingsEvent);
         }
 
         private void OnDisable()
         {
-            PubSubManager.instance.Unsubscribe(Channel.SETTINGS, OnSettingsEvent);
+            PubSubManager.instance?.Unsubscribe(Channel.SETTINGS, OnSettingsEvent);
+        }
+
+        private void OnLanguageChanged(string language)
+        {
+            PubSubManager.instance?.Send(Channel.TRANSLATION, new LanguageChanged(language));
         }
 
         private void OnSettingsEvent(IGameEvent gameEvent)

@@ -14,6 +14,9 @@ namespace Aureola.Translation
         private Dictionary<string, SystemLanguage> _languages = new Dictionary<string, SystemLanguage>();
         private Dictionary<string, string> _translations = new Dictionary<string, string>();
 
+        public delegate void OnUpdated(string language);
+        public OnUpdated onUpdated;
+
         public string language
         {
             get => _language;
@@ -128,8 +131,7 @@ namespace Aureola.Translation
                     var translations = GetFileParser(handle.Result.text).Parse();
                     if (translations.Count > 0) {
                         _translations = translations;
-
-                        PubSubManager.instance?.Send(Channel.TRANSLATION, new TranslationEvent(_language));
+                        onUpdated?.Invoke(_language);
                     } else {
                         Debug.LogError("No translations found for: " + _language);
                     }

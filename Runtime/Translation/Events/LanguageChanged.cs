@@ -2,10 +2,10 @@ using Aureola.PubSub;
 
 namespace Aureola.Translation
 {
-    public class TranslationEvent : IGameEvent
+    public class LanguageChanged : IGameEvent
     {
         public string language;
-        public TranslationEvent(string language)
+        public LanguageChanged(string language)
         {
             this.language = language;
         }
