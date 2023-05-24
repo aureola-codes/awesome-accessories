@@ -20,5 +20,15 @@ namespace Aureola.Video
         {
             _camera.gameObject.SetActive(false);
         }
+
+        public void EnableAudioListener()
+        {
+            _camera.GetComponent<AudioListener>().enabled = true;
+        }
+
+        public void DisableAudioListener()
+        {
+            _camera.GetComponent<AudioListener>().enabled = false;
+        }
     }
 }
