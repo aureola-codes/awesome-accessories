@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Aureola.Storage
 {
-    public class JsonStorageService
+    public class JsonStorageService : IStorageService
     {
         private string _fileName;
         private FileService _fileService;
@@ -83,7 +83,7 @@ namespace Aureola.Storage
             Save();
         }
 
-        public int GetInt(string key, int defaultValue)
+        public int Get(string key, int defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
                 return defaultValue;
@@ -92,7 +92,7 @@ namespace Aureola.Storage
             return (int) _cache[key];
         }
 
-        public float GetFloat(string key, float defaultValue)
+        public float Get(string key, float defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
                 return defaultValue;
@@ -101,7 +101,7 @@ namespace Aureola.Storage
             return (float) _cache[key];
         }
 
-        public string GetString(string key, string defaultValue)
+        public string Get(string key, string defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
                 return defaultValue;
@@ -110,7 +110,7 @@ namespace Aureola.Storage
             return (string) _cache[key];
         }
 
-        public bool GetBool(string key, bool defaultValue)
+        public bool Get(string key, bool defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
                 return defaultValue;
@@ -119,7 +119,7 @@ namespace Aureola.Storage
             return (bool) _cache[key];
         }
 
-        public Vector2 GetVector2(string key, Vector2 defaultValue)
+        public Vector2 Get(string key, Vector2 defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
                 return defaultValue;
@@ -128,7 +128,7 @@ namespace Aureola.Storage
             return (Vector2) _cache[key];
         }
 
-        public Vector3 GetVector3(string key, Vector3 defaultValue)
+        public Vector3 Get(string key, Vector3 defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
                 return defaultValue;
@@ -137,7 +137,7 @@ namespace Aureola.Storage
             return (Vector3) _cache[key];
         }
 
-        public Vector4 GetVector4(string key, Vector4 defaultValue)
+        public Vector4 Get(string key, Vector4 defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
                 return defaultValue;
@@ -146,7 +146,7 @@ namespace Aureola.Storage
             return (Vector4) _cache[key];
         }
 
-        public Color GetColor(string key, Color defaultValue)
+        public Color Get(string key, Color defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
                 return defaultValue;
@@ -155,13 +155,28 @@ namespace Aureola.Storage
             return (Color) _cache[key];
         }
 
-        public Color32 GetColor32(string key, Color32 defaultValue)
+        public Color32 Get(string key, Color32 defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
                 return defaultValue;
             }
 
             return (Color32) _cache[key];
+        }
+
+        public Quaternion Get(string key, Quaternion defaultValue)
+        {
+            if (!_cache.ContainsKey(key)) {
+                return defaultValue;
+            }
+
+            return (Quaternion) _cache[key];
+        }
+
+        public void Clear()
+        {
+            _cache.Clear();
+            Save();
         }
 
         private void Load()
