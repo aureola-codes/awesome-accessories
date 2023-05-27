@@ -97,18 +97,13 @@ namespace Aureola.Storage
             return files;
         }
 
-        private string PreparePath(string filepath)
+        private string PreparePath(string path)
         {
-            if (!filepath.StartsWith(_basePath)) {
-                filepath = _basePath + "/" + filepath;
-            }
-            
-            string directory = filepath;
-            if (Path.GetExtension(filepath) != "") {
-                directory = Path.GetDirectoryName(directory);
+            if (!path.StartsWith(_basePath)) {
+                path = _basePath + "/" + path;
             }
 
-            return filepath;
+            return path;
         }
     }
 }
