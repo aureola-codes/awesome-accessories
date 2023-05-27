@@ -78,9 +78,24 @@ All **services** use [delegates](https://learn.microsoft.com/en-us/dotnet/csharp
 
 You can also just download the latest version of this package from Git and copy all or parts of it directly into your project. Please note that this method is not officially supported by me.
 
-## Support
+## Support the Project
 
-If you find bugs, have questions, suggestions or feature requests, please create an issue in the [Github repository](https://github.com/aureola-codes/awesome-accessories).
+If you find this project helpful and would like to contribute to its development and ongoing maintenance, your support would be greatly appreciated. By making a donation, you can help ensure the project's sustainability and enable me to allocate more time and resources to its improvement.
+
+## How can you contribute?
+
+- **Financial Contributions:** If you would like to make a monetary donation, you can do so securely through PayPal or TODO. Every contribution, no matter the amount, makes a difference and is deeply valued.
+- **Bug Reports and Feature Requests:** If you encounter any issues while using the project or have ideas for new features, please open an issue on the GitHub repository. Your feedback and suggestions are crucial in improving the project for everyone.
+- **Code Contributions:** If you are a developer and would like to contribute directly to the project's codebase, feel free to submit a pull request. Contributions of all sizes are welcome and will be acknowledged.
+
+## Show your support
+
+Even if you are unable to contribute financially or through code, there are other ways to show your support:
+
+- Star the project on GitHub. It helps to increase its visibility and attract more users.
+- Share the project with others who might find it useful. Spread the word about the project and help it reach a wider audience.
+
+Your support means a lot to me, and it motivates me to continue working on and improving this project. Thank you for considering a donation and supporting its development!
 
 ## License
 
