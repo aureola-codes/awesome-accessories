@@ -1,4 +1,3 @@
-using Aureola.Files;
 using SimpleJSON;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,18 +7,18 @@ namespace Aureola.Storage
     public class JsonStorageService : IStorageService
     {
         private string _fileName;
-        private FileService _fileService;
+        private FilesService _filesService;
         private Dictionary<string, object> _cache = new Dictionary<string, object>();
 
         public JsonStorageService(string fileName = "storage.json")
         {
-            _fileService = new FileService();
+            _filesService = new FilesService();
             Load();
         }
 
         public JsonStorageService(string basePath, string fileName = "storage.json")
         {
-            _fileService = new FileService(basePath);
+            _filesService = new FilesService(basePath);
             Load();
         }
 
@@ -179,13 +178,13 @@ namespace Aureola.Storage
             Save();
         }
 
-        private void Load()
+        public void Load()
         {
-            if (!_fileService.Exists(_fileName)) {
+            if (!_filesService.Exists(_fileName)) {
                 return;
             }
 
-            var jsonObject = JSON.Parse(_fileService.LoadText(_fileName));
+            var jsonObject = JSON.Parse(_filesService.LoadText(_fileName));
 
             _cache = new Dictionary<string, object>();
             foreach (var keyValuePair in jsonObject) {
@@ -193,9 +192,9 @@ namespace Aureola.Storage
             }
         }
 
-        private void Save()
+        public void Save()
         {
-            _fileService.Save(_fileName, JsonUtility.ToJson(_cache));
+            _filesService.Save(_fileName, JsonUtility.ToJson(_cache));
         }
     }
 }

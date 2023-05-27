@@ -3,18 +3,18 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-namespace Aureola.Files
+namespace Aureola.Storage
 {
-    public class FileService
+    public class FilesService
     {
         private string _basePath;
 
-        public FileService()
+        public FilesService()
         {
             _basePath = Application.persistentDataPath;
         }
 
-        public FileService(string basePath)
+        public FilesService(string basePath)
         {
             _basePath = basePath;
         }
