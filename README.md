@@ -1,4 +1,4 @@
-# Aureola's Awesome Accessories
+![Aureola's Awesome Accessories](/Assets/awesome-accessories-1024x400.png)
 
 A Unity package containing accessories &amp; utilities that I use in all of my Unity projects.
 
