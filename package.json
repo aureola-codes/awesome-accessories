@@ -2,7 +2,7 @@
     "name": "codes.aureola.awesome-accessories",
     "displayName": "Aureola's Awesome Accessories",
     "description": "A Unity package containing accessories & utilities that I use in all of my projects.",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "unity": "2021.1",
     "dependencies": {
         "com.bunny83.simplejson": "*",
@@ -10,9 +10,9 @@
         "com.unity.textmeshpro": "*"
     },
     "author": {
-        "name" : "Christian Hanne",
-        "email" : "support@aureola.codes",
-        "url" : "https://aureola.codes/"
-     },
-     "license": "MIT"
+        "name": "Christian Hanne",
+        "email": "support@aureola.codes",
+        "url": "https://aureola.codes/"
+    },
+    "license": "MIT"
 }
