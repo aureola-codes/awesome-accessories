@@ -1,4 +1,5 @@
 using Aureola.Interface;
+using Aureola.PubSub;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -103,6 +104,8 @@ namespace Aureola.Scenes
         }
 
         public void MarkSceneLoaded() {
+            PubSubManager.instance?.Send(Channel.SCENES, new SceneLoaded(_processedScene));
+
             _scenes.Add(_processedScene);
             _processedScene = null;
 
@@ -110,6 +113,8 @@ namespace Aureola.Scenes
         }
 
         public void MarkSceneExited() {
+            PubSubManager.instance?.Send(Channel.SCENES, new SceneExited(_processedScene));
+
             _scenes.Remove(_processedScene);
             _processedScene = null;
 

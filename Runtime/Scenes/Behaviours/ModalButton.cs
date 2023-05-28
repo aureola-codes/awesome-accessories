@@ -5,16 +5,16 @@ namespace Aureola.Scenes
 {
     public class ModalButton : ClickableButton
     {
-        [Scene] public string sceneName;
+        [SerializeField] [Scene] private string _sceneName;
 
         public void LoadScene()
         {
-            if (sceneName == null) {
+            if (_sceneName == null) {
                 Debug.LogWarning("No scene selected.");
                 return;
             }
 
-            ScenesManager.instance?.Load(sceneName);
+            ScenesManager.instance?.Load(_sceneName);
         }
     }
 }

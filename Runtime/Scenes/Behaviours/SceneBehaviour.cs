@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Aureola.Scenes
 {
+    [RequireComponent(typeof(Animator))]
     public class SceneBehaviour : MonoBehaviour
     {
         private const int ANIMATION_ENTER = 1;
