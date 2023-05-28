@@ -21,6 +21,13 @@ namespace Aureola.WebRequest
             this.method = method;
         }
 
+        public WebRequestData(string url, WebRequestMethod method, string payload)
+        {
+            this.url = url;
+            this.method = method;
+            this.payload = payload;
+        }
+
         public WebRequestData(string url, WebRequestMethod method, Dictionary<string, string> headers)
         {
             this.url = url;

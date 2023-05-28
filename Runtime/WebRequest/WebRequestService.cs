@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine.Networking;
 
@@ -34,10 +35,35 @@ namespace Aureola.WebRequest
             }
 
             if (request.responseCode == 200 || request.responseCode == 201) {
-                onSuccess.Invoke(request.downloadHandler.text);
+                onSuccess?.Invoke(request.downloadHandler.text);
             } else {
-                onFailure.Invoke(request.error + ": " + request.downloadHandler.text);
+                onFailure?.Invoke(request.error + ": " + request.downloadHandler.text);
             }
+        }
+
+        public void Send(string url)
+        {
+            Send(new WebRequestData(url));
+        }
+
+        public void Send(string url, WebRequestMethod method)
+        {
+            Send(new WebRequestData(url, method));
+        }
+
+        public void Send(string url, WebRequestMethod method, string payload)
+        {
+            Send(new WebRequestData(url, method, payload));
+        }
+
+        public void Send(string url, WebRequestMethod method, Dictionary<string, string> headers)
+        {
+            Send(new WebRequestData(url, method, headers));
+        }
+
+        public void Send(string url, WebRequestMethod method, Dictionary<string, string> headers, string payload)
+        {
+            Send(new WebRequestData(url, method, headers, payload));
         }
     }
 }
