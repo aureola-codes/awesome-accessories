@@ -6,6 +6,11 @@ namespace Aureola.Video
     {
         private Camera _camera;
 
+        public Camera camera
+        {
+            get => _camera;
+        }
+
         public VideoService(Camera camera)
         {
             _camera = camera;
