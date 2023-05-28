@@ -19,7 +19,7 @@ namespace Aureola.Config
 
         private void Awake()
         {
-            _instance = new ConfigService(new RuntimeStorageService());
+            _instance = new ConfigService();
             _instance.onLoaded += OnConfigLoaded;
             _instance.Load(_configFile);
         }

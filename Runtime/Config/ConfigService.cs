@@ -13,6 +13,11 @@ namespace Aureola.Config
         public delegate void OnLoaded();
         public OnLoaded onLoaded;
 
+        public ConfigService()
+        {
+            _storage = new RuntimeStorageService();
+        }
+
         public ConfigService(IStorageService storage)
         {
             _storage = storage;
