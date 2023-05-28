@@ -27,12 +27,6 @@ namespace Aureola.Translation
             _baseAddress = baseAddress;
         }
 
-        public TranslationService(string baseAddress, string defaultLanguage)
-        {
-            _baseAddress = baseAddress;
-            ChangeLanguage(defaultLanguage);
-        }
-
         public string Get(string key)
         {
             string value;

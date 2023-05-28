@@ -10,7 +10,8 @@ namespace Aureola.Translation
         private string _translationKey;
         private Text _textField;
 
-        public bool autoUpdate = false;
+        [Header("Settings")]
+        [SerializeField] private bool _autoUpdate = false;
 
         private void Awake()
         {
@@ -21,14 +22,14 @@ namespace Aureola.Translation
         private void OnEnable()
         {
             Render();
-            if (autoUpdate) {
+            if (_autoUpdate) {
                 PubSubManager.instance?.Subscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
             }
         }
 
         private void OnDisable()
         {
-            if (autoUpdate) {
+            if (_autoUpdate) {
                 PubSubManager.instance?.Unsubscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
             }
         }

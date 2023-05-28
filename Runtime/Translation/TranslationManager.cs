@@ -20,7 +20,7 @@ namespace Aureola.Translation
 
         [Header("Settings")]
         [SerializeField] private string _basePath = "Assets/Translations";
-        [SerializeField] private string _defaultLanguage = "EN";
+        [SerializeField] private string _defaultLanguage = "";
         [SerializeField] private SupportedLanguage[] _supportedLanguages;
 
         public static TranslationService instance
@@ -30,7 +30,7 @@ namespace Aureola.Translation
 
         private void Awake()
         {
-            _instance = new TranslationService(_basePath, _defaultLanguage);
+            _instance = new TranslationService(_basePath);
             _instance.onUpdated += OnLanguageChanged;
 
              // Register all supported languages.
@@ -39,7 +39,7 @@ namespace Aureola.Translation
             }
 
             // Try to guess set user's preferred language.
-            string language = SettingsManager.instance.Get("language", "");
+            string language = SettingsManager.instance?.Get("language", _defaultLanguage);
             if (language != "") {
                 _instance.ChangeLanguage(language);
             } else {

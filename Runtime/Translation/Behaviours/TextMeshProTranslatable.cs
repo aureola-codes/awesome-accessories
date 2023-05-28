@@ -5,12 +5,13 @@ using TMPro;
 namespace Aureola.Translation
 {
     [RequireComponent(typeof(TMP_Text))]
-    public class TMProTranslatable : MonoBehaviour
+    public class TextMeshProTranslatable : MonoBehaviour
     {
         private string _translationKey;
         private TMP_Text _textField;
 
-        public bool autoUpdate = false;
+        [Header("Settings")]
+        [SerializeField] private bool _autoUpdate = false;
 
         private void Awake()
         {
@@ -21,14 +22,14 @@ namespace Aureola.Translation
         private void OnEnable()
         {
             Render();
-            if (autoUpdate) {
+            if (_autoUpdate) {
                 PubSubManager.instance?.Subscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
             }
         }
 
         private void OnDisable()
         {
-            if (autoUpdate) {
+            if (_autoUpdate) {
                 PubSubManager.instance?.Unsubscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
             }
         }
