@@ -13,8 +13,8 @@ namespace Aureola.Audio
         private float _soundVolume = 0.5f;
         private float _voiceVolume = 0.5f;
 
-        public delegate void OnUpdate();
-        public OnUpdate onUpdate;
+        public delegate void OnVolumeChanged();
+        public OnVolumeChanged onVolumeChanged;
 
         public bool isMusicPlaying {
             get => _musicPlayer.isPlaying;
@@ -35,7 +35,7 @@ namespace Aureola.Audio
                 _musicPlayer.volume = musicVolume;
                 _soundPlayer.volume = soundVolume;
                 _voicePlayer.volume = voiceVolume;
-                onUpdate?.Invoke();
+                onVolumeChanged?.Invoke();
             }
         }
 
@@ -44,7 +44,7 @@ namespace Aureola.Audio
             set {
                 _musicVolume = value;
                 _musicPlayer.volume = musicVolumeAdjusted;
-                onUpdate?.Invoke();
+                onVolumeChanged?.Invoke();
             }
         }
 
@@ -53,7 +53,7 @@ namespace Aureola.Audio
             set {
                 _soundVolume = value;
                 _soundPlayer.volume = soundVolumeAdjusted;
-                onUpdate?.Invoke();
+                onVolumeChanged?.Invoke();
             }
         }
 
@@ -62,7 +62,7 @@ namespace Aureola.Audio
             set {
                 _voiceVolume = value;
                 _voicePlayer.volume = voiceVolumeAdjusted;
-                onUpdate?.Invoke();
+                onVolumeChanged?.Invoke();
             }
         }
 
@@ -105,7 +105,7 @@ namespace Aureola.Audio
             }
         }
 
-        public void PlaySound(AudioClip sound, bool stop = false)
+        public void PlaySound(AudioClip sound)
         {
             _soundPlayer.PlayOneShot(sound);
         }
@@ -115,7 +115,7 @@ namespace Aureola.Audio
             _soundPlayer.Stop();
         }
 
-        public void PlayVoice(AudioClip voice, bool stop = false)
+        public void PlayVoice(AudioClip voice)
         {
             _voicePlayer.PlayOneShot(voice);
         }

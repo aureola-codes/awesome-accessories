@@ -22,7 +22,7 @@ namespace Aureola.Audio
         private void Awake()
         {
             _instance = new AudioService(_musicPlayer, _soundPlayer, _voicePlayer);
-            _instance.onUpdate += () => _isDirty = true;
+            _instance.onVolumeChanged += () => _isDirty = true;
         }
 
         private void OnEnable()
