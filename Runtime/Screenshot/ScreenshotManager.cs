@@ -54,5 +54,11 @@ namespace Aureola.Screenshot
                 yield return new WaitForSeconds(_automatedInterval);
             }
         }
+
+        [ContextMenu("Capture Screenshot")]
+        private void CaptureScreenshot()
+        {
+            _instance.CaptureScreenshot();
+        }
     }
 }
