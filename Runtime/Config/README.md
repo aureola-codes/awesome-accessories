@@ -54,12 +54,5 @@ Please note, that these values by default are not stored permanently.
 
 ### Events
 
-Events are published in the channel **Config**.
-
+- Events are published in the channel **Config**.
 - **ConfigLoaded** Triggered when a new configuration has been loaded.
-
-## Dependencies
-
-- Aureola.PubSub
-- Aureola.Storage
-- SimpleJSON
