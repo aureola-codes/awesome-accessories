@@ -18,19 +18,19 @@ This package should work in all currently supported Unity versions. Please let m
 
 ## Table of Contents
 
-- [Audio Manager](/Runtime/Audio/)
-- [Config Manager](/Runtime/Config/)
-- [Interface Manager](/Runtime/Interface/)
-- [Loader Manager](/Runtime/Loader/)
-- [PubSub Manager](/Runtime/PubSub/)
-- [Scenes Manager](/Runtime/Scenes/)
-- [Screenshot Manager](/Runtime/Screenshot/)
-- [Settings Manager](/Runtime/Settings/)
-- [Storage Manager](/Runtime/Storage/)
-- [TimeScale Manager](/Runtime/TimeScale/)
-- [Translation Manager](/Runtime/Translation/)
-- [Video Manager](/Runtime/Video/)
-- [WebRequest Service](/Runtime/WebRequest/)
+- [Audio](/Runtime/Audio/)
+- [Config](/Runtime/Config/)
+- [Interface](/Runtime/Interface/)
+- [Loader](/Runtime/Loader/)
+- [PubSub](/Runtime/PubSub/)
+- [Scenes](/Runtime/Scenes/)
+- [Screenshot](/Runtime/Screenshot/)
+- [Settings](/Runtime/Settings/)
+- [Storage](/Runtime/Storage/)
+- [TimeScale](/Runtime/TimeScale/)
+- [Translation](/Runtime/Translation/)
+- [Video](/Runtime/Video/)
+- [WebRequest](/Runtime/WebRequest/)
 
 ## Coding Conventions
 
