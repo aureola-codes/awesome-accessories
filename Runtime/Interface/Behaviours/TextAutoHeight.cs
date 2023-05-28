@@ -20,7 +20,6 @@ namespace Aureola.Interface
         {
             if (_textElement.preferredHeight != _rectTransform.sizeDelta.y) {
                 OnTextChanged();
-                Debug.Log("Updated!");
             }
         }
 
