@@ -32,9 +32,9 @@ This package should work in all currently supported Unity versions. Please let m
 - [Video](/Runtime/Video/)
 - [WebRequest](/Runtime/WebRequest/)
 
-## Coding Conventions
+## Core Concepts
 
-In order to make this collection of utilities more accessible, I have defined some coding conventions that I adhere to when developing this package.
+In order to make this collection of utilities more accessible, I have defined some core concepts that I adhere to when developing this package.
 
 ### Services
 
@@ -80,22 +80,22 @@ You can also just download the latest version of this package from Git and copy 
 
 ## Support the Project
 
-If you find this project helpful and would like to contribute to its development and ongoing maintenance, your support would be greatly appreciated. By making a donation, you can help ensure the project's sustainability and enable me to allocate more time and resources to its improvement.
+If you find this project helpful and would like to contribute to its development and ongoing maintenance, your support would be greatly appreciated. By making a donation, you can help ensure the sustainability of the project and allow me to devote more time and resources to improving it.
 
-## How can you contribute?
+### How can you contribute?
 
-- **Financial Contributions:** If you would like to make a monetary donation, you can do so securely through PayPal or TODO. Every contribution, no matter the amount, makes a difference and is deeply valued.
-- **Bug Reports and Feature Requests:** If you encounter any issues while using the project or have ideas for new features, please open an issue on the GitHub repository. Your feedback and suggestions are crucial in improving the project for everyone.
+- **Financial contributions:** If you would like to make a monetary donation, you can do so securely through [PayPal](https://www.paypal.com/donate/?hosted_button_id=EH6AY3SNVNP86). Every contribution, no matter the amount, makes a difference and is greatly appreciated.
+- **Bug Reports and Feature Requests:** If you encounter problems while using the project, or have ideas for new features, please open an issue in the GitHub repository. Your feedback and suggestions are critical to improving the project for everyone.
 - **Code Contributions:** If you are a developer and would like to contribute directly to the project's codebase, feel free to submit a pull request. Contributions of all sizes are welcome and will be acknowledged.
 
-## Show your support
+## Your Contribution Counts, No Matter the Form
 
 Even if you are unable to contribute financially or through code, there are other ways to show your support:
 
-- Star the project on GitHub. It helps to increase its visibility and attract more users.
-- Share the project with others who might find it useful. Spread the word about the project and help it reach a wider audience.
+- **Star the project on GitHub.** This will help increase its visibility and attract more users.
+- **Share the project with others.** Spread the word about the project and help it reach a wider audience.
 
-Your support means a lot to me, and it motivates me to continue working on and improving this project. Thank you for considering a donation and supporting its development!
+Your support means a lot to me, and it motivates me to keep working on and improving this project. Thank you for considering a donation and supporting its development!
 
 ## License
 
