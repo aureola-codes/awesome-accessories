@@ -18,13 +18,13 @@ namespace Aureola.Audio
         [ContextMenu("Play Music")]
         public void Play()
         {
-            AudioManager.instance?.PlayMusic(_music);
+            AudioManager.service?.PlayMusic(_music);
         }
 
         [ContextMenu("Stop Music")]
         public void Stop()
         {
-            AudioManager.instance?.StopMusic(_music);
+            AudioManager.service?.StopMusic(_music);
         }
     }
 }

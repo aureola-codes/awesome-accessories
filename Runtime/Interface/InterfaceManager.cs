@@ -5,19 +5,19 @@ namespace Aureola.Interface
 {
     public class InterfaceManager : MonoBehaviour
     {
-        private static InterfaceService _instance;
+        private static InterfaceService _service;
 
         [Header("Settings")]
         [SerializeField] private EventSystem _eventSystem;
 
-        public static InterfaceService instance
+        public static InterfaceService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new InterfaceService(_eventSystem);
+            _service = new InterfaceService(_eventSystem);
         }
     }
 }

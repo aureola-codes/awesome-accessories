@@ -6,7 +6,7 @@ namespace Aureola.Scenes
     {
         public void OnClick()
         {
-            ScenesManager.instance?.Exit(gameObject.scene.name);
+            ScenesManager.service?.Exit(gameObject.scene.name);
         }
     }
 }

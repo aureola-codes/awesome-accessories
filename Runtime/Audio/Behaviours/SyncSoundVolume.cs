@@ -16,12 +16,12 @@ namespace Aureola.Audio
         private void OnEnable()
         {
             SyncVolume();
-            PubSubManager.instance?.Subscribe(Channel.AUDIO, typeof(VolumeChanged), OnVolumeChanged);
+            PubSubManager.service?.Subscribe(Channel.AUDIO, typeof(VolumeChanged), OnVolumeChanged);
         }
 
         private void OnDisable()
         {
-           PubSubManager.instance?.Unsubscribe(Channel.AUDIO, typeof(VolumeChanged), OnVolumeChanged);
+           PubSubManager.service?.Unsubscribe(Channel.AUDIO, typeof(VolumeChanged), OnVolumeChanged);
         }
 
         private void OnVolumeChanged(IGameEvent gameEvent)
@@ -31,7 +31,7 @@ namespace Aureola.Audio
 
         private void SyncVolume()
         {
-            _audioSource.volume = AudioManager.instance?.soundVolumeAdjusted ?? 1f;
+            _audioSource.volume = AudioManager.service?.soundVolumeAdjusted ?? 1f;
         }
     }
 }

@@ -7,26 +7,26 @@ namespace Aureola.Config
 {
     public class ConfigManager : MonoBehaviour
     {
-        private static ConfigService _instance;
+        private static ConfigService _service;
 
         [Header("Settings")]
         [SerializeField] private AssetReference _configFile;
 
-        public static ConfigService instance
+        public static ConfigService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new ConfigService();
-            _instance.onLoaded += OnConfigLoaded;
-            _instance.Load(_configFile);
+            _service = new ConfigService();
+            _service.onLoaded += OnConfigLoaded;
+            _service.Load(_configFile);
         }
 
         private void OnConfigLoaded()
         {
-            PubSubManager.instance?.Send(Channel.CONFIG, new ConfigLoaded());
+            PubSubManager.service?.Send(Channel.CONFIG, new ConfigLoaded());
         }
     }
 }

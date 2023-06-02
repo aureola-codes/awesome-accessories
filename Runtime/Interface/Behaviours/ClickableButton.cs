@@ -14,7 +14,7 @@ namespace Aureola.Interface
         public void OnPointerDown(PointerEventData data)
         {
             if (_sound != null) {
-                AudioManager.instance?.PlaySound(_sound);
+                AudioManager.service?.PlaySound(_sound);
             }
 
             transform.localScale = new Vector3(_zoomDown, _zoomDown, _zoomDown);

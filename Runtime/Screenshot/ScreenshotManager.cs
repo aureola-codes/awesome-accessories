@@ -6,7 +6,7 @@ namespace Aureola.Screenshot
 {
     public class ScreenshotManager : MonoBehaviour
     {
-        private static ScreenshotService _instance;
+        private static ScreenshotService _service;
 
         [Header("Settings")]
         [SerializeField] private KeyCode _key;
@@ -16,14 +16,14 @@ namespace Aureola.Screenshot
         [SerializeField] private bool _automated = false;
         [SerializeField] private float _automatedInterval = 1f;
 
-        public static ScreenshotService instance
+        public static ScreenshotService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new ScreenshotService(_folder);
+            _service = new ScreenshotService(_folder);
         }
 
         private void OnEnable()
@@ -43,14 +43,14 @@ namespace Aureola.Screenshot
         private void Update()
         {
             if (Input.GetKeyDown(_key)) {
-                _instance.CaptureScreenshot();
+                _service.CaptureScreenshot();
             }
         }
 
         private IEnumerator AutoScreenshot()
         {
             while (true) {
-                _instance.CaptureScreenshot();
+                _service.CaptureScreenshot();
                 yield return new WaitForSeconds(_automatedInterval);
             }
         }
@@ -58,7 +58,7 @@ namespace Aureola.Screenshot
         [ContextMenu("Capture Screenshot")]
         private void CaptureScreenshot()
         {
-            _instance.CaptureScreenshot();
+            _service.CaptureScreenshot();
         }
     }
 }

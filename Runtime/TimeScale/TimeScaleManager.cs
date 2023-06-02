@@ -4,16 +4,16 @@ namespace Aureola.TimeScale
 {
     public class TimeScaleManager : MonoBehaviour
     {
-        private static TimeScaleService _instance;
+        private static TimeScaleService _service;
 
-        public static TimeScaleService instance
+        public static TimeScaleService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new TimeScaleService();
+            _service = new TimeScaleService();
         }
     }
 }

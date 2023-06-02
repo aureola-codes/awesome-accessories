@@ -5,28 +5,28 @@ namespace Aureola.WebRequest
 {
     public class WebRequestManager : MonoBehaviour
     {
-        private static WebRequestService _instance;
+        private static WebRequestService _service;
 
-        public static WebRequestService instance
+        public static WebRequestService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new WebRequestService();
-            _instance.onSuccess += OnSuccess;
-            _instance.onFailure += OnFailure;
+            _service = new WebRequestService();
+            _service.onSuccess += OnSuccess;
+            _service.onFailure += OnFailure;
         }
 
         private void OnSuccess(string data)
         {
-            PubSubManager.instance?.Send(Channel.WEBREQUEST, new WebRequestSuccess(data));
+            PubSubManager.service?.Send(Channel.WEBREQUEST, new WebRequestSuccess(data));
         }
 
         private void OnFailure(string error)
         {
-            PubSubManager.instance?.Send(Channel.WEBREQUEST, new WebRequestFailure(error));
+            PubSubManager.service?.Send(Channel.WEBREQUEST, new WebRequestFailure(error));
         }
     }
 }

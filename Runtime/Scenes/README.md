@@ -9,13 +9,13 @@ This module provides a service that allows you to load, exit and manage scenes. 
 Using the scene manager you can load scenes:
 
 ```
-ScenesManager.instance?.Load("MyScene");
+ScenesManager.service?.Load("MyScene");
 ```
 
 All scenes will be loaded additively. This means that the current scene will not be unloaded. If you want to unload the scene, you must do this manually:
 
 ```
-ScenesManager.instance?.Exit("MyScene");
+ScenesManager.service?.Exit("MyScene");
 ```
 
 You can also exit scenes based on conditions.
@@ -23,25 +23,25 @@ You can also exit scenes based on conditions.
 To exit all scenes that begin with a certain name use:
 
 ```
-ScenesManager.instance?.ExitAllLike("MyScene");
+ScenesManager.service?.ExitAllLike("MyScene");
 ```
 
 To exit all scenes except a certain scene use:
 
 ```
-ScenesManager.instance?.ExitAllExcept("MyScene");
+ScenesManager.service?.ExitAllExcept("MyScene");
 ```
 
 To exit all scenes use:
 
 ```
-ScenesManager.instance?.ExitAll();
+ScenesManager.service?.ExitAll();
 ```
 
 There is also a helper method which will exit all scenes and load a new scene:
 
 ```
-ScenesManager.instance?.ChangeTo("MyScene");
+ScenesManager.service?.ChangeTo("MyScene");
 ```
 
 All loading & unloading processes are done asynchronously.

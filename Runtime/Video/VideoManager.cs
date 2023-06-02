@@ -4,19 +4,19 @@ namespace Aureola.Video
 {
     public class VideoManager : MonoBehaviour
     {
-        private static VideoService _instance;
+        private static VideoService _service;
 
         [Header("Settings")]
         [SerializeField] private Camera _camera;
         
-        public static VideoService instance
+        public static VideoService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new VideoService(_camera);
+            _service = new VideoService(_camera);
         }
     }
 }

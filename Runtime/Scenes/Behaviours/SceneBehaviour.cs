@@ -22,12 +22,12 @@ namespace Aureola.Scenes
 
         private void OnAnimationEnterFinished()
         {
-            ScenesManager.instance?.MarkSceneLoaded();
+            ScenesManager.service?.MarkSceneLoaded();
         }
 
         private void OnAnimationExitFinished()
         {   
-            ScenesManager.instance?.UnloadScene();
+            ScenesManager.service?.UnloadScene();
         }
 
         public void AnimationEnter()

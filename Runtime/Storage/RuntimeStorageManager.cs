@@ -4,16 +4,16 @@ namespace Aureola.Storage
 {
     public class RuntimeStorageManager : MonoBehaviour
     {
-        private static RuntimeStorageService _instance;
+        private static RuntimeStorageService _service;
 
-        public static RuntimeStorageService instance
+        public static RuntimeStorageService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new RuntimeStorageService();
+            _service = new RuntimeStorageService();
         }
     }
 }

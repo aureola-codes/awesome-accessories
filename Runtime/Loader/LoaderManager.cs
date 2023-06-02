@@ -5,28 +5,28 @@ namespace Aureola.Loader
 {
     public class LoaderManager : MonoBehaviour
     {
-        private static LoaderService _instance;
+        private static LoaderService _service;
 
-        public static LoaderService instance
+        public static LoaderService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new LoaderService();
-            _instance.onProgress += OnProgress;
-            _instance.onComplete += OnComplete;
+            _service = new LoaderService();
+            _service.onProgress += OnProgress;
+            _service.onComplete += OnComplete;
         }
 
         private void OnProgress(float progress)
         {
-            PubSubManager.instance?.Send(Channel.LOADER, new LoaderProgress(progress));
+            PubSubManager.service?.Send(Channel.LOADER, new LoaderProgress(progress));
         }
 
         private void OnComplete()
         {
-            PubSubManager.instance?.Send(Channel.LOADER, new LoaderComplete());
+            PubSubManager.service?.Send(Channel.LOADER, new LoaderComplete());
         }
     }
 }

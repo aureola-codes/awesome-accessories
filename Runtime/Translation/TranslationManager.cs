@@ -9,7 +9,7 @@ namespace Aureola.Translation
 {
     public class TranslationManager : MonoBehaviour
     {
-        private static TranslationService _instance;
+        private static TranslationService _service;
 
         [System.Serializable]
         private class SupportedLanguage
@@ -23,43 +23,43 @@ namespace Aureola.Translation
         [SerializeField] private string _defaultLanguage = "";
         [SerializeField] private SupportedLanguage[] _supportedLanguages;
 
-        public static TranslationService instance
+        public static TranslationService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new TranslationService(_basePath);
-            _instance.onUpdated += OnLanguageChanged;
+            _service = new TranslationService(_basePath);
+            _service.onUpdated += OnLanguageChanged;
 
              // Register all supported languages.
             foreach (var supportedLanguage in _supportedLanguages) {
-                _instance.Register(supportedLanguage.code, supportedLanguage.language);
+                _service.Register(supportedLanguage.code, supportedLanguage.language);
             }
 
             // Try to guess set user's preferred language.
-            string language = SettingsManager.instance?.Get("language", _defaultLanguage);
+            string language = SettingsManager.service?.Get("language", _defaultLanguage);
             if (language != "") {
-                _instance.ChangeLanguage(language);
+                _service.ChangeLanguage(language);
             } else {
-                _instance.ChangeLanguage(Application.systemLanguage);
+                _service.ChangeLanguage(Application.systemLanguage);
             }
         }
 
         private void OnEnable()
         {
-            PubSubManager.instance?.Subscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
+            PubSubManager.service?.Subscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
         }
 
         private void OnDisable()
         {
-            PubSubManager.instance?.Unsubscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
+            PubSubManager.service?.Unsubscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
         }
 
         private void OnLanguageChanged(string language)
         {
-            PubSubManager.instance?.Send(Channel.TRANSLATION, new LanguageChanged(language));
+            PubSubManager.service?.Send(Channel.TRANSLATION, new LanguageChanged(language));
         }
 
         private void OnSettingsUpdated(IGameEvent gameEvent)
@@ -67,7 +67,7 @@ namespace Aureola.Translation
             var SettingsUpdated = (SettingsUpdated) gameEvent;
             var settingsData = (SettingsData) SettingsUpdated.settings;
 
-            _instance.ChangeLanguage(settingsData.language);
+            _service.ChangeLanguage(settingsData.language);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Aureola.Audio
 
         private void Update()
         {
-            _audioSource.mute = TimeScaleManager.instance?.IsPaused() ?? false;
+            _audioSource.mute = TimeScaleManager.service?.IsPaused() ?? false;
         }
     }
 }

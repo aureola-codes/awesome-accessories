@@ -15,7 +15,7 @@ namespace Aureola.Scenes
                 return;
             }
 
-            ScenesManager.instance?.ChangeTo(_sceneName);
+            ScenesManager.service?.ChangeTo(_sceneName);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Aureola.Audio
         [ContextMenu("Play Sound")]
         public void Play()
         {
-            AudioManager.instance?.PlaySound(GetAudioClip());
+            AudioManager.service?.PlaySound(GetAudioClip());
         }
     }
 }

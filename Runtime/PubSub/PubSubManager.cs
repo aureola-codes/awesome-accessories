@@ -4,19 +4,19 @@ namespace Aureola.PubSub
 {
     public class PubSubManager : MonoBehaviour
     {
-        private static PubSubService _instance;
+        private static PubSubService _service;
 
         [Header("Settings")]
         [SerializeField] private bool _debugging = false;
 
-        public static PubSubService instance
+        public static PubSubService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new PubSubService(_debugging);
+            _service = new PubSubService(_debugging);
         }
     }
 }

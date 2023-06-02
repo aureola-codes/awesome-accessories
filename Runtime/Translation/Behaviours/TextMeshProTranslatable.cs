@@ -23,14 +23,14 @@ namespace Aureola.Translation
         {
             Render();
             if (_autoUpdate) {
-                PubSubManager.instance?.Subscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
+                PubSubManager.service?.Subscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
             }
         }
 
         private void OnDisable()
         {
             if (_autoUpdate) {
-                PubSubManager.instance?.Unsubscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
+                PubSubManager.service?.Unsubscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
             }
         }
 
@@ -46,7 +46,7 @@ namespace Aureola.Translation
                 return;
             }
 
-            _textField.text = TranslationManager.instance?.Get(_translationKey);
+            _textField.text = TranslationManager.service?.Get(_translationKey);
         }
     }
 }

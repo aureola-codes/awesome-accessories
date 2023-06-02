@@ -6,22 +6,22 @@ namespace Aureola.Settings
 {
     public class SettingsManager : MonoBehaviour
     {
-        private static SettingsService _instance;
+        private static SettingsService _service;
 
-        public static SettingsService instance
+        public static SettingsService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new SettingsService(new SimpleStorageService(), new SettingsData());
-            _instance.onUpdate += OnUpdate;
+            _service = new SettingsService(new SimpleStorageService(), new SettingsData());
+            _service.onUpdate += OnUpdate;
         }
 
         private void OnUpdate(ISettingsData settingsData)
         {
-            PubSubManager.instance?.Send(Channel.SETTINGS, new SettingsUpdated(settingsData));
+            PubSubManager.service?.Send(Channel.SETTINGS, new SettingsUpdated(settingsData));
         }
     }
 }

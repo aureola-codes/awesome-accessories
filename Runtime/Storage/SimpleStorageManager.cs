@@ -4,16 +4,16 @@ namespace Aureola.Storage
 {
     public class SimpleStorageManager : MonoBehaviour
     {
-        private static SimpleStorageService _instance;
+        private static SimpleStorageService _service;
 
-        public static SimpleStorageService instance
+        public static SimpleStorageService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new SimpleStorageService();
+            _service = new SimpleStorageService();
         }
     }
 }

@@ -8,12 +8,12 @@ namespace Aureola.TimeScale
     {
         private void OnEnable()
         {
-            TimeScaleManager.instance?.Pause();
+            TimeScaleManager.service?.Pause();
         }
 
         private void OnDisable()
         {
-            TimeScaleManager.instance?.Resume();
+            TimeScaleManager.service?.Resume();
         }
     }
 }

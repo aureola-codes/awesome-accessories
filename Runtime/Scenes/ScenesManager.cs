@@ -25,26 +25,26 @@ namespace Aureola.Scenes
             Exit
         }
 
-        private static ScenesManager _instance;
+        private static ScenesManager _service;
 
         private string _processedScene;
         private List<Operation> _ops = new List<Operation>();
         private List<string> _scenes = new List<string>();
 
-        public static ScenesManager instance
+        public static ScenesManager service
         {
             get {
-                if (_instance == null) {
+                if (_service == null) {
                     Debug.LogError("ScenesManager not instantiated.");
                 }
                     
-                return _instance;
+                return _service;
             }
         }
 
         private void Awake()
         {
-            _instance = this;
+            _service = this;
         }
 
         public bool Load(string sceneName)
@@ -104,7 +104,7 @@ namespace Aureola.Scenes
         }
 
         public void MarkSceneLoaded() {
-            PubSubManager.instance?.Send(Channel.SCENES, new SceneLoaded(_processedScene));
+            PubSubManager.service?.Send(Channel.SCENES, new SceneLoaded(_processedScene));
 
             _scenes.Add(_processedScene);
             _processedScene = null;
@@ -113,7 +113,7 @@ namespace Aureola.Scenes
         }
 
         public void MarkSceneExited() {
-            PubSubManager.instance?.Send(Channel.SCENES, new SceneExited(_processedScene));
+            PubSubManager.service?.Send(Channel.SCENES, new SceneExited(_processedScene));
 
             _scenes.Remove(_processedScene);
             _processedScene = null;
@@ -199,7 +199,7 @@ namespace Aureola.Scenes
             }
 
             if (_ops.Count == 0) {
-                InterfaceManager.instance?.EnableInput();
+                InterfaceManager.service?.EnableInput();
                 return;
             }
             
@@ -208,7 +208,7 @@ namespace Aureola.Scenes
 
             _processedScene = operation.scene;
 
-            InterfaceManager.instance?.DisableInput();
+            InterfaceManager.service?.DisableInput();
 
             if (operation.type == OperationType.Exit) {
                 SceneBehaviour sceneBehaviour = GetSceneBehaviour(operation.scene);

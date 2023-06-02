@@ -6,7 +6,7 @@ namespace Aureola.Audio
 {
     public class AudioManager : MonoBehaviour
     {
-        private static AudioService _instance;
+        private static AudioService _service;
         private bool _isDirty = false;
 
         [Header("Settings")]
@@ -14,32 +14,32 @@ namespace Aureola.Audio
         [SerializeField] private AudioSource _soundPlayer;
         [SerializeField] private AudioSource _voicePlayer;
 
-        public static AudioService instance
+        public static AudioService service
         {
-            get => _instance;
+            get => _service;
         }
 
         private void Awake()
         {
-            _instance = new AudioService(_musicPlayer, _soundPlayer, _voicePlayer);
-            _instance.onVolumeChanged += () => _isDirty = true;
+            _service = new AudioService(_musicPlayer, _soundPlayer, _voicePlayer);
+            _service.onVolumeChanged += () => _isDirty = true;
         }
 
         private void OnEnable()
         {
-            PubSubManager.instance?.Subscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
+            PubSubManager.service?.Subscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
         }
 
         private void OnDisable()
         {
-            PubSubManager.instance?.Unsubscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
+            PubSubManager.service?.Unsubscribe(Channel.SETTINGS, typeof(SettingsUpdated), OnSettingsUpdated);
         }
 
         private void LateUpdate()
         {
             if (_isDirty) {
                 _isDirty = false;
-                PubSubManager.instance?.Send(Channel.AUDIO, new VolumeChanged());
+                PubSubManager.service?.Send(Channel.AUDIO, new VolumeChanged());
             }
         }
 
@@ -48,10 +48,10 @@ namespace Aureola.Audio
             var eventData = (SettingsUpdated) data;
             var settingsData = (SettingsData) eventData.settings;
 
-            _instance.masterVolume = settingsData.masterVolume;
-            _instance.musicVolume = settingsData.musicVolume;
-            _instance.soundVolume = settingsData.soundVolume;
-            _instance.voiceVolume = settingsData.voiceVolume;
+            _service.masterVolume = settingsData.masterVolume;
+            _service.musicVolume = settingsData.musicVolume;
+            _service.soundVolume = settingsData.soundVolume;
+            _service.voiceVolume = settingsData.voiceVolume;
         }
     }
 }
