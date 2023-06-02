@@ -42,6 +42,11 @@ namespace Aureola.Storage
             File.WriteAllText(PreparePath(filepath), contents, Encoding.UTF8);
         }
 
+        public void Save(string filepath, byte[] contents)
+        {
+            File.WriteAllBytes(PreparePath(filepath), contents);
+        }
+
         public void Delete(string filepath)
         {
             File.Delete(PreparePath(filepath));
