@@ -6,8 +6,8 @@
     "unity": "2021.1",
     "dependencies": {
         "codes.aureola.simplejson": "1.0.0",
-        "com.unity.addressables": "*",
-        "com.unity.textmeshpro": "*"
+        "com.unity.addressables": "1.0.0",
+        "com.unity.textmeshpro": "1.0.0"
     },
     "author": {
         "name": "Christian Hanne",
