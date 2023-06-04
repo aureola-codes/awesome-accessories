@@ -2,7 +2,7 @@
     "name": "codes.aureola.awesome-accessories",
     "displayName": "Aureola's Awesome Accessories",
     "description": "A Unity package containing accessories & utilities that I use in all of my projects.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "unity": "2021.1",
     "dependencies": {
         "codes.aureola.simplejson": "1.0.0",
