@@ -1,4 +1,6 @@
 /obj
+/obj.meta
 /Temp
+/Temp.meta
 
 *.csproj
