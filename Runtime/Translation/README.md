@@ -81,6 +81,7 @@ var isRegistered = translationService.IsRegistered(SystemLanguage.English);
 - **baseAddress** The base address of the translation files.
 - **defaultLanguage** The default language that should be used, if no language is set.
 - **languages** A list of languages that should be registered on startup.
+- **autoLoad** Automatically load the currently selected language.
 
 ### Events
 
