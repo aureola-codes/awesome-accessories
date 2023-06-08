@@ -152,7 +152,7 @@ namespace Aureola.Translation
 
         private string GetLanguageAddress(string language)
         {
-            return _baseAddress + "/" + language.ToUpper();
+            return _baseAddress + language.ToLower();
         }
 
         private IFileParser GetFileParser(string contents)
