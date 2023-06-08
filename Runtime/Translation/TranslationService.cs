@@ -55,6 +55,16 @@ namespace Aureola.Translation
 
         public void Register(string languageId, SystemLanguage systemLanguage)
         {
+            if (IsRegistered(languageId)) {
+                Debug.LogError("Language key already registered: " + languageId);
+                return;
+            }
+
+            if (IsRegistered(systemLanguage)) {
+                Debug.LogError("System language already registered: " + systemLanguage);
+                return;
+            }
+
             _languages[languageId] = systemLanguage;
         }
 
