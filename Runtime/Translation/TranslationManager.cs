@@ -42,7 +42,7 @@ namespace Aureola.Translation
             // Try to guess & set user's preferred language.
             if (_autoLoad) {
                 string language = SettingsManager.service?.Get("language", _defaultLanguage);
-                if (language != "") {
+                if (language != "" && language != null) {
                     _service.ChangeLanguage(language);
                 } else {
                     _service.ChangeLanguage(Application.systemLanguage);
