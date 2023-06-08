@@ -22,6 +22,11 @@ namespace Aureola.Translation
             get => _language;
         }
 
+        public List<string> languages
+        {
+            get => new List<string>(_languages.Keys);
+        }
+
         public TranslationService(string baseAddress)
         {
             _baseAddress = baseAddress;
