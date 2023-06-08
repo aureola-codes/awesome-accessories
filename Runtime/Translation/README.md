@@ -90,6 +90,22 @@ var isRegistered = translationService.IsRegistered(SystemLanguage.English);
 
 ## Behaviours
 
+### LanguageButton
+
+This behaviour can be added to a button with which you want to switch languages.
+
+**Settings:**
+
+- **language** The language you want to switch to.
+
+### LanguageButton
+
+This behaviour can be added to a button with which you want to switch languages. Same as the LanguageButton, but you can select a SystemLanguage instead of the language key.
+
+**Settings:**
+
+- **language** The language you want to switch to.
+
 ### TextTranslatable
 
 This behaviour can be used to translate a default Unity UI text field. The behaviour can be configured to automatically translate the text field, when the language is changed. By default it will just translate the text field once, when the behaviour is started. The translation key is the value of the textfield itself.
