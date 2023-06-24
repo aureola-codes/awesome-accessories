@@ -1,8 +1,15 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
+
+#endif
+
 using UnityEngine;
 
 namespace Aureola.Scenes
 {
+    #if UNITY_EDITOR
+
     [CustomPropertyDrawer (typeof (SceneAttribute))]
     public class SceneDrawer : PropertyDrawer
     {
@@ -42,4 +49,6 @@ namespace Aureola.Scenes
             return null;
         }
     }
+
+    #endif
 }
