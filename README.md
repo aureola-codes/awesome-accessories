@@ -23,7 +23,7 @@ This package should work in all currently supported Unity versions. Please let m
 - [Interface](/Runtime/Interface/)
 - [Loader](/Runtime/Loader/)
 - [PubSub](/Runtime/PubSub/)
-- [Scenes](/Runtime/Scenes/)
+- [Scenes](/Modules/Scenes/)
 - [Screenshot](/Runtime/Screenshot/)
 - [Settings](/Runtime/Settings/)
 - [Storage](/Runtime/Storage/)
