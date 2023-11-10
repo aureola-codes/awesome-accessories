@@ -1,21 +1,21 @@
 # Scenes
 
-This module provides a service that allows you to load, exit and manage scenes. In fact this is the only module that only contains a manager and not a service. The reason for this is that the scene manager is a special case. Unity only allows for one scene operation at a time. So by design the scene manager must be a singleton.
+TODO
 
-## ScenesManager
+## ScenesObject
 
 ### Usage
 
 Using the scene manager you can load scenes:
 
 ```
-ScenesManager.service?.Load("MyScene");
+scenes.Load("MyScene");
 ```
 
 All scenes will be loaded additively. This means that the current scene will not be unloaded. If you want to unload the scene, you must do this manually:
 
 ```
-ScenesManager.service?.Exit("MyScene");
+scenes.Exit("MyScene");
 ```
 
 You can also exit scenes based on conditions.
@@ -23,35 +23,36 @@ You can also exit scenes based on conditions.
 To exit all scenes that begin with a certain name use:
 
 ```
-ScenesManager.service?.ExitAllLike("MyScene");
+scenes.ExitAllLike("MyScene");
 ```
 
 To exit all scenes except a certain scene use:
 
 ```
-ScenesManager.service?.ExitAllExcept("MyScene");
+scenes.ExitAllExcept("MyScene");
 ```
 
 To exit all scenes use:
 
 ```
-ScenesManager.service?.ExitAll();
+scenes.ExitAll();
 ```
 
 There is also a helper method which will exit all scenes and load a new scene:
 
 ```
-ScenesManager.service?.ChangeTo("MyScene");
+scenes.ChangeTo("MyScene");
 ```
 
 All loading & unloading processes are done asynchronously.
 
-**Please note:** When you want to use the ScenesManager, you must only use the ScenesManager. Do not use Unity SceneManagement directly. This will cause unexpected behaviour.
+**Please note:** When you want to use the Scenes module, you must only use the Scenes module. Do not use Unity SceneManagement directly. This will cause unexpected behaviour.
 
 ### Events
 
-- Events are published in the channel **Scenes**.
+- **SceneLoading**: This event is fired when a scene is about to be loaded.
 - **SceneLoaded**: This event is fired when a scene has been loaded.
+- **SceneExiting**: This event is fired when a scene is about to be exited.
 - **SceneExited**: This event is fired when a scene has been exited.
 
 ## Behaviours
