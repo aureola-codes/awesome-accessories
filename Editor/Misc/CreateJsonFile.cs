@@ -1,4 +1,9 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
+
+#endif
+
 using UnityEngine;
 using System.IO;
 
@@ -6,6 +11,8 @@ namespace Aureola
 {
     public class CreateJsonFile
     {
+        #if UNITY_EDITOR
+
         [MenuItem("Assets/Create/JSON")]
         public static void CreateFile()
         {
@@ -28,5 +35,7 @@ namespace Aureola
 
             EditorGUIUtility.PingObject(AssetDatabase.LoadAssetAtPath<Object>(filePathAndName));
         }
+
+        #endif
     }
 }

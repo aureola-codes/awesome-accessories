@@ -22,6 +22,11 @@ namespace Aureola.Translation
             get => _language;
         }
 
+        public List<string> languages
+        {
+            get => new List<string>(_languages.Keys);
+        }
+
         public TranslationService(string baseAddress)
         {
             _baseAddress = baseAddress;
@@ -55,6 +60,16 @@ namespace Aureola.Translation
 
         public void Register(string languageId, SystemLanguage systemLanguage)
         {
+            if (IsRegistered(languageId)) {
+                Debug.LogError("Language key already registered: " + languageId);
+                return;
+            }
+
+            if (IsRegistered(systemLanguage)) {
+                Debug.LogError("System language already registered: " + systemLanguage);
+                return;
+            }
+
             _languages[languageId] = systemLanguage;
         }
 
@@ -75,16 +90,18 @@ namespace Aureola.Translation
 
         public void ChangeLanguage(SystemLanguage systemLanguage)
         {
-            string language = LanguageToString(systemLanguage);
-            if (language != _language) {
-                SetLanguage(language);
-            }
+            ChangeLanguage(LanguageToString(systemLanguage));
         }
 
         public void ChangeLanguage(string language)
         {
+            if (!IsRegistered(language)) {
+                Debug.LogError("Language not registered: " + language);
+                return;
+            }
+
             if (language != _language) {
-                SetLanguage(language);
+                LoadLanguage(language);
             }
         }
 
@@ -111,33 +128,36 @@ namespace Aureola.Translation
             return SystemLanguage.English;
         }
 
-        private void SetLanguage(string language)
+        private void LoadLanguage(string language)
         {
-            _language = language;
-            LoadLanguage();
-        }
-
-        private void LoadLanguage()
-        {
-            string languageAddress = GetLanguageAddress(_language);
-            Addressables.LoadAssetAsync<TextAsset>(languageAddress).Completed += handle => {
-                if (handle.Status == AsyncOperationStatus.Succeeded) {
-                    var translations = GetFileParser(handle.Result.text).Parse();
-                    if (translations.Count > 0) {
-                        _translations = translations;
-                        onUpdated?.Invoke(_language);
-                    } else {
-                        Debug.LogError("No translations found for: " + _language);
-                    }
+            string languageAddress = GetLanguageAddress(language);
+            Addressables.LoadResourceLocationsAsync(languageAddress).Completed += checkAddressHandle => {
+                if (checkAddressHandle.Result.Count == 0) {
+                    Debug.LogError("Failed to load language file: " + languageAddress);
+                    return;
                 }
-                
-                Addressables.Release(handle);
+
+                Addressables.LoadAssetAsync<TextAsset>(languageAddress).Completed += handle => {
+                    if (handle.Status == AsyncOperationStatus.Succeeded) {
+                        var translations = GetFileParser(handle.Result.text).Parse();
+                        if (translations.Count > 0) {
+                            _language = language;
+                            _translations = translations;
+
+                            onUpdated?.Invoke(_language);
+                        } else {
+                            Debug.LogError("No translations found for: " + language);
+                        }
+                    }
+                    
+                    Addressables.Release(handle);
+                };
             };
         }
 
         private string GetLanguageAddress(string language)
         {
-            return _baseAddress + "/" + language.ToUpper();
+            return _baseAddress + language.ToLower();
         }
 
         private IFileParser GetFileParser(string contents)

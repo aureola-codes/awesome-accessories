@@ -81,6 +81,7 @@ var isRegistered = translationService.IsRegistered(SystemLanguage.English);
 - **baseAddress** The base address of the translation files.
 - **defaultLanguage** The default language that should be used, if no language is set.
 - **languages** A list of languages that should be registered on startup.
+- **autoLoad** Automatically load the currently selected language.
 
 ### Events
 
@@ -88,6 +89,22 @@ var isRegistered = translationService.IsRegistered(SystemLanguage.English);
 - **LanguageChanged** This event is invoked, when the language is changed.
 
 ## Behaviours
+
+### LanguageButton
+
+This behaviour can be added to a button with which you want to switch languages.
+
+**Settings:**
+
+- **language** The language you want to switch to.
+
+### LanguageButton
+
+This behaviour can be added to a button with which you want to switch languages. Same as the LanguageButton, but you can select a SystemLanguage instead of the language key.
+
+**Settings:**
+
+- **language** The language you want to switch to.
 
 ### TextTranslatable
 
