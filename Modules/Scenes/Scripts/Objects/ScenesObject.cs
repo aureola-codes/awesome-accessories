@@ -183,7 +183,7 @@ namespace Aureola.Scenes
 
         private void NextOperation()
         {
-            if (_processedScene != null) {
+            if (_processedScene != null || _ops.Count == 0) {
                 return;
             }
             
