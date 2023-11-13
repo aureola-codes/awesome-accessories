@@ -10,8 +10,11 @@ namespace Aureola.Translation
         private string _translationKey;
         private TMP_Text _textField;
 
-        [Header("Settings")]
-        [SerializeField] private bool _autoUpdate = false;
+        [Header("Dependencies")]
+        [SerializeField] private TranslationsObject _translations;
+
+        [Header("Events")]
+        [SerializeField] private LanguageChangedEvent _onLanguageChanged;
 
         private void Awake()
         {
@@ -22,19 +25,16 @@ namespace Aureola.Translation
         private void OnEnable()
         {
             Render();
-            if (_autoUpdate) {
-                PubSubManager.service?.Subscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
-            }
+
+            _onLanguageChanged?.Subscribe(OnLanguageChanged);
         }
 
         private void OnDisable()
         {
-            if (_autoUpdate) {
-                PubSubManager.service?.Unsubscribe(Channel.TRANSLATION, typeof(LanguageChanged), OnLanguageChanged);
-            }
+            _onLanguageChanged?.Unsubscribe(OnLanguageChanged);
         }
 
-        private void OnLanguageChanged(IGameEvent gameEvent)
+        private void OnLanguageChanged(SystemLanguage language)
         {
             Render();
         }
@@ -46,7 +46,7 @@ namespace Aureola.Translation
                 return;
             }
 
-            _textField.text = TranslationManager.service?.Get(_translationKey);
+            _textField.text = _translations.Get(_translationKey);
         }
     }
 }

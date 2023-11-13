@@ -5,11 +5,15 @@ namespace Aureola.Translation
 {
     public class SystemLanguageButton : ClickableButton
     {
+        [Header("Settings")]
         [SerializeField] private SystemLanguage _language;
+
+        [Header("Dependencies")]
+        [SerializeField] private TranslationsObject _translations;
 
         public void OnClick()
         {
-            TranslationManager.service?.ChangeLanguage(_language);
+            _translations.SetLanguage(_language);
         }
     }
 }
