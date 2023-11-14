@@ -9,12 +9,16 @@ namespace Aureola.Interface
         private float _zoomUp = 1f;
         private float _zoomDown = 0.95f;
 
+        [Header("Settings")]
         [SerializeField] private AudioClip _sound;
+
+        [Header("Dependencies")]
+        [SerializeField] private AudioObject _audio;
 
         public void OnPointerDown(PointerEventData data)
         {
             if (_sound != null) {
-                AudioManager.service?.PlaySound(_sound);
+                _audio.PlaySound(_sound);
             }
 
             transform.localScale = new Vector3(_zoomDown, _zoomDown, _zoomDown);
