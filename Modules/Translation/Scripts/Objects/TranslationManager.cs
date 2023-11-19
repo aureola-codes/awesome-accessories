@@ -5,8 +5,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Aureola.Translation
 {
-    [CreateAssetMenu(fileName = "Translations", menuName = "Aureola/Shared/Translations")]
-    public class TranslationsObject : ScriptableObject
+    [CreateAssetMenu(fileName = "TranslationManager", menuName = "Aureola/Translation/TranslationManager")]
+    public class TranslationManager : ScriptableObject
     {
         [System.Serializable]
         private class Language
@@ -19,14 +19,14 @@ namespace Aureola.Translation
         private SystemLanguage _language = SystemLanguage.Unknown;
         private Dictionary<string, string> _translations = new Dictionary<string, string>();
 
+        public delegate void LanguageChanged(SystemLanguage language);
+        public event LanguageChanged onLanguageChanged;
+
         [Header("Settings")]
         [SerializeField] private string _baseAddress = "Assets/Translations";
         [SerializeField] private List<Language> _languages = new List<Language>() {
             new Language() { code = "en", label = "English", systemLanguage = SystemLanguage.English }
         };
-
-        [Header("Events")]
-        [SerializeField] private LanguageChangedEvent _onLanguageChanged;
 
         public string Get(string key)
         {
@@ -160,7 +160,7 @@ namespace Aureola.Translation
                             _language = systemLanguage;
                             _translations = translations;
 
-                            _onLanguageChanged.Invoke(_language);
+                            onLanguageChanged?.Invoke(_language);
                         } else {
                             Debug.LogError("No translations found for: " + systemLanguage);
                         }

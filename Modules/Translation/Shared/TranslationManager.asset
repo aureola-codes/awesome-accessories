@@ -9,18 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b29a2d28f4808044088f5de62bad484e, type: 3}
-  m_Name: Translations
+  m_Script: {fileID: 11500000, guid: c8de2f01360316748a9e82f8b7c1c42a, type: 3}
+  m_Name: TranslationManager
   m_EditorClassIdentifier: 
   _baseAddress: Assets/Translations
   _languages:
   - code: en
     label: English
     systemLanguage: 10
-  - code: de
-    label: Deutsch
-    systemLanguage: 15
-  - code: fr
-    label: Francais
-    systemLanguage: 14
-  _onLanguageChanged: {fileID: 11400000, guid: 9bd9df69e41368047831423fc62e9446, type: 2}

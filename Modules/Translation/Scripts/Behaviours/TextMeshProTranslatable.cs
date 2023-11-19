@@ -10,10 +10,7 @@ namespace Aureola.Translation
         private TMP_Text _textField;
 
         [Header("Dependencies")]
-        [SerializeField] private TranslationsObject _translations;
-
-        [Header("Events")]
-        [SerializeField] private LanguageChangedEvent _onLanguageChanged;
+        [SerializeField] private TranslationManager _translations;
 
         private void Awake()
         {
@@ -24,13 +21,12 @@ namespace Aureola.Translation
         private void OnEnable()
         {
             Render();
-
-            _onLanguageChanged?.Subscribe(OnLanguageChanged);
+            _translations.onLanguageChanged += OnLanguageChanged;
         }
 
         private void OnDisable()
         {
-            _onLanguageChanged?.Unsubscribe(OnLanguageChanged);
+            _translations.onLanguageChanged -= OnLanguageChanged;
         }
 
         private void OnLanguageChanged(SystemLanguage language)

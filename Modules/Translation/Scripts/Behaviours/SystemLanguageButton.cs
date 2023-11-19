@@ -8,7 +8,7 @@ namespace Aureola.Translation
         [SerializeField] private SystemLanguage _language;
 
         [Header("Dependencies")]
-        [SerializeField] private TranslationsObject _translations;
+        [SerializeField] private TranslationManager _translations;
 
         public void OnClick()
         {
