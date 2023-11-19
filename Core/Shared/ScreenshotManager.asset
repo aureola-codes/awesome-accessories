@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce0603f8cc84a5a4eb73f95baeebb38d, type: 3}
-  m_Name: Screenshot
+  m_Name: ScreenshotManager
   m_EditorClassIdentifier: 
   _basePath: 
   _folder: Screenshots

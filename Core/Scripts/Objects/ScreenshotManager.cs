@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Aureola.Screenshot
+namespace Aureola
 {
-    [CreateAssetMenu(fileName = "Screenshot", menuName = "Aureola/Shared/Screenshot")]
-    public class ScreenshotObject : ScriptableObject
+    [CreateAssetMenu(fileName = "ScreenshotManager", menuName = "Aureola/Core/ScreenshotManager")]
+    public class ScreenshotManager : ScriptableObject
     {
         [Header("Settings")]
         [SerializeField] private string _basePath = "";
