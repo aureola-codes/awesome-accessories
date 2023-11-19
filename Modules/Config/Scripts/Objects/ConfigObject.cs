@@ -1,4 +1,4 @@
-using Aureola.Storage;
+using Aureola.Cache;
 using SimpleJSON;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,26 +6,21 @@ using UnityEngine.AddressableAssets;
 
 namespace Aureola.Config
 {
-    public class ConfigService : IStorageService
+    [CreateAssetMenu(fileName = "Config", menuName = "Aureola/Shared/Config")]
+    public class ConfigService : ScriptableObject
     {
-        private IStorageService _storage;
-
         public delegate void OnLoaded();
         public OnLoaded onLoaded;
 
-        public ConfigService()
-        {
-            _storage = new RuntimeStorageService();
-        }
+        [Header("Settings")]
+        [SerializeField] private AssetReference _configFile;
 
-        public ConfigService(IStorageService storage)
-        {
-            _storage = storage;
-        }
+        [Header("Dependencies")]
+        [SerializeField] private RuntimeCache _storage;
 
-        public void Load(AssetReference configFile)
+        public void Load()
         {
-            configFile.LoadAssetAsync<TextAsset>().Completed += handle => {
+            _configFile.LoadAssetAsync<TextAsset>().Completed += handle => {
                 var jsonObject = JSON.Parse(handle.Result.text);
                 foreach (var keyValuePair in jsonObject) {
                     var type = keyValuePair.Value.GetType().ToString().ToLower();
@@ -68,13 +63,13 @@ namespace Aureola.Config
             };
         }
 
-        public void Load(AssetReference configFile, bool clearBeforeLoad)
+        public void Load(bool clearBeforeLoad)
         {
             if (clearBeforeLoad) {
                 Clear();
             }
 
-            Load(configFile);
+            Load();
         }
 
         public void Set(string key, float value) => _storage.Set(key, value);
