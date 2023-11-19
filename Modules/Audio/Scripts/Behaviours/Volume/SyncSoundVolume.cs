@@ -1,4 +1,3 @@
-using Aureola.PubSub;
 using UnityEngine;
 
 namespace Aureola.Audio
