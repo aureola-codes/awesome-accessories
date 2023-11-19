@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Aureola.Cache
 {
-    [CreateAssetMenu(fileName = "RuntimeCache", menuName = "Aureola/Shared/RuntimeCache")]
-    public class RuntimeCache : ScriptableObject, ICache
+    [CreateAssetMenu(fileName = "RuntimeCache", menuName = "Aureola/Cache/RuntimeCache")]
+    public class RuntimeCache : ScriptableObject, CacheInterface
     {
         private Dictionary<string, object> _values = new Dictionary<string, object>();
 

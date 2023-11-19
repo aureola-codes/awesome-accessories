@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace Aureola.Cache
 {
-    [CreateAssetMenu(fileName = "FileBasedCache", menuName = "Aureola/Shared/FileBasedCache")]
-    public class FileBasedCache : ScriptableObject, ICache
+    [CreateAssetMenu(fileName = "FileBasedCache", menuName = "Aureola/Cache/FileBasedCache")]
+    public class FileBasedCache : ScriptableObject, CacheInterface
     {
         private Dictionary<string, object> _cache = new Dictionary<string, object>();
         private bool _isReady = false;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Aureola.Cache
 {
-    public interface ICache
+    public interface CacheInterface
     {
         public bool isReady { get; }
 
