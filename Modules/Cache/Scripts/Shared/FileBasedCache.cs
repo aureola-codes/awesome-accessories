@@ -1,26 +1,36 @@
+using Aureola.Files;
 using SimpleJSON;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Aureola.Storage
+namespace Aureola.Cache
 {
-    public class JsonStorageService : IStorageService
+    [CreateAssetMenu(fileName = "FileBasedCache", menuName = "Aureola/Shared/FileBasedCache")]
+    public class FileBasedCache : ScriptableObject, ICache
     {
-        private string _fileName;
-        private FilesService _filesService;
         private Dictionary<string, object> _cache = new Dictionary<string, object>();
+        private bool _isReady = false;
 
-        public JsonStorageService(string fileName = "storage.json")
+        private FilesService filesService
         {
-            _filesService = new FilesService();
-            Load();
+            get => new FilesService(_basePath != "" ? _basePath : Application.persistentDataPath);
         }
 
-        public JsonStorageService(string basePath, string fileName = "storage.json")
-        {
-            _filesService = new FilesService(basePath);
-            Load();
+        public bool isReady
+        { 
+            get => _isReady; 
+            private set => _isReady = value;
         }
+
+        [Header("Settings")]
+        [SerializeField] private string _basePath = "";
+        [SerializeField] private string _fileName = "storage.json";
+
+        public delegate void OnLoaded();
+        public OnLoaded onLoaded;
+
+        public delegate void OnStored();
+        public OnLoaded onStored;
 
         public void Set(string key, int value)
         {
@@ -180,21 +190,25 @@ namespace Aureola.Storage
 
         public void Load()
         {
-            if (!_filesService.Exists(_fileName)) {
+            if (!filesService.Exists(_fileName)) {
                 return;
             }
 
-            var jsonObject = JSON.Parse(_filesService.LoadText(_fileName));
+            var jsonObject = JSON.Parse(filesService.LoadText(_fileName));
 
             _cache = new Dictionary<string, object>();
             foreach (var keyValuePair in jsonObject) {
                 _cache[keyValuePair.Key] = keyValuePair.Value.Value;
             }
+
+            _isReady = true;
+            onLoaded?.Invoke();
         }
 
         public void Save()
         {
-            _filesService.Save(_fileName, JsonUtility.ToJson(_cache));
+            filesService.Save(_fileName, JsonUtility.ToJson(_cache));
+            onStored?.Invoke();
         }
     }
 }

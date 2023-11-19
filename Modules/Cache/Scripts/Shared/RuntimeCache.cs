@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Aureola.Storage
+namespace Aureola.Cache
 {
-    public class RuntimeStorageService : IStorageService
+    [CreateAssetMenu(fileName = "RuntimeCache", menuName = "Aureola/Shared/RuntimeCache")]
+    public class RuntimeCache : ScriptableObject, ICache
     {
         private Dictionary<string, object> _values = new Dictionary<string, object>();
+
+        public bool isReady => true;
 
         public void Set(string key, int value)
         {

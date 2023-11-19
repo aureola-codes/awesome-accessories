@@ -1,9 +1,12 @@
 using UnityEngine;
 
-namespace Aureola.Storage
+namespace Aureola.Cache
 {
-    public class SimpleStorageService : IStorageService
+    [CreateAssetMenu(fileName = "PlayerPrefsCache", menuName = "Aureola/Shared/PlayerPrefsCache")]
+    public class PlayerPrefsCache : ScriptableObject, ICache
     {
+        public bool isReady => true;
+
         public void Set(string key, int value)
         {
             PlayerPrefs.SetInt(key, value);

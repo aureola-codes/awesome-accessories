@@ -1,9 +1,11 @@
 using UnityEngine;
 
-namespace Aureola.Storage
+namespace Aureola.Cache
 {
-    public interface IStorageService
+    public interface ICache
     {
+        public bool isReady { get; }
+
         public void Set(string key, int value);
         public void Set(string key, float value);
         public void Set(string key, string value);
