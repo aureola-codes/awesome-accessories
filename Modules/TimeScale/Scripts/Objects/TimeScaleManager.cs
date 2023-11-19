@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Aureola.TimeScale
 {   
-    [CreateAssetMenu(fileName = "TimeScaleManager", menuName = "Aureola/TimeScale/TimeScaleManager")]
+    [CreateAssetMenu(fileName = "TimeScaleManager", menuName = "Aureola/TimeScale/TimeScaleManager", order = 19)]
     public class TimeScaleManager : ScriptableObject
     {
         public delegate void OnChanged();

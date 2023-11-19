@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Aureola.Scenes
 {
-    [CreateAssetMenu(fileName = "ScenesManager", menuName = "Aureola/Scenes/ScenesManager")]
+    [CreateAssetMenu(fileName = "ScenesManager", menuName = "Aureola/Scenes/ScenesManager", order = 18)]
     public class ScenesManager : ScriptableObject
     {
         private class Operation

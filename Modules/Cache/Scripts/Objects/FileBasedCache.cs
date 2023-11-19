@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Aureola.Cache
 {
-    [CreateAssetMenu(fileName = "FileBasedCache", menuName = "Aureola/Cache/FileBasedCache")]
+    [CreateAssetMenu(fileName = "FileBasedCache", menuName = "Aureola/Cache/FileBasedCache", order = 5)]
     public class FileBasedCache : ScriptableObject, CacheInterface
     {
         private Dictionary<string, object> _cache = new Dictionary<string, object>();

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Aureola.Cache
 {
-    [CreateAssetMenu(fileName = "PlayerPrefsCache", menuName = "Aureola/Cache/PlayerPrefsCache")]
+    [CreateAssetMenu(fileName = "PlayerPrefsCache", menuName = "Aureola/Cache/PlayerPrefsCache", order = 15)]
     public class PlayerPrefsCache : ScriptableObject, CacheInterface
     {
         public bool isReady => true;
