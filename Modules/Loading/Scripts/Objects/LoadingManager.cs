@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Aureola.Loader
+namespace Aureola.Loading
 {
-    public class LoaderService
+    [CreateAssetMenu(fileName = "LoadingManager", menuName = "Aureola/Loading/LoadingManager")]
+    public class LoadingManager : ScriptableObject
     {
         private Dictionary<string, float> _progress = new Dictionary<string, float>();
         private float _totalProgress = 0;
