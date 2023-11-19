@@ -60,7 +60,7 @@ namespace Aureola.Settings
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);
-                onSettingsChanged.Invoke(_settings);
+                onSettingsChanged?.Invoke(_settings);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Aureola.Settings
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);    
-                onSettingsChanged.Invoke(_settings);
+                onSettingsChanged?.Invoke(_settings);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Aureola.Settings
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);
-                onSettingsChanged.Invoke(_settings);
+                onSettingsChanged?.Invoke(_settings);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Aureola.Settings
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);
-                onSettingsChanged.Invoke(_settings);
+                onSettingsChanged?.Invoke(_settings);
             }
         }
 
