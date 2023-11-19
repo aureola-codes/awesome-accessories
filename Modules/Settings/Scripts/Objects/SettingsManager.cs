@@ -4,29 +4,32 @@ using UnityEngine;
 
 namespace Aureola.Settings
 {
-    [CreateAssetMenu(fileName = "Settings", menuName = "Aureola/Shared/Settings")]
-    public class SettingsObject : ScriptableObject
+    [CreateAssetMenu(fileName = "SettingsManager", menuName = "Aureola/Settings/SettingsManager")]
+    public class SettingsManager : ScriptableObject
     {
         private Settings _settings = new Settings();
+
+        public delegate void SettingsChanged(Settings settings);
+        public delegate void SettingsLoaded();
+        public delegate void SettingsStored();
+
+        public event SettingsChanged onSettingsChanged;
+        public event SettingsLoaded onSettingsLoaded;
+        public event SettingsStored onSettingsStored;
 
         [Header("Dependencies")]
         [SerializeField] private SettingsStorage _storage;
 
-        [Header("Events")]
-        [SerializeField] private SettingsChangedEvent _onSettingsChanged;
-        [SerializeField] private SettingsLoadedEvent _onSettingsLoaded;
-        [SerializeField] private SettingsStoredEvent _onSettingsStored;
-
         public void Load()
         {
             // TODO: Do loading stuff.
-            _onSettingsLoaded.Invoke();
+            onSettingsLoaded?.Invoke();
         }
 
         public void Save()
         {
             // TODO: Do storage stuff.
-            _onSettingsStored.Invoke();
+            onSettingsStored?.Invoke();
         }
 
         public int Get(string key, int defaultValue)
@@ -57,7 +60,7 @@ namespace Aureola.Settings
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);
-                _onSettingsChanged.Invoke(_settings);
+                onSettingsChanged.Invoke(_settings);
             }
         }
 
@@ -65,7 +68,7 @@ namespace Aureola.Settings
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);    
-                _onSettingsChanged.Invoke(_settings);
+                onSettingsChanged.Invoke(_settings);
             }
         }
 
@@ -73,7 +76,7 @@ namespace Aureola.Settings
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);
-                _onSettingsChanged.Invoke(_settings);
+                onSettingsChanged.Invoke(_settings);
             }
         }
 
@@ -81,7 +84,7 @@ namespace Aureola.Settings
         {
             if (Get(key, value) != value) {
                 GetField(key).SetValue(_settings, value);
-                _onSettingsChanged.Invoke(_settings);
+                onSettingsChanged.Invoke(_settings);
             }
         }
 

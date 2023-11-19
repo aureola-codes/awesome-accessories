@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Aureola.Settings
 {
-    [CreateAssetMenu(fileName = "SettingsSimpleStorage", menuName = "Aureola/Shared/SettingsSimpleStorage")]
+    [CreateAssetMenu(fileName = "SettingsSimpleStorage", menuName = "Aureola/Settings/SettingsSimpleStorage")]
     public class SettingsSimpleStorage : SettingsStorage
     {
         [Header("Settings")]
