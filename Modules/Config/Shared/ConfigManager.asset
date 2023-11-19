@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7c2ca668f9394749925d5312f002fde, type: 3}
-  m_Name: Config
+  m_Script: {fileID: 11500000, guid: a2242fb6bf382b545b7d1a2d6f7aa6b2, type: 3}
+  m_Name: ConfigManager
   m_EditorClassIdentifier: 
   _configFile:
     m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _storage: {fileID: 11400000, guid: 84a28992363552b408c7387dd66e3626, type: 2}
+  _storage: {fileID: 0}
