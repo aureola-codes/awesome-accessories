@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aureola
+namespace Aureola.Interface
 {
     public class WebsiteButton : ClickableButton
     {

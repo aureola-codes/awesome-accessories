@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace Aureola
 {
-    [CreateAssetMenu(fileName = "InterfaceManager", menuName = "Aureola/InterfaceManager")]
+    [CreateAssetMenu(fileName = "InterfaceManager", menuName = "Aureola/Interface/InterfaceManager", order = 8)]
     public class InterfaceManager : ScriptableObject
     {
         private EventSystem _eventSystem;
