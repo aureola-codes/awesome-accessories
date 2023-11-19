@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 namespace Aureola.Scenes
 {
-    [CreateAssetMenu(fileName = "Scenes", menuName = "Aureola/Shared/Scenes")]
-    public class ScenesObject : ScriptableObject
+    [CreateAssetMenu(fileName = "ScenesManager", menuName = "Aureola/Scenes/ScenesManager")]
+    public class ScenesManager : ScriptableObject
     {
         private class Operation
         {
@@ -28,11 +28,15 @@ namespace Aureola.Scenes
         private List<Operation> _ops = new List<Operation>();
         private List<string> _scenes = new List<string>();
 
-        [Header("Events")]
-        [SerializeField] private SceneExitedEvent _onSceneExited;
-        [SerializeField] private SceneExitingEvent _onSceneExiting;
-        [SerializeField] private SceneLoadedEvent _onSceneLoaded;
-        [SerializeField] private SceneLoadingEvent _onSceneLoading;
+        public delegate void SceneExited(string sceneName);
+        public delegate void SceneExiting(string sceneName);
+        public delegate void SceneLoaded(string sceneName);
+        public delegate void SceneLoading(string sceneName);
+
+        public event SceneExited onSceneExited;
+        public event SceneExiting onSceneExiting;
+        public event SceneLoaded onSceneLoaded;
+        public event SceneLoading onSceneLoading;
 
         public bool Load(string sceneName)
         {
@@ -93,7 +97,7 @@ namespace Aureola.Scenes
         }
 
         public void MarkSceneLoaded() {
-            _onSceneLoaded.Invoke(_processedScene);
+            onSceneLoaded?.Invoke(_processedScene);
 
             _scenes.Add(_processedScene);
             _processedScene = null;
@@ -102,7 +106,7 @@ namespace Aureola.Scenes
         }
 
         public void MarkSceneExited() {
-            _onSceneExited.Invoke(_processedScene);
+            onSceneExited?.Invoke(_processedScene);
 
             _scenes.Remove(_processedScene);
             _processedScene = null;
@@ -193,7 +197,7 @@ namespace Aureola.Scenes
             _processedScene = operation.scene;
 
             if (operation.type == OperationType.Exit) {
-                _onSceneExiting.Invoke(_processedScene);
+                onSceneExiting?.Invoke(_processedScene);
 
                 SceneBehaviour sceneBehaviour = GetSceneBehaviour(operation.scene);
                 if (sceneBehaviour != null) {
@@ -202,7 +206,7 @@ namespace Aureola.Scenes
                     UnloadScene();
                 }
             } else {
-                _onSceneLoading.Invoke(_processedScene);
+                onSceneLoading?.Invoke(_processedScene);
 
                 Coworker.Instance.StartCoroutine(LoadScene(operation.scene));
             }

@@ -8,7 +8,7 @@ namespace Aureola.Scenes
         [SerializeField] [Scene] private string _sceneName;
 
         [Header("Dependencies")]
-        [SerializeField] private ScenesObject _scenes;
+        [SerializeField] private ScenesManager _scenes;
 
         public void LoadScene()
         {

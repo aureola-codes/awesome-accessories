@@ -11,7 +11,7 @@ namespace Aureola.Scenes
         private Animator _animator;
 
         [Header("Dependencies")]
-        [SerializeField] private ScenesObject _scenes;
+        [SerializeField] private ScenesManager _scenes;
 
         private void Awake()
         {

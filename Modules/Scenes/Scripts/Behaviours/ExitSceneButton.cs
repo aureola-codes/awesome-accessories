@@ -5,7 +5,7 @@ namespace Aureola.Scenes
     public class ExitSceneButton : ClickableButton
     {
         [Header("Dependencies")]
-        [SerializeField] private ScenesObject _scenes;
+        [SerializeField] private ScenesManager _scenes;
 
         public void OnClick()
         {
