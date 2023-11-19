@@ -8,7 +8,7 @@ namespace Aureola.TimeScale
         private AudioSource _audioSource;
 
         [Header("Dependencies")]
-        [SerializeField] private TimeScaleObject _timeScale;
+        [SerializeField] private TimeScaleManager _timeScale;
 
         private void Awake()
         {

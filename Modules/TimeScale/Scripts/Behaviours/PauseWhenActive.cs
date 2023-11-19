@@ -5,7 +5,7 @@ namespace Aureola.TimeScale
     public class PauseWhenActive : MonoBehaviour
     {
         [Header("Dependencies")]
-        [SerializeField] private TimeScaleObject _timeScale;
+        [SerializeField] private TimeScaleManager _timeScale;
 
         private void OnEnable()
         {
