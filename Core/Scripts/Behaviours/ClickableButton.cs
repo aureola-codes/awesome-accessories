@@ -2,7 +2,7 @@ using Aureola.Audio;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Aureola.Interface
+namespace Aureola
 {
     public class ClickableButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {

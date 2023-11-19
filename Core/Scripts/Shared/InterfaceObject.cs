@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Aureola.Interface
+namespace Aureola
 {
-    public class InterfaceService
+    [CreateAssetMenu(fileName = "Interface", menuName = "Aureola/Shared/Interface")]
+    public class InterfaceObject : ScriptableObject
     {
-        [SerializeField] private EventSystem _eventSystem;
+        private EventSystem _eventSystem;
 
-        public InterfaceService(EventSystem eventSystem)
+        public void Register(EventSystem eventSystem)
         {
             _eventSystem = eventSystem;
         }

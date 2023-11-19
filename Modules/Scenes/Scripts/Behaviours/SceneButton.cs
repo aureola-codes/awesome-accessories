@@ -1,4 +1,3 @@
-using Aureola.Interface;
 using UnityEngine;
 
 namespace Aureola.Scenes
