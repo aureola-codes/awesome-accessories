@@ -13,7 +13,7 @@ namespace Aureola
         [SerializeField] private AudioClip _sound;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioObject _audio;
+        [SerializeField] private AudioManager _audio;
 
         public void OnPointerDown(PointerEventData data)
         {

@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Aureola.Audio
 {
-    [CreateAssetMenu(fileName = "Audio", menuName = "Aureola/Shared/Audio")]
-    public class AudioObject : ScriptableObject
+    [CreateAssetMenu(fileName = "AudioManager", menuName = "Aureola/AudioManager")]
+    public class AudioManager : ScriptableObject
     {
         private AudioSource _musicAudioSource;
         private AudioSource _soundAudioSource;

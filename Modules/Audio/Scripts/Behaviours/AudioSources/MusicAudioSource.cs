@@ -9,7 +9,7 @@ namespace Aureola.Audio
     public class MusicAudioSource : MonoBehaviour
     {
         [Header("Dependencies")]
-        [SerializeField] private AudioObject _audio;
+        [SerializeField] private AudioManager _audio;
 
         private void OnEnable()
         {

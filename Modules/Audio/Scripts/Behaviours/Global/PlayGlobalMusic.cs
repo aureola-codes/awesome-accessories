@@ -9,7 +9,7 @@ namespace Aureola.Audio
         [SerializeField] private AudioClip _music;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioObject _audio;
+        [SerializeField] private AudioManager _audio;
 
         private void OnEnable()
         {

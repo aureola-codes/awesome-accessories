@@ -8,7 +8,7 @@ namespace Aureola.Audio
         private AudioSource _audioSource;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioObject _audio;
+        [SerializeField] private AudioManager _audio;
 
         private void Awake()
         {
