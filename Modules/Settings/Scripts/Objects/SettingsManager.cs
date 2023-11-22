@@ -7,6 +7,7 @@ namespace Aureola.Settings
     [CreateAssetMenu(fileName = "SettingsManager", menuName = "Aureola/Settings/SettingsManager", order = 18)]
     public class SettingsManager : ScriptableObject
     {
+        private bool _isReady = false;
         private Settings _settings = new Settings();
 
         public delegate void SettingsChanged(Settings settings);
@@ -20,9 +21,16 @@ namespace Aureola.Settings
         [Header("Dependencies")]
         [SerializeField] private SettingsStorage _storage;
 
+        public bool isReady
+        {
+            get => _isReady;
+        }
+
         public void Load()
         {
             // TODO: Do loading stuff.
+
+            _isReady = true;
             onSettingsLoaded?.Invoke();
         }
 
