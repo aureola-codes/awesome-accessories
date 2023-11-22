@@ -24,7 +24,7 @@ namespace Aureola.Scenes
             Exit
         }
 
-        private string _processedScene;
+        private string _processedScene = null;
         private List<Operation> _ops = new List<Operation>();
         private List<string> _scenes = new List<string>();
 
@@ -44,6 +44,8 @@ namespace Aureola.Scenes
                 Debug.LogWarning("Scene does not exist: " + sceneName);
                 return false;
             }
+
+            Debug.Log("Loading scene: " + sceneName);
 
             _ops.Add(new Operation(sceneName, OperationType.Load));
 
@@ -187,7 +189,7 @@ namespace Aureola.Scenes
 
         private void NextOperation()
         {
-            if (_processedScene != null || _ops.Count == 0) {
+            if ((_processedScene != null && _processedScene != "") || _ops.Count == 0) {
                 return;
             }
             
