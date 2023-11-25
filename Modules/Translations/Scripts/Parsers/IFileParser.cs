@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Aureola.Translation
+namespace Aureola.Translations
 {
     public interface IFileParser
     {

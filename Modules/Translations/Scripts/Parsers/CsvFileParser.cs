@@ -1,9 +1,9 @@
 using SimpleJSON;
 using System.Collections.Generic;
 
-namespace Aureola.Translation
+namespace Aureola.Translations
 {
-    public class JsonFileParser : IFileParser
+    public class CsvFileParser : IFileParser
     {
         private string _contents;
 
@@ -16,9 +16,12 @@ namespace Aureola.Translation
         {
             var translations = new Dictionary<string, string>();
 
-            var jsonObject = JSON.Parse(_contents);
-            foreach (var keyValuePair in jsonObject) {
-                translations[keyValuePair.Key] = keyValuePair.Value.Value;
+            var lines = _contents.Replace("\"", "").Split('\n');
+            foreach (var line in lines) {
+                var keyValuePair = line.Split(',');
+                if (keyValuePair.Length == 2) {
+                    translations[keyValuePair[0]] = keyValuePair[1];
+                }
             }
 
             return translations;

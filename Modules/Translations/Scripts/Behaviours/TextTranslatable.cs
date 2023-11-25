@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Aureola.Translation
+namespace Aureola.Translations
 {
     [RequireComponent(typeof(Text))]
     public class TextTranslatable : MonoBehaviour
@@ -21,15 +21,15 @@ namespace Aureola.Translation
         private void OnEnable()
         {
             Render();
-            _translations.onLanguageChanged += OnLanguageChanged;
+            _translations.onChanged += OnLanguageChanged;
         }
 
         private void OnDisable()
         {
-            _translations.onLanguageChanged -= OnLanguageChanged;
+            _translations.onChanged -= OnLanguageChanged;
         }
 
-        private void OnLanguageChanged(SystemLanguage language)
+        private void OnLanguageChanged(Translation translation)
         {
             Render();
         }

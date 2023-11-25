@@ -1,12 +1,12 @@
 using Aureola.Interface;
 using UnityEngine;
 
-namespace Aureola.Translation
+namespace Aureola.Translations
 {
-    public class SystemLanguageButton : ClickableButton
+    public class LanguageButton : ClickableButton
     {
         [Header("Settings")]
-        [SerializeField] private SystemLanguage _language;
+        [SerializeField] private string _language;
 
         [Header("Dependencies")]
         [SerializeField] private TranslationManager _translations;
