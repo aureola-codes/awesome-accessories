@@ -10,9 +10,9 @@ namespace Aureola.Settings
     public class SettingsManager : ScriptableObject, IResettable
     {
         private bool _isReady = false;
-        private Settings _settings = new Settings();
+        private SettingsData _settings = new SettingsData();
 
-        public delegate void SettingsChanged(Settings settings);
+        public delegate void SettingsChanged();
         public delegate void SettingsLoaded();
         public delegate void SettingsStored();
 
@@ -52,50 +52,51 @@ namespace Aureola.Settings
         public void Reset()
         {
             _isReady = false;
-            _settings = new Settings();
+            _settings = new SettingsData();
         }
 
         public int Get(string key, int defaultValue)
         {
-            var value = (int?) GetField(key)?.GetValue(_settings);
-            return (int) (value != null ? value : defaultValue);
+            return _settings.Get(key, defaultValue);
         }
 
         public float Get(string key, float defaultValue)
         {
-            var value = (float?) GetField(key)?.GetValue(_settings);
-            return (float) (value != null ? value : defaultValue);
+            return _settings.Get(key, defaultValue);
         }
 
         public string Get(string key, string defaultValue)
         {
-            var value = (string) GetField(key)?.GetValue(_settings);
-            return value != null ? value : defaultValue;
+            return _settings.Get(key, defaultValue);
+        }
+
+        public bool Get(string key, bool defaultValue)
+        {
+            return _settings.Get(key, defaultValue);
         }
 
         public void Set(string key, int value)
         {
-            Debug.Log(key);
-
-            GetField(key)?.SetValue(_settings, value);
-            onChanged?.Invoke(_settings);
+            _settings.Set(key, value);
+            onChanged?.Invoke();
         }
 
         public void Set(string key, float value)
         {
-            GetField(key)?.SetValue(_settings, value);    
-            onChanged?.Invoke(_settings);
+            _settings.Set(key, value);
+            onChanged?.Invoke();
         }
 
         public void Set(string key, string value)
         {
-            GetField(key)?.SetValue(_settings, value);
-            onChanged?.Invoke(_settings);
+            _settings.Set(key, value);
+            onChanged?.Invoke();
         }
 
-        protected FieldInfo GetField(string fieldName)
+        public void Set(string key, bool value)
         {
-            return _settings.GetType().GetField(fieldName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            _settings.Set(key, value);
+            onChanged?.Invoke();
         }
     }
 }

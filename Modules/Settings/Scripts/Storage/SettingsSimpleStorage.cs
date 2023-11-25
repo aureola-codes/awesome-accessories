@@ -1,3 +1,4 @@
+using Aureola;
 using UnityEngine;
 
 namespace Aureola.Settings
@@ -11,16 +12,16 @@ namespace Aureola.Settings
         public override void Load()
         {
             var json = PlayerPrefs.GetString(_storageKey, "{}");
-            var settings = JsonUtility.FromJson<Settings>(json);
+            var settings = SettingsData.FromJson(json);
+
+            Debug.Log(json);
             
             RaiseOnLoaded(settings);
         }
 
-        public override void Save(Settings settings)
+        public override void Save(SettingsData settings)
         {
-            var json = JsonUtility.ToJson(settings);
-            PlayerPrefs.SetString(_storageKey, json);
-            
+            PlayerPrefs.SetString(_storageKey, settings.ToJson());
             RaiseOnStored(settings);
         }
     }

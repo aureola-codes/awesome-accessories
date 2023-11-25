@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 namespace Aureola.Settings
@@ -16,18 +17,32 @@ namespace Aureola.Settings
 
         public override void Load()
         {
-            var json = System.IO.File.ReadAllText(filePath);
-            var settings = JsonUtility.FromJson<Settings>(json);
-            
-            RaiseOnLoaded(settings);
+            LoadAsync();
         }
 
-        public override void Save(Settings settings)
+        public override void Save(SettingsData settings)
         {
-            var json = JsonUtility.ToJson(settings);
-            System.IO.File.WriteAllText(filePath, json);
-            
-            RaiseOnStored(settings);
+            SaveAsync(settings);
+        }
+
+        private async void LoadAsync()
+        {
+            try {
+                var json = await System.IO.File.ReadAllTextAsync(filePath);
+                RaiseOnLoaded(SettingsData.FromJson(json));
+            } catch (System.Exception e) {
+                RaiseOnError(e.Message);
+            }
+        }
+
+        private async void SaveAsync(SettingsData settings)
+        {
+            try {
+                await System.IO.File.WriteAllTextAsync(filePath, settings.ToJson());
+                RaiseOnStored(settings);
+            } catch (System.Exception e) {
+                RaiseOnError(e.Message);
+            }
         }
     }
 }

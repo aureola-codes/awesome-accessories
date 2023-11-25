@@ -4,23 +4,32 @@ namespace Aureola.Settings
 {
     abstract public class SettingsStorage : ScriptableObject
     {
-        public delegate void OnLoaded(Settings settings);
+        public delegate void OnLoaded(SettingsData settings);
         public event OnLoaded onLoaded;
 
-        public delegate void OnStored(Settings settings);
+        public delegate void OnStored(SettingsData settings);
         public event OnStored onStored;
 
-        public abstract void Load();
-        public abstract void Save(Settings settings);
+        public delegate void OnError(string message);
+        public event OnError onError;
 
-        protected void RaiseOnStored(Settings settings)
+        public abstract void Load();
+        public abstract void Save(SettingsData settings);
+
+        protected void RaiseOnStored(SettingsData settings)
         {
             onStored?.Invoke(settings);
         }
 
-        protected void RaiseOnLoaded(Settings settings)
+        protected void RaiseOnLoaded(SettingsData settings)
         {
             onLoaded?.Invoke(settings);
+        }
+
+        protected void RaiseOnError(string message)
+        {
+            Debug.LogError(message);
+            onError?.Invoke(message);
         }
     }
 }
