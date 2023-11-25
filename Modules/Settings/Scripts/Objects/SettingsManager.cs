@@ -69,6 +69,11 @@ namespace Aureola.Settings
             _settings = new SettingsData();
         }
 
+        public void Clear()
+        {
+            _settings.Clear();
+        }
+
         public int Get(string key, int defaultValue)
         {
             return _settings.Get(key, defaultValue);
