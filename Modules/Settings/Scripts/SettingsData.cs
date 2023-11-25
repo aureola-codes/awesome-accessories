@@ -13,22 +13,20 @@ namespace Aureola.Settings
             var jsonObject = JSON.Parse(json);
 
             var settings = new SettingsData();
-            foreach (var field in typeof(SettingsData).GetFields()) {
-                if (jsonObject[field.Name] == null) {
-                    continue;
+            foreach (var keyValuePair in jsonObject) {
+                if (keyValuePair.Value is JSONBool) {
+                    settings.Set(keyValuePair.Key, keyValuePair.Value.AsBool);
                 }
-
-                if (field.FieldType == typeof(int)) {
-                    settings.Set(field.Name, jsonObject[field.Name].AsInt);
+                else if (keyValuePair.Value is JSONNumber) {
+                    if (keyValuePair.Value.Value.Contains(".")) {
+                        settings.Set(keyValuePair.Key, keyValuePair.Value.AsFloat);
+                    }
+                    else {
+                        settings.Set(keyValuePair.Key, keyValuePair.Value.AsInt);
+                    }
                 }
-                else if (field.FieldType == typeof(float)) {
-                    settings.Set(field.Name, jsonObject[field.Name].AsFloat);
-                }
-                else if (field.FieldType == typeof(string)) {
-                    settings.Set(field.Name, jsonObject[field.Name].Value);
-                }
-                else if (field.FieldType == typeof(bool)) {
-                    settings.Set(field.Name, jsonObject[field.Name].AsBool);
+                else if (keyValuePair.Value is JSONString) {
+                    settings.Set(keyValuePair.Key, keyValuePair.Value.Value);
                 }
             }
 
@@ -120,6 +118,11 @@ namespace Aureola.Settings
         public bool Has(string key)
         {
             return _data.ContainsKey(key);
+        }
+
+        public void Clear()
+        {
+            _data.Clear();
         }
     }
 }
