@@ -140,6 +140,13 @@ namespace Aureola.Scenes
             return _scenes[_scenes.Count - 1];
         }
 
+        public void Reset()
+        {
+            _processedScene = null;
+            _ops.Clear();
+            _scenes.Clear();
+        }
+
         private IEnumerator LoadScene(string sceneName)
         {
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -189,7 +196,7 @@ namespace Aureola.Scenes
 
         private void NextOperation()
         {
-            if ((_processedScene != null && _processedScene != "") || _ops.Count == 0) {
+            if (_processedScene != null || _ops.Count == 0) {
                 return;
             }
             
