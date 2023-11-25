@@ -1,8 +1,10 @@
 using Aureola.Interface;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Aureola.Scenes
 {
+    [RequireComponent(typeof(Button))]
     public class SceneButton : ClickableButton
     {
         [Header("Settings")]
@@ -10,6 +12,11 @@ namespace Aureola.Scenes
 
         [Header("Dependencies")]
         [SerializeField] private ScenesManager _scenes;
+
+        private void Awake()
+        {
+            GetComponent<Button>().onClick.AddListener(LoadScene);
+        }
 
         public void LoadScene()
         {
