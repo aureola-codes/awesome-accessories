@@ -16,6 +16,13 @@ namespace Aureola.Settings
         public abstract void Load();
         public abstract void Save(SettingsData settings);
 
+        public void Reset()
+        {
+            onLoaded = null;
+            onStored = null;
+            onError = null;
+        }
+
         protected void RaiseOnStored(SettingsData settings)
         {
             onStored?.Invoke(settings);

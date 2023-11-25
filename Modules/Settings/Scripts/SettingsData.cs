@@ -116,5 +116,10 @@ namespace Aureola.Settings
 
             return (bool) _data[key];
         }
+
+        public bool Has(string key)
+        {
+            return _data.ContainsKey(key);
+        }
     }
 }

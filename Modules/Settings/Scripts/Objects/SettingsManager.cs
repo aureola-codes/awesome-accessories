@@ -12,13 +12,15 @@ namespace Aureola.Settings
         private bool _isReady = false;
         private SettingsData _settings = new SettingsData();
 
-        public delegate void SettingsChanged();
-        public delegate void SettingsLoaded();
-        public delegate void SettingsStored();
+        public delegate void OnChanged();
+        public delegate void OnLoaded();
+        public delegate void OnStored();
+        public delegate void OnError(string message);
 
-        public event SettingsChanged onChanged;
-        public event SettingsLoaded onLoaded;
-        public event SettingsStored onStored;
+        public event OnChanged onChanged;
+        public event OnLoaded onLoaded;
+        public event OnStored onStored;
+        public event OnError onError;
 
         [Header("Dependencies")]
         [SerializeField] private SettingsStorage _storage;
@@ -30,6 +32,12 @@ namespace Aureola.Settings
 
         public void Load()
         {
+            _storage.Reset();
+
+            _storage.onError += (message) => {
+                onError?.Invoke(message);
+            };
+
             _storage.onLoaded += (settings) => {
                 _settings = settings;
                 _isReady = true;
@@ -42,6 +50,12 @@ namespace Aureola.Settings
 
         public void Save()
         {
+            _storage.Reset();
+
+            _storage.onError += (message) => {
+                onError?.Invoke(message);
+            };
+
             _storage.onStored += (settings) => {
                 onStored?.Invoke();
             };
@@ -77,26 +91,34 @@ namespace Aureola.Settings
 
         public void Set(string key, int value)
         {
-            _settings.Set(key, value);
-            onChanged?.Invoke();
+            if (!_settings.Has(key) || _settings.Get(key, value) != value) {
+                _settings.Set(key, value);
+                onChanged?.Invoke();
+            }
         }
 
         public void Set(string key, float value)
         {
-            _settings.Set(key, value);
-            onChanged?.Invoke();
+            if (!_settings.Has(key) || _settings.Get(key, value) != value) {
+                _settings.Set(key, value);
+                onChanged?.Invoke();
+            }
         }
 
         public void Set(string key, string value)
         {
-            _settings.Set(key, value);
-            onChanged?.Invoke();
+            if (!_settings.Has(key) || _settings.Get(key, value) != value) {
+                _settings.Set(key, value);
+                onChanged?.Invoke();
+            }
         }
 
         public void Set(string key, bool value)
         {
-            _settings.Set(key, value);
-            onChanged?.Invoke();
+            if (!_settings.Has(key) || _settings.Get(key, value) != value) {
+                _settings.Set(key, value);
+                onChanged?.Invoke();
+            }
         }
     }
 }

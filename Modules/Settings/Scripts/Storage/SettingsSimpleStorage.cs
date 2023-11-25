@@ -13,9 +13,6 @@ namespace Aureola.Settings
         {
             var json = PlayerPrefs.GetString(_storageKey, "{}");
             var settings = SettingsData.FromJson(json);
-
-            Debug.Log(json);
-            
             RaiseOnLoaded(settings);
         }
 
