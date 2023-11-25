@@ -65,32 +65,40 @@ namespace Aureola.Audio
         public float masterVolume {
             get => _masterVolume;
             set {
-                _masterVolume = value;
-                onVolumeChanged?.Invoke();
+                if (_masterVolume != value) {
+                    _masterVolume = value;
+                    onVolumeChanged?.Invoke();
+                }
             }
         }
 
         public float musicVolume {
             get => _musicVolume;
             set {
-                _musicVolume = value;
-                onVolumeChanged?.Invoke();
+                if (_musicVolume != value) {
+                    _musicVolume = value;
+                    onVolumeChanged?.Invoke();
+                }
             }
         }
 
         public float soundVolume {
             get => _soundVolume;
             set {
-                _soundVolume = value;
-                onVolumeChanged?.Invoke();
+                if (_soundVolume != value) {
+                    _soundVolume = value;
+                    onVolumeChanged?.Invoke();
+                }
             }
         }
 
         public float voiceVolume {
             get => _voiceVolume;
             set {
-                _voiceVolume = value;
-                onVolumeChanged?.Invoke();
+                if (_voiceVolume != value) {
+                    _voiceVolume = value;
+                    onVolumeChanged?.Invoke();
+                }
             }
         }
 
