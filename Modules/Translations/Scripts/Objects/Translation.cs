@@ -7,7 +7,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Aureola.Translations
 {
     [CreateAssetMenu(fileName = "Translation", menuName = "Aureola/Translations/Translation", order = 19)]
-    public class Translation : ScriptableObject
+    public class Translation : ScriptableObject, IResettable
     {
         private Dictionary<string, string> _translations = new Dictionary<string, string>();
         private bool _isLoaded = false;
@@ -100,6 +100,11 @@ namespace Aureola.Translations
             return key;
         }
 
+        public void Reset()
+        {
+            _translations.Clear();
+            _isLoaded = false;
+        }
 
         private void HandleSuccess()
         {
