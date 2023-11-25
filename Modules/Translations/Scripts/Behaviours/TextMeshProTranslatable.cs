@@ -10,7 +10,7 @@ namespace Aureola.Translations
         private TMP_Text _textField;
 
         [Header("Dependencies")]
-        [SerializeField] private TranslationManager _translations;
+        [SerializeField] private TranslationsManager _translations;
 
         private void Awake()
         {

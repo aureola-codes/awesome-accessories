@@ -6,7 +6,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Aureola.Translations
 {
     [CreateAssetMenu(fileName = "TranslationManager", menuName = "Aureola/Translations/TranslationManager", order = 19)]
-    public class TranslationManager : ScriptableObject, IResettable
+    public class TranslationsManager : ScriptableObject, IResettable
     {
         private Translation _translation;
 
