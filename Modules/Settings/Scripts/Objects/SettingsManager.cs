@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Aureola.Settings
 {
     [CreateAssetMenu(fileName = "SettingsManager", menuName = "Aureola/Settings/SettingsManager", order = 18)]
-    public class SettingsManager : ScriptableObject
+    public class SettingsManager : ScriptableObject, IResettable
     {
         private bool _isReady = false;
         private Settings _settings = new Settings();
