@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Aureola.Audio
 {
     [CreateAssetMenu(fileName = "AudioManager", menuName = "Aureola/Audio/AudioManager", order = 0)]
-    public class AudioManager : ScriptableObject
+    public class AudioManager : ScriptableObject, IResettable
     {
         private AudioSource _musicAudioSource;
         private AudioSource _soundAudioSource;
@@ -144,6 +144,11 @@ namespace Aureola.Audio
         public void StopVoice()
         {
             _voiceAudioSource.Stop();
+        }
+
+        public void Reset()
+        {
+            onVolumeChanged = null;
         }
     }
 }
