@@ -19,7 +19,7 @@ namespace Aureola.Translations
         public string Get(string key)
         {
             if (_translation == null) {
-                Debug.LogError("No translation active!");
+                Debug.LogWarning("No translation active!");
                 return key;
             }
 
@@ -29,7 +29,7 @@ namespace Aureola.Translations
         public string Get(string key, Dictionary<string, string> replacements)
         {
             if (_translation == null) {
-                Debug.LogError("No translation active!");
+                Debug.LogWarning("No translation active!");
                 return key;
             }
 
