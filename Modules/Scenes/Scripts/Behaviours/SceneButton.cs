@@ -5,7 +5,8 @@ using UnityEngine.UI;
 namespace Aureola.Scenes
 {
     [RequireComponent(typeof(Button))]
-    public class SceneButton : ClickableButton
+    [RequireComponent(typeof(ClickableButton))]
+    public class SceneButton : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] [Scene] public string _sceneName;

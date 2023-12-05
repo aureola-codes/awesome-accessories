@@ -1,9 +1,12 @@
 using Aureola.Interface;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Aureola.Scenes
 {
-    public class ModalButton : ClickableButton
+    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(ClickableButton))]
+    public class ModalButton : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] [Scene] private string _sceneName;
