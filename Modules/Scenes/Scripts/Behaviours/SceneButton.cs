@@ -12,11 +12,14 @@ namespace Aureola.Scenes
         [SerializeField] [Scene] public string _sceneName;
 
         [Header("Dependencies")]
-        [SerializeField] private ScenesManager _scenes;
+        [SerializeField] private ScenesManager _scenesManager;
 
         private void Awake()
         {
             GetComponent<Button>().onClick.AddListener(LoadScene);
+            if (_scenesManager == null) {
+                _scenesManager = SOLocator.Get<ScenesManager>();
+            }
         }
 
         public void LoadScene()
@@ -26,7 +29,7 @@ namespace Aureola.Scenes
                 return;
             }
 
-            _scenes.ChangeTo(_sceneName);
+            _scenesManager.ChangeTo(_sceneName);
         }
     }
 }

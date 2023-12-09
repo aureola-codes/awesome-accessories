@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 namespace Aureola.Config
 {
     [CreateAssetMenu(fileName = "ConfigManager", menuName = "Aureola/Config/ConfigManager", order = 2)]
-    public class ConfigManager : ScriptableObject
+    public class ConfigManager : ScriptableObject, ILocatable
     {
         public delegate void OnLoaded();
         public OnLoaded onLoaded;

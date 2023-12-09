@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Aureola
 {
     [CreateAssetMenu(fileName = "ScreenshotManager", menuName = "Aureola/Core/ScreenshotManager")]
-    public class ScreenshotManager : ScriptableObject
+    public class ScreenshotManager : ScriptableObject, ILocatable
     {
         [Header("Settings")]
         [SerializeField] private string _basePath = "";

@@ -11,11 +11,14 @@ namespace Aureola.Scenes
         private Animator _animator;
 
         [Header("Dependencies")]
-        [SerializeField] private ScenesManager _scenes;
+        [SerializeField] private ScenesManager _scenesManager;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            if (_scenesManager == null) {
+                _scenesManager = SOLocator.Get<ScenesManager>();
+            }
         }
 
         private void Start()
@@ -25,12 +28,12 @@ namespace Aureola.Scenes
 
         private void OnAnimationEnterFinished()
         {
-            _scenes.MarkSceneLoaded();
+            _scenesManager.MarkSceneLoaded();
         }
 
         private void OnAnimationExitFinished()
         {   
-            _scenes.UnloadScene();
+            _scenesManager.UnloadScene();
         }
 
         public void AnimationEnter()

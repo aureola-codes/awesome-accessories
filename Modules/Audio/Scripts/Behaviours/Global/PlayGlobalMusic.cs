@@ -9,7 +9,14 @@ namespace Aureola.Audio
         [SerializeField] private AudioClip _music;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioManager _audio;
+        [SerializeField] private AudioManager _audioManager;
+
+        private void Awake()
+        {
+            if (_audioManager == null) {
+                _audioManager = SOLocator.Get<AudioManager>();
+            }
+        }
 
         private void OnEnable()
         {
@@ -22,13 +29,13 @@ namespace Aureola.Audio
         [ContextMenu("Play Music")]
         public void Play()
         {
-            _audio.PlayMusic(_music);
+            _audioManager.PlayMusic(_music);
         }
 
         [ContextMenu("Stop Music")]
         public void Stop()
         {
-            _audio.StopMusic(_music);
+            _audioManager.StopMusic(_music);
         }
     }
 }

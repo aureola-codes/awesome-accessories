@@ -11,6 +11,10 @@ namespace Aureola.Interface
 
         private void Awake()
         {
+            if (_interfaceManager == null) {
+                _interfaceManager = SOLocator.Get<InterfaceManager>();
+            }
+
             _interfaceManager.Register(GetComponent<EventSystem>());
         }
     }

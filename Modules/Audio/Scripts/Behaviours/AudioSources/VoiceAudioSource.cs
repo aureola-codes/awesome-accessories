@@ -9,16 +9,23 @@ namespace Aureola.Audio
     public class VoiceAudioSource : MonoBehaviour
     {
         [Header("Dependencies")]
-        [SerializeField] private AudioManager _audio;
+        [SerializeField] private AudioManager _audioManager;
+
+        private void Awake()
+        {
+            if (_audioManager == null) {
+                _audioManager = SOLocator.Get<AudioManager>();
+            }
+        }
 
         private void OnEnable()
         {
-            _audio.voiceAudioSource = GetComponent<AudioSource>();
+            _audioManager.voiceAudioSource = GetComponent<AudioSource>();
         }
 
         private void OnDisable()
         {
-            _audio.voiceAudioSource = null;
+            _audioManager.voiceAudioSource = null;
         }
     }
 }

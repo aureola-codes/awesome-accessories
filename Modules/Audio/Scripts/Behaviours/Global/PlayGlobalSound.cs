@@ -10,7 +10,14 @@ namespace Aureola.Audio
         [SerializeField] private List<AudioClip> _soundEffects;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioManager _audio;
+        [SerializeField] private AudioManager _audioManager;
+
+        private void Awake()
+        {
+            if (_audioManager == null) {
+                _audioManager = SOLocator.Get<AudioManager>();
+            }
+        }
 
         private void OnEnable()
         {
@@ -31,7 +38,7 @@ namespace Aureola.Audio
         [ContextMenu("Play Sound")]
         public void Play()
         {
-            _audio.PlaySound(GetAudioClip());
+            _audioManager.PlaySound(GetAudioClip());
         }
     }
 }

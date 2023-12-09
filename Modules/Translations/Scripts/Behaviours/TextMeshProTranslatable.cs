@@ -10,23 +10,26 @@ namespace Aureola.Translations
         private TMP_Text _textField;
 
         [Header("Dependencies")]
-        [SerializeField] private TranslationsManager _translations;
+        [SerializeField] private TranslationsManager _translationsManager;
 
         private void Awake()
         {
             _textField = GetComponent<TMP_Text>();
             _translationKey = _textField.text;
+            if (_translationsManager == null) {
+                _translationsManager = SOLocator.Get<TranslationsManager>();
+            }
         }
 
         private void OnEnable()
         {
             Render();
-            _translations.onChanged += OnLanguageChanged;
+            _translationsManager.onChanged += OnLanguageChanged;
         }
 
         private void OnDisable()
         {
-            _translations.onChanged -= OnLanguageChanged;
+            _translationsManager.onChanged -= OnLanguageChanged;
         }
 
         private void OnLanguageChanged(Translation translation)
@@ -41,7 +44,7 @@ namespace Aureola.Translations
                 return;
             }
 
-            _textField.text = _translations.Get(_translationKey);
+            _textField.text = _translationsManager.Get(_translationKey);
         }
     }
 }

@@ -6,11 +6,18 @@ namespace Aureola.Scenes
     public class ExitSceneButton : ClickableButton
     {
         [Header("Dependencies")]
-        [SerializeField] private ScenesManager _scenes;
+        [SerializeField] private ScenesManager _scenesManager;
+
+        private void Awake()
+        {
+            if (_scenesManager == null) {
+                _scenesManager = SOLocator.Get<ScenesManager>();
+            }
+        }
 
         public void OnClick()
         {
-            _scenes.Exit(gameObject.scene.name);
+            _scenesManager.Exit(gameObject.scene.name);
         }
     }
 }

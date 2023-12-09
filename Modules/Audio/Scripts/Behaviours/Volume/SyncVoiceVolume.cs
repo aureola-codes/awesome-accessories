@@ -8,26 +8,29 @@ namespace Aureola.Audio
         private AudioSource _audioSource;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioManager _audio;
+        [SerializeField] private AudioManager _audioManager;
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+            if (_audioManager == null) {
+                _audioManager = SOLocator.Get<AudioManager>();
+            }
         }
 
         private void OnEnable()
         {
             SyncVolume();
-           _audio.onVolumeChanged += SyncVolume;
+           _audioManager.onVolumeChanged += SyncVolume;
         }
 
         private void OnDisable()
         {
-            _audio.onVolumeChanged -= SyncVolume;
+            _audioManager.onVolumeChanged -= SyncVolume;
         }
         private void SyncVolume()
         {
-            _audioSource.volume = _audio.voiceVolumeAdjusted;
+            _audioSource.volume = _audioManager.voiceVolumeAdjusted;
         }
     }
 }

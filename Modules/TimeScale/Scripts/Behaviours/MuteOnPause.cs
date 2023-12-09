@@ -8,27 +8,30 @@ namespace Aureola.TimeScale
         private AudioSource _audioSource;
 
         [Header("Dependencies")]
-        [SerializeField] private TimeScaleManager _timeScale;
+        [SerializeField] private TimeScaleManager _timeScaleManager;
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+            if (_timeScaleManager == null) {
+                _timeScaleManager = SOLocator.Get<TimeScaleManager>();
+            }
         }
 
         private void OnEnable()
         {
-            _timeScale.onChanged += CheckIsPaused;
+            _timeScaleManager.onChanged += CheckIsPaused;
             CheckIsPaused();
         }
 
         private void OnDisable()
         {
-            _timeScale.onChanged -= CheckIsPaused;
+            _timeScaleManager.onChanged -= CheckIsPaused;
         }
 
         private void CheckIsPaused()
         {
-            _audioSource.mute = _timeScale.IsPaused();
+            _audioSource.mute = _timeScaleManager.IsPaused();
         }
     }
 }

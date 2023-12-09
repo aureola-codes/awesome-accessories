@@ -5,16 +5,23 @@ namespace Aureola.TimeScale
     public class PauseWhenActive : MonoBehaviour
     {
         [Header("Dependencies")]
-        [SerializeField] private TimeScaleManager _timeScale;
+        [SerializeField] private TimeScaleManager _timeScaleManager;
+
+        private void Awake()
+        {
+            if (_timeScaleManager == null) {
+                _timeScaleManager = SOLocator.Get<TimeScaleManager>();
+            }
+        }
 
         private void OnEnable()
         {
-            _timeScale.Pause();
+            _timeScaleManager.Pause();
         }
 
         private void OnDisable()
         {
-            _timeScale.Resume();
+            _timeScaleManager.Resume();
         }
     }
 }

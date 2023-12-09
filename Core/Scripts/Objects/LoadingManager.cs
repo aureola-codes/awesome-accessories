@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Aureola
 {
     [CreateAssetMenu(fileName = "LoadingManager", menuName = "Aureola/Core/LoadingManager")]
-    public class LoadingManager : ScriptableObject, IResettable
+    public class LoadingManager : ScriptableObject, IResettable, ILocatable
     {
         private Dictionary<string, float> _progress = new Dictionary<string, float>();
         private float _totalProgress = 0;

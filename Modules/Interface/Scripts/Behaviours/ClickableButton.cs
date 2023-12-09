@@ -13,12 +13,19 @@ namespace Aureola.Interface
         [SerializeField] private AudioClip _sound;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioManager _audio;
+        [SerializeField] private AudioManager _audioManager;
+
+        private void Awake()
+        {
+            if (_audioManager == null) {
+                _audioManager = SOLocator.Get<AudioManager>();
+            }
+        }
 
         public void OnPointerDown(PointerEventData data)
         {
             if (_sound != null) {
-                _audio.PlaySound(_sound);
+                _audioManager.PlaySound(_sound);
             }
 
             transform.localScale = new Vector3(_zoomDown, _zoomDown, _zoomDown);

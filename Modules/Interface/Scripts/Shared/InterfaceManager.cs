@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 namespace Aureola.Interface
 {
     [CreateAssetMenu(fileName = "InterfaceManager", menuName = "Aureola/Interface/InterfaceManager", order = 8)]
-    public class InterfaceManager : ScriptableObject, IResettable
+    public class InterfaceManager : ScriptableObject, IResettable, ILocatable
     {
         private EventSystem _eventSystem;
 

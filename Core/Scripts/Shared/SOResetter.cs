@@ -6,19 +6,21 @@ namespace Aureola
 {
     public class SOResetter : MonoBehaviour
     {
-        private ScriptableObject[] _scriptableObjects;
-
         private void Awake()
         {
+            if (!Application.isEditor) {
+                return;
+            }
+
             // Find all scriptable objects in the project.
-            _scriptableObjects = Resources.FindObjectsOfTypeAll<ScriptableObject>();
+            ScriptableObject[] scriptableObjects = Resources.FindObjectsOfTypeAll<ScriptableObject>();
 
             // Loop through all scriptable objects.
-            foreach (ScriptableObject scriptableObject in _scriptableObjects) {
+            foreach (ScriptableObject scriptableObject in scriptableObjects) {
                 // If the scriptable object is a resettable object.
                 if (scriptableObject is IResettable) {
                     ((IResettable) scriptableObject).Reset();
-                    Debug.Log($"{scriptableObject.name} has been reset.");
+                    Debug.Log("SOResetter: " + scriptableObject.name);
                 }
             }
         }
