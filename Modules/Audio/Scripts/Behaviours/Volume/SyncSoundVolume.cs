@@ -7,7 +7,7 @@ namespace Aureola.Audio
     {
         private AudioSource _audioSource;
 
-        [Header("Dependencies")]
+        [Header("Dependencies (optional)")]
         [SerializeField] private AudioManager _audioManager;
 
         private void Awake()
@@ -31,6 +31,11 @@ namespace Aureola.Audio
 
         private void SyncVolume()
         {
+            if (_audioSource == null) {
+                Debug.LogWarning("AudioSource is null", gameObject);
+                return;
+            }
+
             _audioSource.volume = _audioManager.soundVolumeAdjusted;
         }
     }
