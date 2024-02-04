@@ -9,8 +9,16 @@ namespace Aureola.Translations
     [CreateAssetMenu(fileName = "Translation", menuName = "Aureola/Translations/Translation", order = 19)]
     public class Translation : ScriptableObject, IResettable
     {
+        [System.Serializable]
+        public struct LanguageFile
+        {
+            public string prefix;
+            public AssetReference assetReference;
+        }
+
         private Dictionary<string, string> _translations = new Dictionary<string, string>();
-        private bool _isLoaded = false;
+        private int _numLoaded = 0;
+        private int _numTotal = 0;
 
         public delegate void Loaded(Translation translation);
         public event Loaded onLoaded;
@@ -22,7 +30,7 @@ namespace Aureola.Translations
         [SerializeField] private string _code;
         [SerializeField] private string _label;
         [SerializeField] private SystemLanguage _systemLanguage;
-        [SerializeField] private AssetReference _assetReference;
+        [SerializeField] private List<LanguageFile> _languageFiles;
 
         public string code {
             get => _code;
@@ -36,37 +44,52 @@ namespace Aureola.Translations
             get => _systemLanguage;
         }
 
+        public bool IsLoaded {
+            get => _numTotal > 0 && _numTotal == _numLoaded;
+        }
+
         public void Load()
         {
-            if (_isLoaded) {
+            if (IsLoaded) {
                 HandleSuccess();
                 return;
             }
 
-            Addressables.LoadResourceLocationsAsync(_assetReference).Completed += checkAddressHandle => {
-                if (checkAddressHandle.Result.Count == 0) {
-                    HandleError("Failed to load language file: " + _assetReference);
-                    return;
-                }
+            if (_languageFiles.Count == 0) {
+                HandleError("No language files found for: " + systemLanguage);
+                return;
+            }
 
-                Addressables.LoadAssetAsync<TextAsset>(_assetReference).Completed += handle => {
+            _numTotal = _languageFiles.Count;
+            foreach (var languageFile in _languageFiles) {
+                Addressables.LoadAssetAsync<TextAsset>(languageFile.assetReference).Completed += handle => {
                     if (handle.Status == AsyncOperationStatus.Succeeded) {
-                        _translations = GetFileParser(handle.Result.text).Parse();
-                        if (_translations.Count > 0) {
-                            HandleSuccess();
-                        } else {
-                            HandleError("No translations found for: " + systemLanguage);
+                        var prefix = languageFile.prefix;
+                        if (prefix != string.Empty) {
+                            prefix += ".";
                         }
+
+                        var translations = GetFileParser(handle.Result.text).Parse();
+                        foreach (var keyValuePair in translations) {
+                            _translations[prefix + keyValuePair.Key] = keyValuePair.Value;
+                        }
+
+                        _numLoaded++;
+                        if (_numLoaded == _numTotal) {
+                            HandleSuccess();
+                        }
+                    } else {
+                        HandleError("Failed to load translation: " + languageFile.assetReference);
                     }
                     
                     Addressables.Release(handle);
                 };
-            };
+            }
         }
 
         public string Get(string key)
         {
-            if (!_isLoaded) {
+            if (!IsLoaded) {
                 Debug.LogWarning("Translation not loaded!");
                 return key;
             }
@@ -82,7 +105,7 @@ namespace Aureola.Translations
 
         public string Get(string key, Dictionary<string, string> replacements)
         {
-            if (!_isLoaded) {
+            if (!IsLoaded) {
                 Debug.LogWarning("Translation not loaded!");
                 return key;
             }
@@ -103,12 +126,11 @@ namespace Aureola.Translations
         public void Reset()
         {
             _translations.Clear();
-            _isLoaded = false;
+            _numLoaded = 0;
         }
 
         private void HandleSuccess()
         {
-            _isLoaded = true;
             onLoaded?.Invoke(this);
         }
 
@@ -122,7 +144,7 @@ namespace Aureola.Translations
         {
             IFileParser fileParser = null;
             if (contents.Trim().StartsWith("{")) {
-                fileParser = new JsonFileParser();      
+                fileParser = new JsonFileParser();
             } else {
                 fileParser = new CsvFileParser();
             }
