@@ -6,9 +6,13 @@ namespace Aureola
 {
     public class SOResetter : MonoBehaviour
     {
+        [Header("Settings")]
+        [SerializeField] private bool _debug = false;
+        [SerializeField] private bool _editorOnly = true;
+
         private void Awake()
         {
-            if (!Application.isEditor) {
+            if (_editorOnly && !Application.isEditor) {
                 return;
             }
 
@@ -20,7 +24,9 @@ namespace Aureola
                 // If the scriptable object is a resettable object.
                 if (scriptableObject is IResettable) {
                     ((IResettable) scriptableObject).Reset();
-                    Debug.Log("SOResetter: " + scriptableObject.name);
+                    if (_debug) {
+                        Debug.Log("SOResetter: " + scriptableObject.name);
+                    }
                 }
             }
         }
