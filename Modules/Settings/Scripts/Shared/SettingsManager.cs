@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using SimpleJSON;
 using UnityEngine;
 
 namespace Aureola.Settings
@@ -12,118 +8,82 @@ namespace Aureola.Settings
         private bool _isReady = false;
         private SettingsData _settings = new SettingsData();
 
-        public delegate void OnChanged();
-        public delegate void OnLoaded();
-        public delegate void OnStored();
-        public delegate void OnError(string message);
+        public delegate void SettingsChanged();
+        public event SettingsChanged OnChanged;
 
-        public event OnChanged onChanged;
-        public event OnLoaded onLoaded;
-        public event OnStored onStored;
-        public event OnError onError;
+        public delegate void SettingsLoaded();
+        public event SettingsLoaded OnLoaded;
+
+        public delegate void SettingsStored();
+        public event SettingsStored OnStored;
+
+        public delegate void SettingsError(string message);
+        public event SettingsError OnError;
 
         [Header("Dependencies")]
-        [SerializeField] private SettingsStorage _storage;
+        [SerializeField] private BaseSettingsDriver _driver;
 
-        public bool isReady
+        public bool IsReady
         {
             get => _isReady;
         }
 
+        public SettingsData Data
+        {
+            get => _settings;
+        }
+
         public void Load()
         {
-            _storage.Reset();
+            _isReady = false;
 
-            _storage.onError += (message) => {
-                onError?.Invoke(message);
+            _driver.Reset();
+            _driver.OnError += (message) => {
+                OnError?.Invoke(message);
             };
-
-            _storage.onLoaded += (settings) => {
+            _driver.OnLoaded += (settings) => {
                 _settings = settings;
                 _isReady = true;
 
-                onLoaded?.Invoke();
+                OnLoaded?.Invoke();
             };
 
-            _storage.Load();
+            _driver.Load();
         }
 
         public void Save()
         {
-            _storage.Reset();
-
-            _storage.onError += (message) => {
-                onError?.Invoke(message);
+            _driver.Reset();
+            _driver.OnError += (message) => {
+                OnError?.Invoke(message);
+            };
+            _driver.OnStored += (settings) => {
+                OnStored?.Invoke();
             };
 
-            _storage.onStored += (settings) => {
-                onStored?.Invoke();
-            };
-
-            _storage.Save(_settings);
+            _driver.Save(_settings);
         }
 
         public void Reset()
         {
             _isReady = false;
             _settings = new SettingsData();
+            OnChanged?.Invoke();
         }
 
-        public void Clear()
+        public void Set<T>(string key, T value)
         {
-            _settings.Clear();
+            if (_settings.Get(key, value).Equals(value)) {
+                return;
+            }
+
+            _settings.Set(key, value);
+            OnChanged?.Invoke();
         }
 
-        public int Get(string key, int defaultValue)
+        public T Get<T>(string key, T defaultValue)
         {
             return _settings.Get(key, defaultValue);
-        }
-
-        public float Get(string key, float defaultValue)
-        {
-            return _settings.Get(key, defaultValue);
-        }
-
-        public string Get(string key, string defaultValue)
-        {
-            return _settings.Get(key, defaultValue);
-        }
-
-        public bool Get(string key, bool defaultValue)
-        {
-            return _settings.Get(key, defaultValue);
-        }
-
-        public void Set(string key, int value)
-        {
-            if (!_settings.Has(key) || _settings.Get(key, value) != value) {
-                _settings.Set(key, value);
-                onChanged?.Invoke();
-            }
-        }
-
-        public void Set(string key, float value)
-        {
-            if (!_settings.Has(key) || _settings.Get(key, value) != value) {
-                _settings.Set(key, value);
-                onChanged?.Invoke();
-            }
-        }
-
-        public void Set(string key, string value)
-        {
-            if (!_settings.Has(key) || _settings.Get(key, value) != value) {
-                _settings.Set(key, value);
-                onChanged?.Invoke();
-            }
-        }
-
-        public void Set(string key, bool value)
-        {
-            if (!_settings.Has(key) || _settings.Get(key, value) != value) {
-                _settings.Set(key, value);
-                onChanged?.Invoke();
-            }
         }
     }
 }

@@ -1,10 +1,9 @@
-using Aureola;
 using UnityEngine;
 
 namespace Aureola.Settings
 {
-    [CreateAssetMenu(fileName = "SettingsSimpleStorage", menuName = "Aureola/Settings/SettingsSimpleStorage")]
-    public class SettingsSimpleStorage : SettingsStorage
+    [CreateAssetMenu(fileName = "SimpleSettingsDriver", menuName = "Aureola/Settings/SimpleSettingsDriver")]
+    public class SimpleSettingsDriver : BaseSettingsDriver
     {
         [Header("Settings")]
         [SerializeField] private string _storageKey = "settings";

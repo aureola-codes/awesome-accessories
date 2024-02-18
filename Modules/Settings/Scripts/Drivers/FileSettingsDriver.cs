@@ -3,20 +3,21 @@ using UnityEngine;
 
 namespace Aureola.Settings
 {
-    [CreateAssetMenu(fileName = "SettingsFileStorage", menuName = "Aureola/Settings/SettingsFileStorage")]
-    public class SettingsFileStorage : SettingsStorage
+    [CreateAssetMenu(fileName = "FileSettingsDriver", menuName = "Aureola/Settings/FileSettingsDriver")]
+    public class FileSettingsDriver : BaseSettingsDriver
     {
-        private string filePath
-        {
-            get => $"{Application.persistentDataPath}{_basePath}{_fileName}.json";
-        }
-
         [Header("Settings")]
         [SerializeField] private string _basePath = "/";
         [SerializeField] private string _fileName = "settings";
 
         public override void Load()
         {
+            // Makes no sense to load settings if the file doesn't exist.
+            if (!File.Exists(GetStoragePath())) {
+                RaiseOnLoaded(new SettingsData());
+                return;
+            }
+
             LoadAsync();
         }
 
@@ -28,7 +29,7 @@ namespace Aureola.Settings
         private async void LoadAsync()
         {
             try {
-                var json = await System.IO.File.ReadAllTextAsync(filePath);
+                var json = await File.ReadAllTextAsync(GetStoragePath());
                 RaiseOnLoaded(SettingsData.FromJson(json));
             } catch (System.Exception e) {
                 RaiseOnError(e.Message);
@@ -38,11 +39,16 @@ namespace Aureola.Settings
         private async void SaveAsync(SettingsData settings)
         {
             try {
-                await System.IO.File.WriteAllTextAsync(filePath, settings.ToJson());
+                await File.WriteAllTextAsync(GetStoragePath(), settings.ToJson());
                 RaiseOnStored(settings);
             } catch (System.Exception e) {
                 RaiseOnError(e.Message);
             }
+        }
+
+        private string GetStoragePath()
+        {
+            return $"{Application.persistentDataPath}{_basePath}{_fileName}.json";
         }
     }
 }
