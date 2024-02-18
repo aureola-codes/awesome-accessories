@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Aureola.Audio
 {
     [RequireComponent(typeof(AudioSource))]
-    [RequireComponent(typeof(SyncVoiceVolume))]
+    [RequireComponent(typeof(VoiceVolumeSync))]
     public class PlayVoice : MonoBehaviour
     {
         private AudioSource _audioSource;

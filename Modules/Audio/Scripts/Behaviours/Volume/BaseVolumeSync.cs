@@ -3,12 +3,12 @@ using UnityEngine;
 namespace Aureola.Audio
 {
     [RequireComponent(typeof(AudioSource))]
-    public class SyncMusicVolume : MonoBehaviour
+    abstract public class BaseVolumeSync : MonoBehaviour
     {
-        private AudioSource _audioSource;
+        protected AudioSource _audioSource;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioManager _audioManager;
+        [SerializeField] protected AudioManager _audioManager;
 
         private void Awake()
         {
@@ -20,8 +20,8 @@ namespace Aureola.Audio
 
         private void OnEnable()
         {
-            SyncVolume();
             _audioManager.onVolumeChanged += SyncVolume;
+            SyncVolume();
         }
 
         private void OnDisable()
@@ -29,9 +29,6 @@ namespace Aureola.Audio
            _audioManager.onVolumeChanged -= SyncVolume;
         }
 
-        private void SyncVolume()
-        {
-            _audioSource.volume = _audioManager.musicVolumeAdjusted;
-        }
+        protected abstract void SyncVolume();
     }
 }

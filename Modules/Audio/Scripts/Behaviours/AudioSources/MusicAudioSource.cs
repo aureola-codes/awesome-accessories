@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Aureola.Audio
 {
     [RequireComponent(typeof(AudioSource))]
-    [RequireComponent(typeof(SyncMusicVolume))]
+    [RequireComponent(typeof(MusicVolumeSync))]
     public class MusicAudioSource : MonoBehaviour
     {
         [Header("Dependencies")]
