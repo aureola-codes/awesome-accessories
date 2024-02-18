@@ -129,7 +129,7 @@ namespace Aureola.Audio
 
         public void StopMusic(AudioClip music)
         {
-            if (_musicAudioSource.clip == music) {
+            if (music == null || _musicAudioSource.clip == music) {
                 StopMusic();
             }
         }
