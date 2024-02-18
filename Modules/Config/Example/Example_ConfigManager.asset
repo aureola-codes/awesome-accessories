@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2242fb6bf382b545b7d1a2d6f7aa6b2, type: 3}
-  m_Name: ExampleConfigManager
+  m_Name: Example_ConfigManager
   m_EditorClassIdentifier: 
   _configFile:
     m_AssetGUID: c2ac222f22258c3459ff5193d52717de
