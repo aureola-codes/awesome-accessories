@@ -24,7 +24,7 @@ namespace Aureola.Interface
 
         public void OnPointerDown(PointerEventData data)
         {
-            if (_sound != null) {
+            if (_sound != null && _audioManager != null) {
                 _audioManager.PlaySound(_sound);
             }
 

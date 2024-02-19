@@ -65,7 +65,7 @@ namespace Aureola.Translations
                 Addressables.LoadAssetAsync<TextAsset>(languageFile.assetReference).Completed += handle => {
                     if (handle.Status == AsyncOperationStatus.Succeeded) {
                         var prefix = languageFile.prefix;
-                        if (prefix != string.Empty) {
+                        if (prefix != string.Empty && !prefix.Contains(".")) {
                             prefix += ".";
                         }
 
@@ -145,8 +145,10 @@ namespace Aureola.Translations
             IFileParser fileParser = null;
             if (contents.Trim().StartsWith("{")) {
                 fileParser = new JsonFileParser();
-            } else {
+            } else if (contents.Trim().StartsWith("\"")) {
                 fileParser = new CsvFileParser();
+            } else {
+                fileParser = new TextFileParser();
             }
             
             fileParser.SetContents(contents);

@@ -1,0 +1,3 @@
+Il s'agit d'un texte issu d'un seul fichier texte. Les fichiers texte conviennent par exemple pour les longues descriptions.
+
+Ils peuvent également contenir des retours à la ligne.

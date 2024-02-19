@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Aureola.Translations
 {
@@ -135,6 +133,17 @@ namespace Aureola.Translations
         {
             foreach (Translation translation in _translations) {
                 if (translation.systemLanguage == systemLanguage) {
+                    return translation;
+                }
+            }
+
+            return null;
+        }
+
+        public Translation GetTranslation(string code)
+        {
+            foreach (Translation translation in _translations) {
+                if (translation.code == code) {
                     return translation;
                 }
             }
