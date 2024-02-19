@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-namespace Aureola.Files
+namespace Aureola
 {
     public class FilesService
     {
