@@ -1,7 +1,7 @@
 using Aureola.Translations;
 using UnityEngine;
 
-namespace Aureola.Example
+namespace Aureola.Examples
 {
     public class TranslationController : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Aureola.Example
+namespace Aureola.Examples
 {
     public class SettingsController : MonoBehaviour
     {
