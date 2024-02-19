@@ -4,11 +4,11 @@ using UnityEngine;
 namespace Aureola.Cache
 {
     [CreateAssetMenu(fileName = "RuntimeCache", menuName = "Aureola/Cache/RuntimeCache", order = 17)]
-    public class RuntimeCache : ScriptableObject, CacheInterface
+    public class RuntimeCacheDriver : ScriptableObject, ICacheDriver
     {
         private Dictionary<string, object> _values = new Dictionary<string, object>();
 
-        public bool isReady => true;
+        public bool IsReady => true;
 
         public void Set(string key, int value)
         {

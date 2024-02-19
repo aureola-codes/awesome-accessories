@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Aureola.Cache
 {
-    public interface CacheInterface
+    public interface ICacheDriver
     {
-        public bool isReady { get; }
+        public bool IsReady { get; }
 
         public void Set(string key, int value);
         public void Set(string key, float value);

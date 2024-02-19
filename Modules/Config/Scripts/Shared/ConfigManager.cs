@@ -8,13 +8,13 @@ namespace Aureola.Config
     [CreateAssetMenu(fileName = "ConfigManager", menuName = "Aureola/Config/ConfigManager", order = 2)]
     public class ConfigManager : ScriptableObject, ILocatable
     {
-        private RuntimeCache _storage;
-        private RuntimeCache Storage
+        private RuntimeCacheDriver _storage;
+        private RuntimeCacheDriver Storage
         {
             get
             {
                 if (_storage == null) {
-                    _storage = CreateInstance<RuntimeCache>();
+                    _storage = CreateInstance<RuntimeCacheDriver>();
                 }
 
                 return _storage;

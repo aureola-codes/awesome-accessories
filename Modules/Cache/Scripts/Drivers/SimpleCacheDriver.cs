@@ -3,9 +3,9 @@ using UnityEngine;
 namespace Aureola.Cache
 {
     [CreateAssetMenu(fileName = "PlayerPrefsCache", menuName = "Aureola/Cache/PlayerPrefsCache", order = 15)]
-    public class PlayerPrefsCache : ScriptableObject, CacheInterface
+    public class SimpleCacheDriver : ScriptableObject, ICacheDriver
     {
-        public bool isReady => true;
+        public bool IsReady => true;
 
         public void Set(string key, int value)
         {

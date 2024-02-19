@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Aureola.Cache
 {
     [CreateAssetMenu(fileName = "FileBasedCache", menuName = "Aureola/Cache/FileBasedCache", order = 5)]
-    public class FileBasedCache : ScriptableObject, CacheInterface
+    public class FileCacheDriver : ScriptableObject, ICacheDriver
     {
         private Dictionary<string, object> _cache = new Dictionary<string, object>();
         private bool _isReady = false;
@@ -16,7 +16,7 @@ namespace Aureola.Cache
             get => new FilesService(_basePath != "" ? _basePath : Application.persistentDataPath);
         }
 
-        public bool isReady
+        public bool IsReady
         { 
             get => _isReady; 
             private set => _isReady = value;
