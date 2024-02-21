@@ -8,8 +8,8 @@ namespace Aureola.Translations
     {
         private Translation _translation;
 
-        public delegate void OnChanged(Translation translation);
-        public event OnChanged onChanged;
+        public delegate void Changed(Translation translation);
+        public event Changed OnChanged;
 
         [Header("Settings")]
         [SerializeField] private List<Translation> _translations;
@@ -36,24 +36,24 @@ namespace Aureola.Translations
 
         public SystemLanguage GetDefault()
         {
-            return _translations[0].systemLanguage;
+            return _translations[0].Language;
         }
 
         public string GetCode() 
         {
-            return _translation?.code;
+            return _translation?.Code;
         }
 
         public SystemLanguage GetLanguage()
         {
-            return _translation?.systemLanguage ?? SystemLanguage.Unknown;
+            return _translation?.Language ?? SystemLanguage.Unknown;
         }
 
         public SystemLanguage? GetLanguageByCode(string code)
         {
             foreach (Translation translation in _translations) {
-                if (translation.code == code) {
-                    return translation.systemLanguage;
+                if (translation.Code == code) {
+                    return translation.Language;
                 }
             }
 
@@ -63,8 +63,8 @@ namespace Aureola.Translations
         public string GetCodeByLanguage(SystemLanguage systemLanguage)
         {
             foreach (Translation translation in _translations) {
-                if (translation.systemLanguage == systemLanguage) {
-                    return translation.code;
+                if (translation.Language == systemLanguage) {
+                    return translation.Code;
                 }
             }
 
@@ -75,7 +75,7 @@ namespace Aureola.Translations
         {
             Dictionary<string, string> options = new Dictionary<string, string>();
             foreach (Translation translation in _translations) {
-                options.Add(translation.code, translation.label);
+                options.Add(translation.Code, translation.Label);
             }
 
             return options;
@@ -84,7 +84,7 @@ namespace Aureola.Translations
         public bool IsSupported(SystemLanguage systemLanguage)
         {
             foreach (Translation translation in _translations) {
-                if (translation.systemLanguage == systemLanguage) {
+                if (translation.Language == systemLanguage) {
                     return true;
                 }
             }
@@ -95,7 +95,7 @@ namespace Aureola.Translations
         public bool IsSupported(string code)
         {
             foreach (Translation translation in _translations) {
-                if (translation.code == code) {
+                if (translation.Code == code) {
                     return true;
                 }
             }
@@ -105,7 +105,7 @@ namespace Aureola.Translations
 
         public void SetLanguage(SystemLanguage systemLanguage)
         {
-            if (_translation?.systemLanguage == systemLanguage) {
+            if (_translation?.Language == systemLanguage) {
                 Debug.LogWarning("Language already set: " + systemLanguage);
                 return;
             }
@@ -132,7 +132,7 @@ namespace Aureola.Translations
         public Translation GetTranslation(SystemLanguage systemLanguage)
         {
             foreach (Translation translation in _translations) {
-                if (translation.systemLanguage == systemLanguage) {
+                if (translation.Language == systemLanguage) {
                     return translation;
                 }
             }
@@ -143,7 +143,7 @@ namespace Aureola.Translations
         public Translation GetTranslation(string code)
         {
             foreach (Translation translation in _translations) {
-                if (translation.code == code) {
+                if (translation.Code == code) {
                     return translation;
                 }
             }
@@ -164,24 +164,24 @@ namespace Aureola.Translations
                 return;
             }
 
-            translation.onLoaded += HandleSuccess;
-            translation.onError += HandleError;
+            translation.OnLoaded += HandleSuccess;
+            translation.OnError += HandleError;
             translation.Load();
         }
 
         private void HandleSuccess(Translation translation)
         {
-            translation.onLoaded -= HandleSuccess;
-            translation.onError -= HandleError;
+            translation.OnLoaded -= HandleSuccess;
+            translation.OnError -= HandleError;
 
             _translation = translation;
-            onChanged?.Invoke(_translation);
+            OnChanged?.Invoke(_translation);
         }
 
         private void HandleError(Translation translation, string message)
         {
-            translation.onLoaded -= HandleSuccess;
-            translation.onError -= HandleError;
+            translation.OnLoaded -= HandleSuccess;
+            translation.OnError -= HandleError;
 
             Debug.LogError(message);
         }

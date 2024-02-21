@@ -24,12 +24,12 @@ namespace Aureola.Translations
         private void OnEnable()
         {
             Render();
-            _translationsManager.onChanged += OnLanguageChanged;
+            _translationsManager.OnChanged += OnLanguageChanged;
         }
 
         private void OnDisable()
         {
-            _translationsManager.onChanged -= OnLanguageChanged;
+            _translationsManager.OnChanged -= OnLanguageChanged;
         }
 
         private void OnLanguageChanged(Translation translation)

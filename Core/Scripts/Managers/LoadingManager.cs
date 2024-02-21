@@ -9,12 +9,13 @@ namespace Aureola
         private Dictionary<string, float> _progress = new Dictionary<string, float>();
         private float _totalProgress = 0;
 
-        public delegate void OnProgress(float progress);
-        public delegate void OnComplete();
-        public OnProgress onProgress;
-        public OnComplete onComplete;
+        public delegate void Progressed(float progress);
+        public Progressed OnProgressed;
 
-        public float progress => _totalProgress;
+        public delegate void Completed();
+        public Completed OnCompleted;
+
+        public float Progress => _totalProgress;
 
         public void Add(string name)
         {
@@ -71,9 +72,9 @@ namespace Aureola
 
         private void BroadcastProgress()
         {
-            onProgress?.Invoke(_totalProgress);
+            OnProgressed?.Invoke(_totalProgress);
             if (_totalProgress == 1) {
-                onComplete?.Invoke();
+                OnCompleted?.Invoke();
             }
         }
     }

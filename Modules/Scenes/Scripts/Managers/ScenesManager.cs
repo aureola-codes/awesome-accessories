@@ -29,14 +29,16 @@ namespace Aureola.Scenes
         private List<string> _scenes = new List<string>();
 
         public delegate void SceneExited(string sceneName);
-        public delegate void SceneExiting(string sceneName);
-        public delegate void SceneLoaded(string sceneName);
-        public delegate void SceneLoading(string sceneName);
+        public event SceneExited OnSceneExited;
 
-        public event SceneExited onSceneExited;
-        public event SceneExiting onSceneExiting;
-        public event SceneLoaded onSceneLoaded;
-        public event SceneLoading onSceneLoading;
+        public delegate void SceneExiting(string sceneName);
+        public event SceneExiting OnSceneExiting;
+
+        public delegate void SceneLoaded(string sceneName);
+        public event SceneLoaded OnSceneLoaded;
+
+        public delegate void SceneLoading(string sceneName);
+        public event SceneLoading OnSceneLoading;
 
         public bool Load(string sceneName)
         {
@@ -99,7 +101,7 @@ namespace Aureola.Scenes
         }
 
         public void MarkSceneLoaded() {
-            onSceneLoaded?.Invoke(_processedScene);
+            OnSceneLoaded?.Invoke(_processedScene);
 
             _scenes.Add(_processedScene);
             _processedScene = null;
@@ -108,7 +110,7 @@ namespace Aureola.Scenes
         }
 
         public void MarkSceneExited() {
-            onSceneExited?.Invoke(_processedScene);
+            OnSceneExited?.Invoke(_processedScene);
 
             _scenes.Remove(_processedScene);
             _processedScene = null;
@@ -206,7 +208,7 @@ namespace Aureola.Scenes
             _processedScene = operation.scene;
 
             if (operation.type == OperationType.Exit) {
-                onSceneExiting?.Invoke(_processedScene);
+                OnSceneExiting?.Invoke(_processedScene);
 
                 SceneBehaviour sceneBehaviour = GetSceneBehaviour(operation.scene);
                 if (sceneBehaviour != null) {
@@ -215,7 +217,7 @@ namespace Aureola.Scenes
                     UnloadScene();
                 }
             } else {
-                onSceneLoading?.Invoke(_processedScene);
+                OnSceneLoading?.Invoke(_processedScene);
 
                 Coworker.Instance.StartCoroutine(LoadScene(operation.scene));
             }

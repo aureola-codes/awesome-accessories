@@ -12,9 +12,9 @@ namespace Aureola.WebRequest
         private bool _debugging = false;
 
         public delegate void Success(string responseBody);
-        public delegate void Failure(string errorMessage);
-
         public Success OnSuccess;
+
+        public delegate void Failure(string errorMessage);
         public Failure OnFailure;
 
         public WebRequestService SetTimeout(int timeout)

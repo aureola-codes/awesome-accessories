@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -21,10 +20,10 @@ namespace Aureola.Translations
         private int _numTotal = 0;
 
         public delegate void Loaded(Translation translation);
-        public event Loaded onLoaded;
+        public event Loaded OnLoaded;
 
         public delegate void Error(Translation translation, string message);
-        public event Error onError;
+        public event Error OnError;
 
         [Header("Settings")]
         [SerializeField] private string _code;
@@ -32,15 +31,15 @@ namespace Aureola.Translations
         [SerializeField] private SystemLanguage _systemLanguage;
         [SerializeField] private List<LanguageFile> _languageFiles;
 
-        public string code {
+        public string Code {
             get => _code;
         }
 
-        public string label {
+        public string Label {
             get => _label;
         }
 
-        public SystemLanguage systemLanguage {
+        public SystemLanguage Language {
             get => _systemLanguage;
         }
 
@@ -56,7 +55,7 @@ namespace Aureola.Translations
             }
 
             if (_languageFiles.Count == 0) {
-                HandleError("No language files found for: " + systemLanguage);
+                HandleError("No language files found for: " + Language);
                 return;
             }
 
@@ -131,13 +130,13 @@ namespace Aureola.Translations
 
         private void HandleSuccess()
         {
-            onLoaded?.Invoke(this);
+            OnLoaded?.Invoke(this);
         }
 
         private void HandleError(string message)
         {
             Debug.LogError(message);
-            onError?.Invoke(this, message);
+            OnError?.Invoke(this, message);
         }
 
         private IFileParser GetFileParser(string contents)

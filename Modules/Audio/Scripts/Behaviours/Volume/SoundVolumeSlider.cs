@@ -4,12 +4,12 @@ namespace Aureola.Audio
     {
         private void Start()
         {
-            _slider.value = _audioManager.soundVolume;
+            _slider.value = _audioManager.SoundVolume;
         }
 
         override protected void OnValueChanged(float value)
         {
-            _audioManager.soundVolume = value;
+            _audioManager.SoundVolume = value;
         }
     }
 }

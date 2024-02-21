@@ -18,12 +18,12 @@ namespace Aureola.Audio
 
         private void OnEnable()
         {
-            _audioManager.musicAudioSource = GetComponent<AudioSource>();
+            _audioManager.MusicAudioSource = GetComponent<AudioSource>();
         }
 
         private void OnDisable()
         {
-            _audioManager.musicAudioSource = null;
+            _audioManager.MusicAudioSource = null;
         }
     }
 }

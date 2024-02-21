@@ -14,10 +14,10 @@ namespace Aureola.Audio
         private float _soundVolume = 0.5f;
         private float _voiceVolume = 0.5f;
 
-        public delegate void OnVolumeChanged();
-        public OnVolumeChanged onVolumeChanged;
+        public delegate void VolumeChanged();
+        public VolumeChanged OnVolumeChanged;
 
-        public AudioSource musicAudioSource {
+        public AudioSource MusicAudioSource {
             set {
                 if (_musicAudioSource != null && value != null) {
                     Debug.LogWarning("Music audio source already registered!");
@@ -28,7 +28,7 @@ namespace Aureola.Audio
             }
         }
 
-        public AudioSource soundAudioSource {
+        public AudioSource SoundAudioSource {
             set {
                 if (_soundAudioSource != null && value != null) {
                     Debug.LogWarning("Sound audio source already registered!");
@@ -39,7 +39,7 @@ namespace Aureola.Audio
             }
         }
 
-        public AudioSource voiceAudioSource {
+        public AudioSource VoiceAudioSource {
             set {
                 if (_voiceAudioSource != null && value != null) {
                     Debug.LogWarning("Voice audio source already registered!");
@@ -50,67 +50,67 @@ namespace Aureola.Audio
             }
         }
 
-        public bool isMusicPlaying {
+        public bool IsMusicPlaying {
             get => _musicAudioSource?.isPlaying ?? false;
         }
 
-        public bool isSoundPlaying {
+        public bool IsSoundPlaying {
             get => _soundAudioSource?.isPlaying ?? false;
         }
 
-        public bool isVoicePlaying {
+        public bool IsVoicePlaying {
             get => _voiceAudioSource?.isPlaying ?? false;
         }
 
-        public float masterVolume {
+        public float MasterVolume {
             get => _masterVolume;
             set {
                 if (_masterVolume != value) {
                     _masterVolume = value;
-                    onVolumeChanged?.Invoke();
+                    OnVolumeChanged?.Invoke();
                 }
             }
         }
 
-        public float musicVolume {
+        public float MusicVolume {
             get => _musicVolume;
             set {
                 if (_musicVolume != value) {
                     _musicVolume = value;
-                    onVolumeChanged?.Invoke();
+                    OnVolumeChanged?.Invoke();
                 }
             }
         }
 
-        public float soundVolume {
+        public float SoundVolume {
             get => _soundVolume;
             set {
                 if (_soundVolume != value) {
                     _soundVolume = value;
-                    onVolumeChanged?.Invoke();
+                    OnVolumeChanged?.Invoke();
                 }
             }
         }
 
-        public float voiceVolume {
+        public float VoiceVolume {
             get => _voiceVolume;
             set {
                 if (_voiceVolume != value) {
                     _voiceVolume = value;
-                    onVolumeChanged?.Invoke();
+                    OnVolumeChanged?.Invoke();
                 }
             }
         }
 
-        public float musicVolumeAdjusted {
+        public float MusicVolumeAdjusted {
             get => _musicVolume * _masterVolume;
         }
 
-        public float soundVolumeAdjusted {
+        public float SoundVolumeAdjusted {
             get => _soundVolume * _masterVolume;
         }
 
-        public float voiceVolumeAdjusted {
+        public float VoiceVolumeAdjusted {
             get => _voiceVolume * _masterVolume;
         }
 
@@ -156,7 +156,7 @@ namespace Aureola.Audio
 
         public void Reset()
         {
-            onVolumeChanged = null;
+            OnVolumeChanged = null;
         }
     }
 }

@@ -20,13 +20,13 @@ namespace Aureola.Audio
 
         private void OnEnable()
         {
-            _audioManager.onVolumeChanged += SyncVolume;
+            _audioManager.OnVolumeChanged += SyncVolume;
             SyncVolume();
         }
 
         private void OnDisable()
         {
-           _audioManager.onVolumeChanged -= SyncVolume;
+           _audioManager.OnVolumeChanged -= SyncVolume;
         }
 
         protected abstract void SyncVolume();
