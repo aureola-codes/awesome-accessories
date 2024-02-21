@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Aureola
+namespace Aureola.Screenshot
 {
     [CreateAssetMenu(fileName = "ScreenshotManager", menuName = "Aureola/Core/ScreenshotManager")]
     public class ScreenshotManager : ScriptableObject, ILocatable
