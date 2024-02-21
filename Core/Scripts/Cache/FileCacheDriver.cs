@@ -2,9 +2,9 @@ using SimpleJSON;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Aureola.Cache
+namespace Aureola
 {
-    [CreateAssetMenu(fileName = "FileBasedCache", menuName = "Aureola/Cache/FileBasedCache", order = 5)]
+    [CreateAssetMenu(fileName = "FileCacheDriver", menuName = "Aureola/Cache/FileCacheDriver", order = 5)]
     public class FileCacheDriver : ScriptableObject, ICacheDriver
     {
         private Dictionary<string, object> _cache = new Dictionary<string, object>();

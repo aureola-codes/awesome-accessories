@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Aureola.Cache
+namespace Aureola
 {
-    [CreateAssetMenu(fileName = "PlayerPrefsCache", menuName = "Aureola/Cache/PlayerPrefsCache", order = 15)]
+    [CreateAssetMenu(fileName = "SimpleCacheDriver", menuName = "Aureola/Cache/SimpleCacheDriver", order = 15)]
     public class SimpleCacheDriver : ScriptableObject, ICacheDriver
     {
         public bool IsReady => true;

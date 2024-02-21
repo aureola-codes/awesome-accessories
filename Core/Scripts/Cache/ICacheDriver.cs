@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Aureola.Cache
+namespace Aureola
 {
     public interface ICacheDriver
     {
