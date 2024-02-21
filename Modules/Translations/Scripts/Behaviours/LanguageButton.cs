@@ -1,10 +1,9 @@
-using Aureola.Interface;
 using TMPro;
 using UnityEngine;
 
 namespace Aureola.Translations
 {
-    public class LanguageButton : ClickableButton
+    public class LanguageButton : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] private string _language;
