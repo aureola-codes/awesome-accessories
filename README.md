@@ -1,4 +1,4 @@
-![Aureola's Awesome Accessories](/Assets/awesome-accessories-1024x400.png)
+![Aureola's Awesome Accessories](/Images/awesome-accessories-1024x400.png)
 
 A Unity package containing accessories &amp; utilities that I use in all of my Unity projects.
 
@@ -16,67 +16,35 @@ The following packages are required:
 
 This package should work in all currently supported Unity versions. Please let me know, if you run into any compatibility issues.
 
-## Table of Contents
-
-- [Audio](/Runtime/Audio/)
-- [Config](/Runtime/Config/)
-- [Interface](/Runtime/Interface/)
-- [Loader](/Runtime/Loader/)
-- [PubSub](/Runtime/PubSub/)
-- [Scenes](/Modules/Scenes/)
-- [Screenshot](/Runtime/Screenshot/)
-- [Settings](/Runtime/Settings/)
-- [Storage](/Runtime/Storage/)
-- [TimeScale](/Runtime/TimeScale/)
-- [Translation](/Runtime/Translation/)
-- [Video](/Runtime/Video/)
-- [WebRequest](/Runtime/WebRequest/)
-
 ## Core Concepts
 
 In order to make this collection of utilities more accessible, I have defined some core concepts that I adhere to when developing this package.
 
-### Services
-
-Services are the core of this collection of development utilities. They are always self-contained by design. All dependencies must be injected using the appropriate constructor. In most cases, I have provided meaningful defaults. You can use as many instances of the same service in parallel as you like.
-
 ### Managers
 
-Managers are used to connect **services** & **behaviours** of this package in Unity. All managers are singletons by design. This means that you can only have one instance of a particular manager in your scene. All managers expose settings in the Unity editor. To find out about the available settings of a manager, please refer to the README of the respective module (or namespace).
+Managers are the core of this package. They are responsible for managing a specific problem domain, such as the `AudioManager` for handling audio playback or the `TranslationManager` for handling translations. All managers are Scriptable Objects and can be added to every behaviour in your project. You can have multiple instances of a manager, but you should only have one instance of a manager per behaviour.
 
 ### Behaviours
 
-All the scripts you can use on any game object in Unity are called behaviours. They are usually used to take advantage of a single feature of a particular **service**. For example, they are used to synchronize the volume defined by the **AudioService** with other audio sources. Most behaviours depend on the existence of certain **managers**. You can find out which **managers** are required for a particular behaviour by looking at the README of the behaviour's module (or namespace).
+Behaviours are the core of Unity. They are the building blocks of every game or application. This package provides a set of behaviours that can be used to extend the functionality of Unity's built-in behaviours. For example, the `PlayGlobalSound` can be used to play audio clips in a more convenient way.
 
-### Communication & Events
+### Communication & Delegates
 
-All **services** use [delegates](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/using-delegates) to communicate changes or other service-related events to the outside world. **Managers** listen to these delegates and (if necessary) publish events using the **PubSubManager**. **Behaviours** always use the **PubSubManager** to listen for events of interest. To find out when an event is triggered, please refer to the README of the respective module (or namespace).
+Managers and Behaviours communicate with each other using delegates. This allows for a more decoupled architecture and makes it easier to extend the functionality of the package.
+
+### Services
+
+Services are used to provide additional functionality used by certain managers or behaviours. For example, the `FilesService` is used to read and write files to the file system. You need to instantiate services manually inside the behaviour or manager that uses them.
 
 ## Installation
 
-### Local Package
+### Unity Package
 
-1. Clone this repository into a folder on your computer. Alternatively you can download the zip file and unpack it.
-2. Open up your Unity project.
-3. Go to **Window** -> **Package Manager**.
-4. In the upper left corner of the package manager, click on the plus sign.
-5. Select **Add package from disk...**
-6. Search for the installation folder of your package & select the **package.json**.
-7. Done.
-
-### Install via Git
-
-1. Make sure you have properly setup Git on your computer.
-2. Open up your Unity project.
-3. Go to **Window** -> **Package Manager**.
-4. In the upper left corner of the package manager, click on the plus sign.
-5. Select **Add package from git URL...**
-6. Add the **clone url** of this package.
-7. Done.
+Download the Unity Package from the last published version.
 
 ### Manually
 
-You can also just download the latest version of this package from Git and copy all or parts of it directly into your project. Please note that this method is not officially supported by me.
+You can also just download the source code of this package from Git and copy all or parts of it directly into your project.
 
 ## Support the Project
 
