@@ -9,6 +9,7 @@ namespace Aureola.Screenshot
         [Header("Settings")]
         [SerializeField] private string _basePath = "";
         [SerializeField] private string _folder = "Screenshots";
+        [SerializeField] private bool _debug = false;
         
         public void CaptureScreenshot()
         {
@@ -21,6 +22,10 @@ namespace Aureola.Screenshot
 
             PrepareDirectory();
             ScreenCapture.CaptureScreenshot(GetFolderPath() + "/" + GetFileName());
+            
+            if (_debug) {
+                Debug.Log("Screenshot captured: " + GetFolderPath() + "/" + GetFileName());
+            }
         }
 
         private string GetFolderPath()
