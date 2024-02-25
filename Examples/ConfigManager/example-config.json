@@ -1,0 +1,15 @@
+{
+    "example_integer": 123,
+    "example_float": 123.456,
+    "example_string": "Hello there!",
+    "example_bool": true,
+    "example_vector2": [1, 2],
+    "example_vector2_object": {"x": 1, "y": 2},
+    "example_vector3": [1, 2, 3],
+    "example_vector3_object": {"x": 1, "y": 2, "z": 3},
+    "example_quaternion": [1, 2, 3, 4],
+    "example_quaternion_object": {"x": 1, "y": 2, "z": 3, "w": 4},
+    "example_color": {"r": 1, "g": 0, "b": 0, "a": 1},
+    "example_color_hex": "#ff0000",
+    "example_color_rgba": "rgba(255, 0, 0, 1)"
+}

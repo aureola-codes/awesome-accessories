@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70cbbf26c6d85f74fba7f513e2055583, type: 3}
+  m_Name: Example_Translation_DE
+  m_EditorClassIdentifier: 
+  _code: de
+  _label: Deutsch
+  _systemLanguage: 15
+  _languageFiles:
+  - prefix: example
+    assetReference:
+      m_AssetGUID: e8996bd2588b02546b85311cd8c9f13e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - prefix: example
+    assetReference:
+      m_AssetGUID: bd0eb025ce18a704995f227f370f9e4a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - prefix: example.example3
+    assetReference:
+      m_AssetGUID: 90668ce70225a804594ced860dc031b2
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
