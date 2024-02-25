@@ -1,5 +1,7 @@
 # Screenshot
 
+The Screenshot module contains classes for capturing and managing screenshots within a Unity project.
+
 ## ScreenshotManager
 
 The ScreenshotManager class facilitates the capture and storage of screenshots within a Unity project. It allows customization of the storage directory and includes optional debug logging. This class utilizes a coroutine to capture screenshots at the end of the current frame, ensuring that the captured image represents the fully rendered scene.
