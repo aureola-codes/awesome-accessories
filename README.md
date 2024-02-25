@@ -16,6 +16,16 @@ The following packages are required:
 
 This package should work in all currently supported Unity versions. Please let me know, if you run into any compatibility issues.
 
+## Installation
+
+### Unity Package
+
+Download the Unity Package from the last published version.
+
+### Manually
+
+You can also just download the source code of this package from Git and copy all or parts of it directly into your project.
+
 ## Core Concepts
 
 In order to make this collection of utilities more accessible, I have defined some core concepts that I adhere to when developing this package.
@@ -36,15 +46,16 @@ Managers and Behaviours communicate with each other using delegates. This allows
 
 Services are used to provide additional functionality used by certain managers or behaviours. For example, the `FilesService` is used to read and write files to the file system. You need to instantiate services manually inside the behaviour or manager that uses them.
 
-## Installation
+## Modules
 
-### Unity Package
-
-Download the Unity Package from the last published version.
-
-### Manually
-
-You can also just download the source code of this package from Git and copy all or parts of it directly into your project.
+- [Core](/Core/README.md)
+- [Audio](/Modules/Audio/README.md)
+- [Config](/Modules/Config/README.md)
+- [Scenes](/Modules/Scenes/README.md)
+- [Screenshot](/Modules/Screenshot/README.md)
+- [Settings](/Modules/Settings/README.md)
+- [Translation](/Modules/Translation/README.md)
+- [WebRequest](/Modules/WebRequest/README.md)
 
 ## Support the Project
 
