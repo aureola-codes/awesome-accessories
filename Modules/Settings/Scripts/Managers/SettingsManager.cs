@@ -73,7 +73,7 @@ namespace Aureola.Settings
 
         public void Set<T>(string key, T value)
         {
-            if (_settings.Get(key, value).Equals(value)) {
+            if (_settings.Get<T>(key).Equals(value)) {
                 return;
             }
 
@@ -81,9 +81,9 @@ namespace Aureola.Settings
             OnChanged?.Invoke();
         }
 
-        public T Get<T>(string key, T defaultValue)
+        public T Get<T>(string key)
         {
-            return _settings.Get(key, defaultValue);
+            return _settings.Get<T>(key);
         }
     }
 }

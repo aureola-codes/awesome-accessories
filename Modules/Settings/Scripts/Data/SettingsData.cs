@@ -22,13 +22,13 @@ public partial class SettingsData
         }
     }
 
-    public T Get<T>(string key, T defaultValue)
+    public T Get<T>(string key)
     {
         var field = GetType().GetField(key);
         if (field != null && field.FieldType == typeof(T)) {
-            return (T)field.GetValue(this);
+            return (T) field.GetValue(this);
         }
 
-        return defaultValue;
+        return default;
     }
 }

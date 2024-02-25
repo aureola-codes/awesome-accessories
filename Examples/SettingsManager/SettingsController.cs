@@ -57,8 +57,8 @@ namespace Aureola.Examples
         private void UpdateFormElements()
         {
             _exampleA.SetTextWithoutNotify(_settingsManager.Data.exampleA);
-            _exampleB.SetValueWithoutNotify(_settingsManager.Data.exampleB);
-            _exampleC.SetIsOnWithoutNotify(_settingsManager.Data.exampleC);
+            _exampleB.SetValueWithoutNotify(_settingsManager.Get<int>("exampleB"));
+            _exampleC.SetIsOnWithoutNotify(_settingsManager.Get<bool>("exampleC"));
 
             _output.text = _settingsManager.Data.ToJson();
         }
