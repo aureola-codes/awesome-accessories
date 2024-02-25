@@ -1,5 +1,7 @@
 ![Aureola's Awesome Accessories](/Images/awesome-accessories-1024x400.png)
 
+[![Made by Aureola](https://img.shields.io/badge/Made%20by-Aureola-ff6a00.svg)](https://aureola.codes/en/contact) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg)](https://github.com/aureola-codes/awesome-accessories/graphs/code-frequency) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://en.wikipedia.org/wiki/MIT_License) [![Made with Unity](https://img.shields.io/badge/Made%20with-Unity-57b9d3.svg?style=flat&logo=unity)](https://unity3d.com)
+
 A Unity package containing accessories &amp; utilities that I use in all of my Unity projects.
 
 **Important:** This project currently is a **work in progress** as new services are added or existing ones are updated. There will be breaking changes in the future! Although I will try to be as transparent as possible about these changes, things may break. Keep that in mind. My advice is to test things thoroughly when updates are made.
