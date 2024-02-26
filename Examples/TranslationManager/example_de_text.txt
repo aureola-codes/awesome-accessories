@@ -1,0 +1,3 @@
+Dies ist ein Text aus einer einzigen Textdatei. Textdateien eignen sich z. B. für längere Beschreibungen.
+
+Sie können auch Zeilenumbrüche enthalten.

@@ -1,18 +1,17 @@
 {
-    "name": "codes.aureola.awesome-accessories",
-    "displayName": "Aureola's Awesome Accessories",
-    "description": "A Unity package containing accessories & utilities that I use in all of my projects.",
-    "version": "0.2.2",
-    "unity": "2021.1",
-    "dependencies": {
-        "codes.aureola.simplejson": "1.0.0",
-        "com.unity.addressables": "1.0.0",
-        "com.unity.textmeshpro": "1.0.0"
-    },
-    "author": {
-        "name": "Christian Hanne",
-        "email": "support@aureola.codes",
-        "url": "https://aureola.codes/"
-    },
-    "license": "MIT"
+  "name": "codes.aureola.awesome-accessories",
+  "displayName": "Aureola's Awesome Accessories",
+  "description": "A Unity package containing accessories & utilities that I use in all of my projects.",
+  "version": "0.2.1",
+  "unity": "2021.1",
+  "dependencies": {
+    "codes.aureola.simplejson": "1.0.0",
+    "com.unity.addressables": "1.0.0"
+  },
+  "author": {
+    "name": "Christian Hanne",
+    "email": "support@aureola.codes",
+    "url": "https://aureola.codes/"
+  },
+  "license": "MIT"
 }
