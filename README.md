@@ -14,9 +14,9 @@ The following packages are required:
 - [Unity Addressables](https://docs.unity3d.com/Manual/com.unity.addressables.html)
 - [Unity TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)
 
-**Note:** You need to install SimpleJSON manually using my fork.
+Enable the Addressables module by navigating to `Asset Management` -> `Addressables` -> `Groups` and click on `Create Addressables Settings`. This will create a new `AddressableAssetSettings` asset in your project. You can now use the module in your project.
 
-This package should work in all currently supported Unity versions. Please let me know, if you run into any compatibility issues.
+**Note:** You need to install SimpleJSON manually using my fork.
 
 ## Installation
 
@@ -77,6 +77,10 @@ Even if you are unable to contribute financially or through code, there are othe
 - **Share the project with others.** Spread the word about the project and help it reach a wider audience.
 
 Your support means a lot to me, and it motivates me to keep working on and improving this project. Thank you for considering a donation and supporting its development!
+
+## Support
+
+This package should work in all currently supported Unity versions. Please let me know, if you run into any compatibility issues.
 
 ## License
 
