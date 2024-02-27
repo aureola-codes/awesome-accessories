@@ -4,8 +4,6 @@
 
 A Unity package containing accessories &amp; utilities that I use in all of my Unity projects.
 
-**Important:** This project currently is a **work in progress** as new services are added or existing ones are updated. There will be breaking changes in the future! Although I will try to be as transparent as possible about these changes, things may break. Keep that in mind. My advice is to test things thoroughly when updates are made.
-
 ## Prerequisites
 
 The following packages are required:
@@ -14,15 +12,19 @@ The following packages are required:
 - [Unity Addressables](https://docs.unity3d.com/Manual/com.unity.addressables.html)
 - [Unity TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)
 
-**Note:** You need to install SimpleJSON manually using my fork.
+Enable the Addressables module by navigating to `Asset Management` -> `Addressables` -> `Groups` and click on `Create Addressables Settings`. This will create a new `AddressableAssetSettings` asset in your project. You can now use the module in your project.
 
-This package should work in all currently supported Unity versions. Please let me know, if you run into any compatibility issues.
+**Note:** You need to install SimpleJSON manually using my fork.
 
 ## Installation
 
-### Unity Package
+### Unity Asset Store
 
-Download the Unity Package from the last published version.
+Download the package from the [Unity Asset Store](https://assetstore.unity.com/packages/slug/278356).
+
+### Unity Package (Github)
+
+Download the Unity Package from the last published version on Github.
 
 ### Manually
 
@@ -56,7 +58,7 @@ Services are used to provide additional functionality used by certain managers o
 - [Scenes](/Modules/Scenes/README.md)
 - [Screenshot](/Modules/Screenshot/README.md)
 - [Settings](/Modules/Settings/README.md)
-- [Translation](/Modules/Translation/README.md)
+- [Translations](/Modules/Translations/README.md)
 - [WebRequest](/Modules/WebRequest/README.md)
 
 ## Support the Project
@@ -77,6 +79,10 @@ Even if you are unable to contribute financially or through code, there are othe
 - **Share the project with others.** Spread the word about the project and help it reach a wider audience.
 
 Your support means a lot to me, and it motivates me to keep working on and improving this project. Thank you for considering a donation and supporting its development!
+
+## Support
+
+This package should work in all currently supported Unity versions. Please let me know, if you run into any compatibility issues.
 
 ## License
 
