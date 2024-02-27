@@ -4,8 +4,6 @@
 
 A Unity package containing accessories &amp; utilities that I use in all of my Unity projects.
 
-**Important:** This project currently is a **work in progress** as new services are added or existing ones are updated. There will be breaking changes in the future! Although I will try to be as transparent as possible about these changes, things may break. Keep that in mind. My advice is to test things thoroughly when updates are made.
-
 ## Prerequisites
 
 The following packages are required:
@@ -20,9 +18,13 @@ Enable the Addressables module by navigating to `Asset Management` -> `Addressab
 
 ## Installation
 
-### Unity Package
+### Unity Asset Store
 
-Download the Unity Package from the last published version.
+Download the package from the [Unity Asset Store](https://assetstore.unity.com/packages/slug/278356).
+
+### Unity Package (Github)
+
+Download the Unity Package from the last published version on Github.
 
 ### Manually
 
@@ -56,7 +58,7 @@ Services are used to provide additional functionality used by certain managers o
 - [Scenes](/Modules/Scenes/README.md)
 - [Screenshot](/Modules/Screenshot/README.md)
 - [Settings](/Modules/Settings/README.md)
-- [Translation](/Modules/Translation/README.md)
+- [Translations](/Modules/Translations/README.md)
 - [WebRequest](/Modules/WebRequest/README.md)
 
 ## Support the Project
