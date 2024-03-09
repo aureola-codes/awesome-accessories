@@ -5,7 +5,6 @@
   "version": "0.2.1",
   "unity": "2021.1",
   "dependencies": {
-    "codes.aureola.simplejson": "1.0.0",
     "com.unity.addressables": "1.0.0"
   },
   "author": {
