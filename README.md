@@ -8,13 +8,10 @@ A Unity package containing accessories &amp; utilities that I use in all of my U
 
 The following packages are required:
 
-- [SimpleJSON for Unity](https://github.com/aureola-codes/SimpleJSON-Unity)
 - [Unity Addressables](https://docs.unity3d.com/Manual/com.unity.addressables.html)
 - [Unity TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)
 
 Enable the Addressables module by navigating to `Asset Management` -> `Addressables` -> `Groups` and click on `Create Addressables Settings`. This will create a new `AddressableAssetSettings` asset in your project. You can now use the module in your project.
-
-**Note:** You need to install SimpleJSON manually using my fork.
 
 ## Installation
 

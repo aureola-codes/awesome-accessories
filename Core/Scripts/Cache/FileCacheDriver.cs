@@ -1,4 +1,4 @@
-using SimpleJSON;
+using Aureola.AwesomeAccessories.SimpleJSON;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,4 +1,4 @@
-using SimpleJSON;
+using Aureola.AwesomeAccessories.SimpleJSON;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -33,14 +33,14 @@ namespace Aureola.Config
                 foreach (var keyValuePair in jsonObject) {
                     var type = keyValuePair.Value.GetType().ToString().ToLower();
                     switch (type) {
-                        case "simplejson.jsonnumber":
+                        case "aureola.awesomeaccessories.simplejson.jsonnumber":
                             if (keyValuePair.Value.ToString().Contains(".")) {
                                 Storage.Set(keyValuePair.Key, (float) keyValuePair.Value);
                             } else {
                                 Storage.Set(keyValuePair.Key, (int) keyValuePair.Value);
                             }
                             break;
-                        case "simplejson.jsonstring":
+                        case "aureola.awesomeaccessories.simplejson.jsonstring":
                             if (IsHexColorString((string) keyValuePair.Value)) {
                                 Storage.Set(keyValuePair.Key, HexToColor((string) keyValuePair.Value));
                             } else if (IsRgbaColorString((string) keyValuePair.Value)) {
@@ -49,10 +49,10 @@ namespace Aureola.Config
                                 Storage.Set(keyValuePair.Key, (string) keyValuePair.Value);
                             }
                             break;
-                        case "simplejson.jsonbool":
+                        case "aureola.awesomeaccessories.simplejson.jsonbool":
                             Storage.Set(keyValuePair.Key, (bool) keyValuePair.Value);
                             break;
-                        case "simplejson.jsonarray":
+                        case "aureola.awesomeaccessories.simplejson.jsonarray":
                             if (keyValuePair.Value.Count == 2) {
                                 Storage.Set(keyValuePair.Key, new Vector2(keyValuePair.Value[0], keyValuePair.Value[1]));
                             } else if (keyValuePair.Value.Count == 3) {
@@ -63,7 +63,7 @@ namespace Aureola.Config
                                 Debug.LogWarning("Unknown array type: " + keyValuePair.Value.ToString());
                             }
                             break;
-                        case "simplejson.jsonobject":
+                        case "aureola.awesomeaccessories.simplejson.jsonobject":
                             if (IsColor(keyValuePair.Value)) {
                                 Storage.Set(keyValuePair.Key, new Color(
                                     (byte) keyValuePair.Value["r"], 
