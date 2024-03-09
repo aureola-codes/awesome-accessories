@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Aureola.Screenshot
 {
-    [CreateAssetMenu(fileName = "ScreenshotManager", menuName = "Aureola/Core/ScreenshotManager")]
+    [CreateAssetMenu(fileName = "ScreenshotManager", menuName = "Aureola/ScreenshotManager", order = 19)]
     public class ScreenshotManager : ScriptableObject, ILocatable
     {
         [Header("Settings")]

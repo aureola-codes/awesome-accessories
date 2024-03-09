@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Aureola
 {
-    [CreateAssetMenu(fileName = "RuntimeCacheDriver", menuName = "Aureola/Cache/RuntimeCacheDriver", order = 17)]
+    [CreateAssetMenu(fileName = "RuntimeCacheDriver", menuName = "Aureola/RuntimeCacheDriver", order = 18)]
     public class RuntimeCacheDriver : ScriptableObject, ICacheDriver
     {
         private Dictionary<string, object> _values = new Dictionary<string, object>();

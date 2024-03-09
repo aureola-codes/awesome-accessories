@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Aureola.Settings
 {
-    [CreateAssetMenu(fileName = "FileSettingsDriver", menuName = "Aureola/Settings/FileSettingsDriver")]
+    [CreateAssetMenu(fileName = "FileSettingsDriver", menuName = "Aureola/FileSettingsDriver", order = 7)]
     public class FileSettingsDriver : BaseSettingsDriver
     {
         [Header("Settings")]

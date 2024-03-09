@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Aureola
 {
-    [CreateAssetMenu(fileName = "SimpleCacheDriver", menuName = "Aureola/Cache/SimpleCacheDriver", order = 15)]
+    [CreateAssetMenu(fileName = "SimpleCacheDriver", menuName = "Aureola/SimpleCacheDriver", order = 19)]
     public class SimpleCacheDriver : ScriptableObject, ICacheDriver
     {
         public bool IsReady => true;
