@@ -43,24 +43,7 @@ namespace Aureola.WebRequest
 
         public void Send(WebRequestData data)
         {
-            UnityWebRequest request = new UnityWebRequest(data.url, data.GetMethod());
-
-            request.timeout = _timeout;
-            request.useHttpContinue = false;
-            request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
-
-            if (data.headers != null) {
-                foreach (var header in data.headers) {
-                    request.SetRequestHeader(header.Key, header.Value);
-                }
-            }
-
-            if (data.payload != null) {
-                byte[] payloadBytes = Encoding.UTF8.GetBytes(data.payload);
-                request.uploadHandler = (UploadHandler) new UploadHandlerRaw(payloadBytes);
-            }
-
-            Coworker.Instance.StartCoroutine(SendRequest(request));
+            Coworker.Instance.StartCoroutine(SendRequest(data));
         }
 
         public void Send(string url)
@@ -88,8 +71,25 @@ namespace Aureola.WebRequest
             Send(new WebRequestData(url, method, headers, payload));
         }
 
-        private IEnumerator SendRequest(UnityWebRequest request)
+        private IEnumerator SendRequest(WebRequestData data)
         {
+            UnityWebRequest request = new UnityWebRequest(data.url, data.GetMethod());
+
+            request.timeout = _timeout;
+            request.useHttpContinue = false;
+            request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+
+            if (data.headers != null) {
+                foreach (var header in data.headers) {
+                    request.SetRequestHeader(header.Key, header.Value);
+                }
+            }
+
+            if (data.payload != null) {
+                byte[] payloadBytes = Encoding.UTF8.GetBytes(data.payload);
+                request.uploadHandler = (UploadHandler) new UploadHandlerRaw(payloadBytes);
+            }
+
             Log("Sending " + request.method + " request to " + request.url);
             yield return request.SendWebRequest();
 
@@ -100,6 +100,8 @@ namespace Aureola.WebRequest
                 Log("Request failed! " + request.error + ": " + request.downloadHandler.text);
                 OnFailure?.Invoke(request.error + ": " + request.downloadHandler.text);
             }
+
+            request.Dispose();
         }
 
         private void Log(string message)
