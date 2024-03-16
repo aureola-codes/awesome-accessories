@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Aureola
 {
-    [CreateAssetMenu(fileName = "FileCacheDriver", menuName = "Aureola/Cache/FileCacheDriver", order = 5)]
+    [CreateAssetMenu(fileName = "FileCacheDriver", menuName = "Aureola/FileCacheDriver", order = 6)]
     public class FileCacheDriver : ScriptableObject, ICacheDriver
     {
         private Dictionary<string, object> _cache = new Dictionary<string, object>();

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Aureola.Translations
 {
-    [CreateAssetMenu(fileName = "TranslationManager", menuName = "Aureola/Translations/TranslationManager", order = 19)]
+    [CreateAssetMenu(fileName = "TranslationManager", menuName = "Aureola/TranslationManager", order = 50)]
     public class TranslationsManager : ScriptableObject, IResettable, ILocatable
     {
         private Translation _translation;
