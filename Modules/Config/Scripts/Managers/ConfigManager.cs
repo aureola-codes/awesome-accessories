@@ -1,4 +1,5 @@
 using Aureola.AwesomeAccessories.SimpleJSON;
+using Aureola.PubSub;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -25,6 +26,9 @@ namespace Aureola.Config
 
         [Header("Settings")]
         [SerializeField] private AssetReference _configFile;
+
+        [Header("Dependencies (optional)")]
+        [SerializeField] private PubSubManager _pubSubManager;
 
         public void Load()
         {
@@ -89,6 +93,9 @@ namespace Aureola.Config
 
                 Addressables.Release(handle);
                 OnLoaded?.Invoke();
+                if (_pubSubManager != null) {
+                    _pubSubManager.Publish(new OnConfigLoaded(this));
+                }
             };
         }
 

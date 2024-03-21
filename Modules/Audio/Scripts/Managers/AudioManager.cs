@@ -1,3 +1,4 @@
+using Aureola.PubSub;
 using UnityEngine;
 
 namespace Aureola.Audio
@@ -16,6 +17,9 @@ namespace Aureola.Audio
 
         public delegate void VolumeChanged();
         public VolumeChanged OnVolumeChanged;
+
+        [Header("Dependencies (optional)")]
+        [SerializeField] private PubSubManager _pubSubManager;
 
         public AudioSource MusicAudioSource {
             set {
@@ -68,6 +72,9 @@ namespace Aureola.Audio
                 if (_masterVolume != value) {
                     _masterVolume = value;
                     OnVolumeChanged?.Invoke();
+                    if (_pubSubManager != null) {
+                        _pubSubManager.Publish(new OnVolumeChanged(this));
+                    }
                 }
             }
         }
@@ -78,6 +85,9 @@ namespace Aureola.Audio
                 if (_musicVolume != value) {
                     _musicVolume = value;
                     OnVolumeChanged?.Invoke();
+                    if (_pubSubManager != null) {
+                        _pubSubManager.Publish(new OnVolumeChanged(this));
+                    }
                 }
             }
         }
@@ -88,6 +98,9 @@ namespace Aureola.Audio
                 if (_soundVolume != value) {
                     _soundVolume = value;
                     OnVolumeChanged?.Invoke();
+                    if (_pubSubManager != null) {
+                        _pubSubManager.Publish(new OnVolumeChanged(this));
+                    }
                 }
             }
         }
@@ -98,6 +111,9 @@ namespace Aureola.Audio
                 if (_voiceVolume != value) {
                     _voiceVolume = value;
                     OnVolumeChanged?.Invoke();
+                    if (_pubSubManager != null) {
+                        _pubSubManager.Publish(new OnVolumeChanged(this));
+                    }
                 }
             }
         }

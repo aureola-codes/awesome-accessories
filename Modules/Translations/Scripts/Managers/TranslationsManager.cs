@@ -1,3 +1,4 @@
+using Aureola.PubSub;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,9 @@ namespace Aureola.Translations
 
         [Header("Settings")]
         [SerializeField] private List<Translation> _translations;
+
+        [Header("Dependencies (optional)")]
+        [SerializeField] private PubSubManager _pubSubManager;
 
         public string Get(string key)
         {
@@ -176,6 +180,9 @@ namespace Aureola.Translations
 
             _translation = translation;
             OnChanged?.Invoke(_translation);
+            if (_pubSubManager != null) {
+                _pubSubManager.Publish(new OnLanguageChanged(this));
+            }
         }
 
         private void HandleError(Translation translation, string message)

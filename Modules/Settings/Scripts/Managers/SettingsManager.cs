@@ -1,3 +1,4 @@
+using Aureola.PubSub;
 using UnityEngine;
 
 namespace Aureola.Settings
@@ -23,6 +24,9 @@ namespace Aureola.Settings
         [Header("Dependencies")]
         [SerializeField] private BaseSettingsDriver _driver;
 
+        [Header("Dependencies (optional)")]
+        [SerializeField] private PubSubManager _pubSubManager;
+
         public bool IsReady
         {
             get => _isReady;
@@ -40,12 +44,18 @@ namespace Aureola.Settings
             _driver.Reset();
             _driver.OnError += (message) => {
                 OnError?.Invoke(message);
+                if (_pubSubManager != null) {
+                    _pubSubManager.Publish(new OnSettingsError(this, message));
+                }
             };
             _driver.OnLoaded += (settings) => {
                 _settings = settings;
                 _isReady = true;
 
                 OnLoaded?.Invoke();
+                if (_pubSubManager != null) {
+                    _pubSubManager.Publish(new OnSettingsLoaded(this));
+                }
             };
 
             _driver.Load();
@@ -56,9 +66,15 @@ namespace Aureola.Settings
             _driver.Reset();
             _driver.OnError += (message) => {
                 OnError?.Invoke(message);
+                if (_pubSubManager != null) {
+                    _pubSubManager.Publish(new OnSettingsError(this, message));
+                }
             };
             _driver.OnStored += (settings) => {
                 OnStored?.Invoke();
+                if (_pubSubManager != null) {
+                    _pubSubManager.Publish(new OnSettingsStored(this));
+                }
             };
 
             _driver.Save(_settings);
@@ -68,7 +84,11 @@ namespace Aureola.Settings
         {
             _isReady = false;
             _settings = new SettingsData();
+
             OnChanged?.Invoke();
+            if (_pubSubManager != null) {
+                _pubSubManager.Publish(new OnSettingsChanged(this));
+            }
         }
 
         public void Set<T>(string key, T value)
@@ -78,7 +98,11 @@ namespace Aureola.Settings
             }
 
             _settings.Set(key, value);
+
             OnChanged?.Invoke();
+            if (_pubSubManager != null) {
+                _pubSubManager.Publish(new OnSettingsChanged(this));
+            }
         }
 
         public T Get<T>(string key)

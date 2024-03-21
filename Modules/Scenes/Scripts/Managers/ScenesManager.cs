@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Aureola.PubSub;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,6 +40,9 @@ namespace Aureola.Scenes
 
         public delegate void SceneLoading(string sceneName);
         public event SceneLoading OnSceneLoading;
+
+        [Header("Dependencies (optional)")]
+        [SerializeField] private PubSubManager _pubSubManager;
 
         public bool Load(string sceneName)
         {
@@ -102,6 +106,9 @@ namespace Aureola.Scenes
 
         public void MarkSceneLoaded() {
             OnSceneLoaded?.Invoke(_processedScene);
+            if (_pubSubManager != null) {
+                _pubSubManager.Publish(new OnSceneLoaded(_processedScene));
+            }
 
             _scenes.Add(_processedScene);
             _processedScene = null;
@@ -111,6 +118,9 @@ namespace Aureola.Scenes
 
         public void MarkSceneExited() {
             OnSceneExited?.Invoke(_processedScene);
+            if (_pubSubManager != null) {
+                _pubSubManager.Publish(new OnSceneExited(_processedScene));
+            }
 
             _scenes.Remove(_processedScene);
             _processedScene = null;
@@ -209,6 +219,9 @@ namespace Aureola.Scenes
 
             if (operation.type == OperationType.Exit) {
                 OnSceneExiting?.Invoke(_processedScene);
+                if (_pubSubManager != null) {
+                    _pubSubManager.Publish(new OnSceneExiting(_processedScene));
+                }
 
                 SceneBehaviour sceneBehaviour = GetSceneBehaviour(operation.scene);
                 if (sceneBehaviour != null) {
@@ -218,6 +231,9 @@ namespace Aureola.Scenes
                 }
             } else {
                 OnSceneLoading?.Invoke(_processedScene);
+                if (_pubSubManager != null) {
+                    _pubSubManager.Publish(new OnSceneLoading(_processedScene));
+                }
 
                 Coworker.Instance.StartCoroutine(LoadScene(operation.scene));
             }
