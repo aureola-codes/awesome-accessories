@@ -1,4 +1,5 @@
 using System.Collections;
+using Aureola.PubSub;
 using UnityEngine;
 
 namespace Aureola.Screenshot
@@ -6,10 +7,16 @@ namespace Aureola.Screenshot
     [CreateAssetMenu(fileName = "ScreenshotManager", menuName = "Aureola/ScreenshotManager", order = 19)]
     public class ScreenshotManager : ScriptableObject, ILocatable
     {
+        public delegate void ScreenshotCaptured(string path);
+        public event ScreenshotCaptured OnScreenshotCaptured;
+
         [Header("Settings")]
         [SerializeField] private string _basePath = "";
         [SerializeField] private string _folder = "Screenshots";
         [SerializeField] private bool _debug = false;
+
+        [Header("Dependencies (optional)")]
+        [SerializeField] private PubSubManager _pubSubManager;
         
         public void CaptureScreenshot()
         {
@@ -22,6 +29,11 @@ namespace Aureola.Screenshot
 
             PrepareDirectory();
             ScreenCapture.CaptureScreenshot(GetFolderPath() + "/" + GetFileName());
+
+            OnScreenshotCaptured?.Invoke(GetFolderPath() + "/" + GetFileName());
+            if (_pubSubManager != null) {
+                _pubSubManager.Publish(new OnScreenshotCaptured(GetFolderPath() + "/" + GetFileName()));
+            }
             
             if (_debug) {
                 Debug.Log("Screenshot captured: " + GetFolderPath() + "/" + GetFileName());
