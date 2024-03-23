@@ -2,7 +2,7 @@ using Aureola.PubSub;
 
 namespace Aureola.Settings
 {
-    public class OnSettingsChanged : IEvent
+    public class OnSettingsChanged : IPubSubEvent
     {
         public readonly SettingsManager Manager;
         public OnSettingsChanged(SettingsManager manager)

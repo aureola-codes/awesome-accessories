@@ -2,7 +2,7 @@ using Aureola.PubSub;
 
 namespace Aureola.Scenes
 {
-    public class OnSceneExiting : IEvent
+    public class OnSceneExiting : IPubSubEvent
     {
         public readonly string SceneName;
         public OnSceneExiting(string sceneName)

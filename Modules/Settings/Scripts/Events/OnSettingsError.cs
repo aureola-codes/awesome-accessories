@@ -2,7 +2,7 @@ using Aureola.PubSub;
 
 namespace Aureola.Settings
 {
-    public class OnSettingsError : IEvent
+    public class OnSettingsError : IPubSubEvent
     {
         public readonly SettingsManager Manager;
         public readonly string ErrorMessage;

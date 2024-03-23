@@ -6,17 +6,17 @@ namespace Aureola.PubSub
     [CreateAssetMenu(fileName = "PubSubManager", menuName = "Aureola/PubSubManager", order = 16)]
     public class PubSubManager : ScriptableObject, IResettable, ILocatable
     {
-        public delegate void Event(IEvent channelEvent);
+        public delegate void Event(IPubSubEvent channelEvent);
 
         private const string DEFAULT_CHANNEL = "Default";
         private Dictionary<string, Event> _channels;
 
-        public void Publish(IEvent channelEvent)
+        public void Publish(IPubSubEvent channelEvent)
         {
             Publish(DEFAULT_CHANNEL, channelEvent);
         }
 
-        public void Publish(string channel, IEvent channelEvent)
+        public void Publish(string channel, IPubSubEvent channelEvent)
         {
             if (_channels.TryGetValue(channel, out var subscriptions)) {
                 subscriptions?.Invoke(channelEvent);

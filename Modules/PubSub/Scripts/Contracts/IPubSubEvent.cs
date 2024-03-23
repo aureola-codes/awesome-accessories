@@ -1,6 +1,6 @@
 namespace Aureola.PubSub
 {
-    public interface IEvent
+    public interface IPubSubEvent
     {
         
     }
