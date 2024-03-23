@@ -17,6 +17,7 @@ namespace Aureola
         public void Set(string key, Color32 value);
         public void Set(string key, Quaternion value);
 
+        public T Get<T>(string key);
         public int Get(string key, int defaultValue);
         public float Get(string key, float defaultValue);
         public string Get(string key, string defaultValue);

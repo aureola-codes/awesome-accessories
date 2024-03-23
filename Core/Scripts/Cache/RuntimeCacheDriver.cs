@@ -60,6 +60,15 @@ namespace Aureola
             _values[key] = value;
         }
 
+        public T Get<T>(string key)
+        {
+            if (!_values.ContainsKey(key)) {
+                return default;
+            }
+
+            return (T) _values[key];
+        }
+
         public int Get(string key, int defaultValue)
         {
             if (!_values.ContainsKey(key)) {

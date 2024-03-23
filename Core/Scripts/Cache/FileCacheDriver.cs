@@ -91,6 +91,15 @@ namespace Aureola
             Save();
         }
 
+        public T Get<T>(string key)
+        {
+            if (!_cache.ContainsKey(key)) {
+                return default;
+            }
+
+            return (T) _cache[key];
+        }
+
         public int Get(string key, int defaultValue)
         {
             if (!_cache.ContainsKey(key)) {
