@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Aureola
 {
-
     [CustomPropertyDrawer(typeof(TagAttribute))]
     public class TagPropertyDrawer : PropertyDrawer
     {
