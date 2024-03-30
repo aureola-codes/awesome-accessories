@@ -5,7 +5,7 @@ namespace Aureola
     [CreateAssetMenu(fileName = "SimpleCacheDriver", menuName = "Aureola/SimpleCacheDriver", order = 19)]
     public class SimpleCacheDriver : ScriptableObject, ICacheDriver
     {
-        public bool IsReady => true;
+        public bool isReady => true;
 
         public void Set(string key, int value)
         {
@@ -55,6 +55,40 @@ namespace Aureola
         public void Set(string key, Quaternion value)
         {
             PlayerPrefs.SetString(key, $"{value.x},{value.y},{value.z},{value.w}");
+        }
+
+        public T Get<T>(string key)
+        {
+            switch (typeof(T).Name) {
+                case "Int32":
+                    return (T)(object)PlayerPrefs.GetInt(key);
+                case "Single":
+                    return (T)(object)PlayerPrefs.GetFloat(key);
+                case "String":
+                    return (T)(object)PlayerPrefs.GetString(key);
+                case "Boolean":
+                    return (T)(object)(PlayerPrefs.GetInt(key) == 1);
+                case "Vector2":
+                    var split2 = PlayerPrefs.GetString(key).Split(',');
+                    return (T)(object)new Vector2(float.Parse(split2[0]), float.Parse(split2[1]));
+                case "Vector3":
+                    var split3 = PlayerPrefs.GetString(key).Split(',');
+                    return (T)(object)new Vector3(float.Parse(split3[0]), float.Parse(split3[1]), float.Parse(split3[2]));
+                case "Vector4":
+                    var split4 = PlayerPrefs.GetString(key).Split(',');
+                    return (T)(object)new Vector4(float.Parse(split4[0]), float.Parse(split4[1]), float.Parse(split4[2]), float.Parse(split4[3]));
+                case "Color":
+                    var splitColor = PlayerPrefs.GetString(key).Split(',');
+                    return (T)(object)new Color(float.Parse(splitColor[0]), float.Parse(splitColor[1]), float.Parse(splitColor[2]), float.Parse(splitColor[3]));
+                case "Color32":
+                    var splitColor32 = PlayerPrefs.GetString(key).Split(',');
+                    return (T)(object)new Color32(byte.Parse(splitColor32[0]), byte.Parse(splitColor32[1]), byte.Parse(splitColor32[2]), byte.Parse(splitColor32[3]));
+                case "Quaternion":
+                    var splitQuaternion = PlayerPrefs.GetString(key).Split(',');
+                    return (T)(object)new Quaternion(float.Parse(splitQuaternion[0]), float.Parse(splitQuaternion[1]), float.Parse(splitQuaternion[2]), float.Parse(splitQuaternion[3]));
+                default:
+                    return default;
+            }
         }
 
         public int Get(string key, int defaultValue)

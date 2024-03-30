@@ -28,9 +28,13 @@ The TranslationsManager class is designed to facilitate the management of transl
 - `GetTranslation(string code)` Retrieves the Translation object for the specified language code.
 - `Reset()` Resets the TranslationManager.
 
-### Events
+### Delegates
 
 - `OnChanged` Triggered when the active translation changes.
+
+### Events (PubSubManager)
+
+- `OnLanguageChanged` Triggered when the active language changes.
 
 ### Example Usages
 
@@ -104,7 +108,7 @@ The Translation class represents a single language's translation resources withi
 - `Get(string key, Dictionary<string, string> replacements)` Similar to Get(string key), but also replaces placeholders in the translated string with values from the replacements dictionary.
 - `Reset()` Clears the loaded translations and resets the load state.
 
-### Events
+### Delegates
 
 - `OnLoaded` Triggered when all translation data for the language has been successfully loaded.
 - `OnError` Triggered when there is an error loading the translation data.

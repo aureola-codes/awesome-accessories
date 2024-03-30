@@ -58,6 +58,23 @@ Services are used to provide additional functionality used by certain managers o
 - [Translations](/Modules/Translations/README.md)
 - [WebRequest](/Modules/WebRequest/README.md)
 
+## Development
+
+### Naming Conventions
+
+- **Classes**
+  - **default**: PascalCase
+  - **Event**: PascalCase, leading with `On` (e.g. `OnAudioClipPlayed`)
+- **Methods**: PascalCase
+- **Variables**
+  - **private/protected**: lowerCamelCase with leading underscore `_` (e.g. `_myVariable`)
+  - **public**: lowerCamelCase (Exception: `Instance` for singletons)
+  - **Events/Delegates**: PascalCase, leading with `On` (e.g. `OnAudioClipPlayed`)
+- **Other**
+  - **Delegate**: PascalCase
+  - **Enums**: PascalCase
+  - **Interfaces**: PascalCase, leading with `I` (e.g. `IManager`)
+
 ## Support the Project
 
 If you find this project helpful and would like to contribute to its development and ongoing maintenance, your support would be greatly appreciated. By making a donation, you can help ensure the sustainability of the project and allow me to devote more time and resources to improving it.

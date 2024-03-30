@@ -17,7 +17,11 @@ The ConfigManager class is designed to manage configuration settings for a Unity
 - `Get<T>(string key, T defaultValue)` Retrieves a value of type T from the cache, returning a default value if the key is not found.
 - `Clear()` Clears all data from the cache.
 
-### Events
+### Delegates
+
+- `OnLoaded` An event that is invoked when the configuration data is successfully loaded.
+
+### Events (PubSubManager)
 
 - `OnLoaded` An event that is invoked when the configuration data is successfully loaded.
 

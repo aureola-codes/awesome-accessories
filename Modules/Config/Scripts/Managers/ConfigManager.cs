@@ -1,4 +1,5 @@
 using Aureola.AwesomeAccessories.SimpleJSON;
+using Aureola.PubSub;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -7,6 +8,8 @@ namespace Aureola.Config
     [CreateAssetMenu(fileName = "ConfigManager", menuName = "Aureola/ConfigManager", order = 3)]
     public class ConfigManager : ScriptableObject, ILocatable
     {
+        private bool _isLoaded = false;
+
         private RuntimeCacheDriver _storage;
         private RuntimeCacheDriver Storage
         {
@@ -23,8 +26,13 @@ namespace Aureola.Config
         public delegate void Loaded();
         public Loaded OnLoaded;
 
+        public bool isLoaded => _isLoaded;
+
         [Header("Settings")]
         [SerializeField] private AssetReference _configFile;
+
+        [Header("Dependencies (optional)")]
+        [SerializeField] private PubSubManager _pubSubManager;
 
         public void Load()
         {
@@ -87,8 +95,13 @@ namespace Aureola.Config
                     }
                 }
 
+                _isLoaded = true;
+
                 Addressables.Release(handle);
                 OnLoaded?.Invoke();
+                if (_pubSubManager != null) {
+                    _pubSubManager.Publish(new OnConfigLoaded(this));
+                }
             };
         }
 
@@ -101,6 +114,7 @@ namespace Aureola.Config
             Load();
         }
 
+        public T Get<T>(string key) => Storage.Get<T>(key);
         public float Get(string key, float defaultValue) => Storage.Get(key, defaultValue);
         public string Get(string key, string defaultValue) => Storage.Get(key, defaultValue);
         public int Get(string key, int defaultValue) => Storage.Get(key, defaultValue);
@@ -111,8 +125,11 @@ namespace Aureola.Config
         public Quaternion Get(string key, Quaternion defaultValue) => Storage.Get(key, defaultValue);
         public Color Get(string key, Color defaultValue) => Storage.Get(key, defaultValue);
         public Color32 Get(string key, Color32 defaultValue) => Storage.Get(key, defaultValue);
-
-        public void Clear() => Storage.Clear();
+        public void Clear()
+        {
+            _isLoaded = false;
+            Storage.Clear();
+        }
 
         private bool IsVector2(JSONNode jsonNode)
         {

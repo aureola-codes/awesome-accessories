@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Aureola.Audio
 {
-    public class PlayMusic : MonoBehaviour
+    public class PlayGlobalMusic : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] private bool _playOnEnable = false;

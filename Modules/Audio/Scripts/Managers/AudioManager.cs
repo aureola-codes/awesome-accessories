@@ -1,3 +1,4 @@
+using Aureola.PubSub;
 using UnityEngine;
 
 namespace Aureola.Audio
@@ -16,6 +17,9 @@ namespace Aureola.Audio
 
         public delegate void VolumeChanged();
         public VolumeChanged OnVolumeChanged;
+
+        [Header("Dependencies (optional)")]
+        [SerializeField] private PubSubManager _pubSubManager;
 
         public AudioSource MusicAudioSource {
             set {
@@ -50,67 +54,79 @@ namespace Aureola.Audio
             }
         }
 
-        public bool IsMusicPlaying {
+        public bool isMusicPlaying {
             get => _musicAudioSource?.isPlaying ?? false;
         }
 
-        public bool IsSoundPlaying {
+        public bool isSoundPlaying {
             get => _soundAudioSource?.isPlaying ?? false;
         }
 
-        public bool IsVoicePlaying {
+        public bool isVoicePlaying {
             get => _voiceAudioSource?.isPlaying ?? false;
         }
 
-        public float MasterVolume {
+        public float masterVolume {
             get => _masterVolume;
             set {
                 if (_masterVolume != value) {
                     _masterVolume = value;
                     OnVolumeChanged?.Invoke();
+                    if (_pubSubManager != null) {
+                        _pubSubManager.Publish(new OnVolumeChanged(this));
+                    }
                 }
             }
         }
 
-        public float MusicVolume {
+        public float musicVolume {
             get => _musicVolume;
             set {
                 if (_musicVolume != value) {
                     _musicVolume = value;
                     OnVolumeChanged?.Invoke();
+                    if (_pubSubManager != null) {
+                        _pubSubManager.Publish(new OnVolumeChanged(this));
+                    }
                 }
             }
         }
 
-        public float SoundVolume {
+        public float soundVolume {
             get => _soundVolume;
             set {
                 if (_soundVolume != value) {
                     _soundVolume = value;
                     OnVolumeChanged?.Invoke();
+                    if (_pubSubManager != null) {
+                        _pubSubManager.Publish(new OnVolumeChanged(this));
+                    }
                 }
             }
         }
 
-        public float VoiceVolume {
+        public float voiceVolume {
             get => _voiceVolume;
             set {
                 if (_voiceVolume != value) {
                     _voiceVolume = value;
                     OnVolumeChanged?.Invoke();
+                    if (_pubSubManager != null) {
+                        _pubSubManager.Publish(new OnVolumeChanged(this));
+                    }
                 }
             }
         }
 
-        public float MusicVolumeAdjusted {
+        public float musicVolumeAdjusted {
             get => _musicVolume * _masterVolume;
         }
 
-        public float SoundVolumeAdjusted {
+        public float soundVolumeAdjusted {
             get => _soundVolume * _masterVolume;
         }
 
-        public float VoiceVolumeAdjusted {
+        public float voiceVolumeAdjusted {
             get => _voiceVolume * _masterVolume;
         }
 

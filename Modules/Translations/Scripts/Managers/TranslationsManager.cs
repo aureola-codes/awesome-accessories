@@ -1,3 +1,4 @@
+using Aureola.PubSub;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,9 @@ namespace Aureola.Translations
 
         [Header("Settings")]
         [SerializeField] private List<Translation> _translations;
+
+        [Header("Dependencies (optional)")]
+        [SerializeField] private PubSubManager _pubSubManager;
 
         public string Get(string key)
         {
@@ -36,24 +40,24 @@ namespace Aureola.Translations
 
         public SystemLanguage GetDefault()
         {
-            return _translations[0].Language;
+            return _translations[0].language;
         }
 
         public string GetCode() 
         {
-            return _translation?.Code;
+            return _translation?.code;
         }
 
         public SystemLanguage GetLanguage()
         {
-            return _translation?.Language ?? SystemLanguage.Unknown;
+            return _translation?.language ?? SystemLanguage.Unknown;
         }
 
         public SystemLanguage? GetLanguageByCode(string code)
         {
             foreach (Translation translation in _translations) {
-                if (translation.Code == code) {
-                    return translation.Language;
+                if (translation.code == code) {
+                    return translation.language;
                 }
             }
 
@@ -63,8 +67,8 @@ namespace Aureola.Translations
         public string GetCodeByLanguage(SystemLanguage systemLanguage)
         {
             foreach (Translation translation in _translations) {
-                if (translation.Language == systemLanguage) {
-                    return translation.Code;
+                if (translation.language == systemLanguage) {
+                    return translation.code;
                 }
             }
 
@@ -75,7 +79,7 @@ namespace Aureola.Translations
         {
             Dictionary<string, string> options = new Dictionary<string, string>();
             foreach (Translation translation in _translations) {
-                options.Add(translation.Code, translation.Label);
+                options.Add(translation.code, translation.label);
             }
 
             return options;
@@ -84,7 +88,7 @@ namespace Aureola.Translations
         public bool IsSupported(SystemLanguage systemLanguage)
         {
             foreach (Translation translation in _translations) {
-                if (translation.Language == systemLanguage) {
+                if (translation.language == systemLanguage) {
                     return true;
                 }
             }
@@ -95,7 +99,7 @@ namespace Aureola.Translations
         public bool IsSupported(string code)
         {
             foreach (Translation translation in _translations) {
-                if (translation.Code == code) {
+                if (translation.code == code) {
                     return true;
                 }
             }
@@ -105,7 +109,7 @@ namespace Aureola.Translations
 
         public void SetLanguage(SystemLanguage systemLanguage)
         {
-            if (_translation?.Language == systemLanguage) {
+            if (_translation?.language == systemLanguage) {
                 Debug.LogWarning("Language already set: " + systemLanguage);
                 return;
             }
@@ -132,7 +136,7 @@ namespace Aureola.Translations
         public Translation GetTranslation(SystemLanguage systemLanguage)
         {
             foreach (Translation translation in _translations) {
-                if (translation.Language == systemLanguage) {
+                if (translation.language == systemLanguage) {
                     return translation;
                 }
             }
@@ -143,7 +147,7 @@ namespace Aureola.Translations
         public Translation GetTranslation(string code)
         {
             foreach (Translation translation in _translations) {
-                if (translation.Code == code) {
+                if (translation.code == code) {
                     return translation;
                 }
             }
@@ -176,6 +180,9 @@ namespace Aureola.Translations
 
             _translation = translation;
             OnChanged?.Invoke(_translation);
+            if (_pubSubManager != null) {
+                _pubSubManager.Publish(new OnLanguageChanged(this));
+            }
         }
 
         private void HandleError(Translation translation, string message)
