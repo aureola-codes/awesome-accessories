@@ -22,7 +22,7 @@ namespace Aureola.Translations
         private void Start()
         {
             if (_label != null) {
-                _label.text = _translationsManager.GetTranslation(_language)?.Label;
+                _label.text = _translationsManager.GetTranslation(_language)?.label;
             }
         }
 

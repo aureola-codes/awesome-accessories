@@ -4,10 +4,10 @@ namespace Aureola.Audio
 {
     public class OnVolumeChanged : IPubSubEvent
     {
-        public readonly AudioManager Manager;
-        public OnVolumeChanged(AudioManager manager)
+        public readonly AudioManager manager;
+        public OnVolumeChanged(AudioManager audioManager)
         {
-            Manager = manager;
+            manager = audioManager;
         }
     }
 }

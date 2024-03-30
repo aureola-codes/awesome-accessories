@@ -46,7 +46,7 @@ namespace Aureola.Examples
         private void OnSettingsChanged()
         {
             Debug.Log("Settings changed!");
-            _output.text = _settingsManager.Data.ToJson();
+            _output.text = _settingsManager.data.ToJson();
         }
 
         private void OnSettingsError(string message)
@@ -56,11 +56,11 @@ namespace Aureola.Examples
 
         private void UpdateFormElements()
         {
-            _exampleA.SetTextWithoutNotify(_settingsManager.Data.exampleA);
+            _exampleA.SetTextWithoutNotify(_settingsManager.data.exampleA);
             _exampleB.SetValueWithoutNotify(_settingsManager.Get<int>("exampleB"));
             _exampleC.SetIsOnWithoutNotify(_settingsManager.Get<bool>("exampleC"));
 
-            _output.text = _settingsManager.Data.ToJson();
+            _output.text = _settingsManager.data.ToJson();
         }
 
         public void OnFieldUpdated()

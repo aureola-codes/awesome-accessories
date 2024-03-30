@@ -4,10 +4,10 @@ namespace Aureola.Config
 {
     public class OnConfigLoaded : IPubSubEvent
     {
-        public readonly ConfigManager Manager;
-        public OnConfigLoaded(ConfigManager manager)
+        public readonly ConfigManager manager;
+        public OnConfigLoaded(ConfigManager configManager)
         {
-            Manager = manager;
+            manager = configManager;
         }
     }
 }

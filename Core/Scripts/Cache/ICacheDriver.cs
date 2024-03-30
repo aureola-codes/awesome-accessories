@@ -4,7 +4,7 @@ namespace Aureola
 {
     public interface ICacheDriver
     {
-        public bool IsReady { get; }
+        public bool isReady { get; }
 
         public void Set(string key, int value);
         public void Set(string key, float value);

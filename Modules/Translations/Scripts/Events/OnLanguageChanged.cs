@@ -4,10 +4,10 @@ namespace Aureola.Translations
 {
     public class OnLanguageChanged : IPubSubEvent
     {
-        public readonly TranslationsManager Manager;
-        public OnLanguageChanged(TranslationsManager manager)
+        public readonly TranslationsManager manager;
+        public OnLanguageChanged(TranslationsManager translationsManager)
         {
-            Manager = manager;
+            manager = translationsManager;
         }
     }
 }

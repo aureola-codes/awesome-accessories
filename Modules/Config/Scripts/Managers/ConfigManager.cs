@@ -26,7 +26,7 @@ namespace Aureola.Config
         public delegate void Loaded();
         public Loaded OnLoaded;
 
-        public bool IsLoaded => _isLoaded;
+        public bool isLoaded => _isLoaded;
 
         [Header("Settings")]
         [SerializeField] private AssetReference _configFile;

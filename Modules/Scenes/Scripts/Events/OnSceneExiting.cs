@@ -4,10 +4,10 @@ namespace Aureola.Scenes
 {
     public class OnSceneExiting : IPubSubEvent
     {
-        public readonly string SceneName;
+        public readonly string sceneName;
         public OnSceneExiting(string sceneName)
         {
-            SceneName = sceneName;
+            this.sceneName = sceneName;
         }
     }
 }

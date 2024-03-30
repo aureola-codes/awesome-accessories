@@ -8,7 +8,7 @@ namespace Aureola
     {
         private Dictionary<string, object> _values = new Dictionary<string, object>();
 
-        public bool IsReady => true;
+        public bool isReady => true;
 
         public void Set(string key, int value)
         {

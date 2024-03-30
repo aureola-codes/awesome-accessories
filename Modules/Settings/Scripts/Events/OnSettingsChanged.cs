@@ -4,10 +4,10 @@ namespace Aureola.Settings
 {
     public class OnSettingsChanged : IPubSubEvent
     {
-        public readonly SettingsManager Manager;
-        public OnSettingsChanged(SettingsManager manager)
+        public readonly SettingsManager manager;
+        public OnSettingsChanged(SettingsManager settingsManager)
         {
-            Manager = manager;
+            manager = settingsManager;
         }
     }
 }

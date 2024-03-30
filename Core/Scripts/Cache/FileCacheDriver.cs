@@ -15,7 +15,7 @@ namespace Aureola
             get => new FilesService(_basePath != "" ? _basePath : Application.persistentDataPath);
         }
 
-        public bool IsReady
+        public bool isReady
         { 
             get => _isReady; 
             private set => _isReady = value;
@@ -25,11 +25,11 @@ namespace Aureola
         [SerializeField] private string _basePath = "";
         [SerializeField] private string _fileName = "storage.json";
 
-        public delegate void OnLoaded();
-        public OnLoaded onLoaded;
+        public delegate void Loaded();
+        public Loaded OnLoaded;
 
-        public delegate void OnStored();
-        public OnLoaded onStored;
+        public delegate void Stored();
+        public Stored onStored;
 
         public void Set(string key, int value)
         {
@@ -210,7 +210,7 @@ namespace Aureola
             }
 
             _isReady = true;
-            onLoaded?.Invoke();
+            OnLoaded?.Invoke();
         }
 
         public void Save()

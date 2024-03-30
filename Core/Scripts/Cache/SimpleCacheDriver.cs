@@ -5,7 +5,7 @@ namespace Aureola
     [CreateAssetMenu(fileName = "SimpleCacheDriver", menuName = "Aureola/SimpleCacheDriver", order = 19)]
     public class SimpleCacheDriver : ScriptableObject, ICacheDriver
     {
-        public bool IsReady => true;
+        public bool isReady => true;
 
         public void Set(string key, int value)
         {

@@ -12,8 +12,8 @@ The SettingsManager class facilitates the management of application settings wit
 
 ### Properties
 
-- `IsReady` A boolean indicating whether the settings are loaded and ready to use.
-- `Data` Provides access to the current SettingsData instance.
+- `isReady` A boolean indicating whether the settings are loaded and ready to use.
+- `data` Provides access to the current SettingsData instance.
 
 ### Methods
 

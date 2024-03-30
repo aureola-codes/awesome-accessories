@@ -31,31 +31,31 @@ namespace Aureola.Translations
         [SerializeField] private SystemLanguage _systemLanguage;
         [SerializeField] private List<LanguageFile> _languageFiles;
 
-        public string Code {
+        public string code {
             get => _code;
         }
 
-        public string Label {
+        public string label {
             get => _label;
         }
 
-        public SystemLanguage Language {
+        public SystemLanguage language {
             get => _systemLanguage;
         }
 
-        public bool IsLoaded {
+        public bool isLoaded {
             get => _numTotal > 0 && _numTotal == _numLoaded;
         }
 
         public void Load()
         {
-            if (IsLoaded) {
+            if (isLoaded) {
                 HandleSuccess();
                 return;
             }
 
             if (_languageFiles.Count == 0) {
-                HandleError("No language files found for: " + Language);
+                HandleError("No language files found for: " + language);
                 return;
             }
 
@@ -88,7 +88,7 @@ namespace Aureola.Translations
 
         public string Get(string key)
         {
-            if (!IsLoaded) {
+            if (!isLoaded) {
                 Debug.LogWarning("Translation not loaded!");
                 return key;
             }
@@ -104,7 +104,7 @@ namespace Aureola.Translations
 
         public string Get(string key, Dictionary<string, string> replacements)
         {
-            if (!IsLoaded) {
+            if (!isLoaded) {
                 Debug.LogWarning("Translation not loaded!");
                 return key;
             }

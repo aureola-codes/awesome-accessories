@@ -4,7 +4,7 @@ namespace Aureola.Audio
     {
         override protected void SyncVolume()
         {
-            _audioSource.volume = _audioManager.VoiceVolumeAdjusted;
+            _audioSource.volume = _audioManager.voiceVolumeAdjusted;
         }
     }
 }

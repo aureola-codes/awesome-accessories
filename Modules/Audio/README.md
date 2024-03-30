@@ -8,19 +8,19 @@ The AudioManager class is designed to manage audio sources and volumes within a 
 
 ### Properties
 
-- `MusicAudioSource` Set the AudioSource for music.
-- `SoundAudioSource` Set the AudioSource for sound effects.
-- `VoiceAudioSource` Set the AudioSource for voice.
-- `IsMusicPlaying` Returns true if music is currently playing.
-- `IsSoundPlaying` Returns true if a sound effect is currently playing.
-- `IsVoicePlaying` Returns true if voice audio is currently playing.
-- `MasterVolume` Get or set the master volume for all audio sources.
-- `MusicVolume` Get or set the volume for music.
-- `SoundVolume` Get or set the volume for sound effects.
-- `VoiceVolume` Get or set the volume for voice.
-- `MusicVolumeAdjusted` Get the adjusted music volume considering the master volume.
-- `SoundVolumeAdjusted` Get the adjusted sound volume considering the master volume.
-- `VoiceVolumeAdjusted` Get the adjusted voice volume considering the master volume.
+- `musicAudioSource` Set the AudioSource for music.
+- `soundAudioSource` Set the AudioSource for sound effects.
+- `voiceAudioSource` Set the AudioSource for voice.
+- `isMusicPlaying` Returns true if music is currently playing.
+- `isSoundPlaying` Returns true if a sound effect is currently playing.
+- `isVoicePlaying` Returns true if voice audio is currently playing.
+- `masterVolume` Get or set the master volume for all audio sources.
+- `musicVolume` Get or set the volume for music.
+- `soundVolume` Get or set the volume for sound effects.
+- `voiceVolume` Get or set the volume for voice.
+- `musicVolumeAdjusted` Get the adjusted music volume considering the master volume.
+- `soundVolumeAdjusted` Get the adjusted sound volume considering the master volume.
+- `voiceVolumeAdjusted` Get the adjusted voice volume considering the master volume.
 
 ### Methods
 
@@ -49,9 +49,9 @@ public AudioSource voiceSource;
 public AudioManager audioManager; // Assume this is already assigned through the inspector or elsewhere
 
 void Start() {
-    audioManager.MusicAudioSource = musicSource;
-    audioManager.SoundAudioSource = soundSource;
-    audioManager.VoiceAudioSource = voiceSource;
+    audioManager.musicAudioSource = musicSource;
+    audioManager.soundAudioSource = soundSource;
+    audioManager.voiceAudioSource = voiceSource;
 }
 ```
 
@@ -73,10 +73,10 @@ void PlayAudio() {
 
 ```csharp
 void AdjustVolumes() {
-    audioManager.MasterVolume = 0.8f;
-    audioManager.MusicVolume = 0.5f;
-    audioManager.SoundVolume = 0.7f;
-    audioManager.VoiceVolume = 0.9f;
+    audioManager.masterVolume = 0.8f;
+    audioManager.musicVolume = 0.5f;
+    audioManager.soundVolume = 0.7f;
+    audioManager.voiceVolume = 0.9f;
 }
 ```
 

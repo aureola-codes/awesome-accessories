@@ -27,12 +27,12 @@ namespace Aureola.Settings
         [Header("Dependencies (optional)")]
         [SerializeField] private PubSubManager _pubSubManager;
 
-        public bool IsReady
+        public bool isReady
         {
             get => _isReady;
         }
 
-        public SettingsData Data
+        public SettingsData data
         {
             get => _settings;
         }

@@ -4,12 +4,12 @@ namespace Aureola.Settings
 {
     public class OnSettingsError : IPubSubEvent
     {
-        public readonly SettingsManager Manager;
-        public readonly string ErrorMessage;
-        public OnSettingsError(SettingsManager manager, string errorMessage)
+        public readonly SettingsManager manager;
+        public readonly string errorMessage;
+        public OnSettingsError(SettingsManager settingsManager, string error)
         {
-            Manager = manager;
-            ErrorMessage = errorMessage;
+            manager = settingsManager;
+            errorMessage = error;
         }
     }
 }
