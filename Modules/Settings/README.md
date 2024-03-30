@@ -23,12 +23,19 @@ The SettingsManager class facilitates the management of application settings wit
 - `Set<T>(string key, T value)` Sets a value for a given setting key.
 - `Get<T>(string key)` Gets the value for a given setting key.
 
-### Events
+### Delegates
 
 - `OnChanged` Triggered when settings have been changed.
 - `OnLoaded` Triggered after settings have been loaded successfully.
 - `OnStored` Triggered after settings have been saved successfully.
 - `OnError` Triggered when an error occurs during loading or saving settings.
+
+### Events (PubSubManager)
+
+- `OnSettingsChanged` Triggered when settings have been changed.
+- `OnSettingsLoaded` Triggered after settings have been loaded successfully.
+- `OnSettingsStored` Triggered after settings have been saved successfully.
+- `OnSettingsError` Triggered when an error occurs during loading or saving settings.
 
 ### Example Usages
 

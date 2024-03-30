@@ -19,7 +19,14 @@ The ScenesManager class is designed to manage scene operations such as loading, 
 - `GetCurrentScene()` Returns the name of the current scene.
 - `Reset()` Resets the ScenesManager, clearing all operations and scenes.
 
-### Events
+### Delegates
+
+- `OnSceneExited` Triggered after a scene has been exited.
+- `OnSceneExiting` Triggered before a scene is exited.
+- `OnSceneLoaded` Triggered after a scene has been loaded.
+- `OnSceneLoading` Triggered before a scene is loaded.
+
+### Events (PubSubManager)
 
 - `OnSceneExited` Triggered after a scene has been exited.
 - `OnSceneExiting` Triggered before a scene is exited.

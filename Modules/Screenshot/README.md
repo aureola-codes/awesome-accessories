@@ -16,6 +16,14 @@ The ScreenshotManager class facilitates the capture and storage of screenshots w
 
 - `CaptureScreenshot()` Public method that initiates the asynchronous screenshot capture process.
 
+### Delegates
+
+- `OnScreenshotCaptured` An event that triggers when a screenshot is successfully captured.
+
+### Events (PubSubManager)
+
+- `OnScreenshotCaptured` An event that triggers when a screenshot is successfully captured.
+
 ### Example Usages
 
 **Capturing a Screenshot**

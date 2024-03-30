@@ -33,7 +33,11 @@ The AudioManager class is designed to manage audio sources and volumes within a 
 - `StopVoice()` Stop playing the current voice audio.
 - `Reset()` Resets the AudioManager.
 
-### Events
+### Delegates
+
+- `OnVolumeChanged` An event that triggers when the volume is changed.
+
+### Events (PubSubManager)
 
 - `OnVolumeChanged` An event that triggers when the volume is changed.
 

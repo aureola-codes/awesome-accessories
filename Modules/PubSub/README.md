@@ -6,6 +6,8 @@ The PubSub module provides a simple and efficient way to implement the publish-s
 
 The PubSubManager class implements a simple publish-subscribe system in Unity, enabling loose coupling between components. Events can be published to channels, and objects can subscribe or unsubscribe to these channels to receive events.
 
+You can add an instance of the PubSubManager to any Manager of this package to enable event-based communication between different parts of your project. The respective Manager will then be able to publish events to the PubSubManager, and other parts of your project can subscribe to these events. Check the documentation of the respective Manager for more information on the kind of events that are available.
+
 ### Methods
 
 - `Publish(IPubSubEvent channelEvent)` Publishes an event to the default channel.
