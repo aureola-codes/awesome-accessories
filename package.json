@@ -2,8 +2,8 @@
   "name": "codes.aureola.awesome-accessories",
   "displayName": "Aureola's Awesome Accessories",
   "description": "A Unity package containing accessories & utilities that I use in all of my projects.",
-  "version": "0.4.0",
-  "unity": "2021.1",
+  "version": "0.4.1",
+  "unity": "2021.3",
   "dependencies": {
     "com.unity.addressables": "1.0.0"
   },

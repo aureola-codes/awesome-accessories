@@ -52,6 +52,7 @@ Services are used to provide additional functionality used by certain managers o
 - [Core](/Core/README.md)
 - [Audio](/Modules/Audio/README.md)
 - [Config](/Modules/Config/README.md)
+- [PubSub](/Modules/PubSub/README.md)
 - [Scenes](/Modules/Scenes/README.md)
 - [Screenshot](/Modules/Screenshot/README.md)
 - [Settings](/Modules/Settings/README.md)
