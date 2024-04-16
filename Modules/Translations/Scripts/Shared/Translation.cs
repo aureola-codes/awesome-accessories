@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -68,7 +69,7 @@ namespace Aureola.Translations
                             prefix += ".";
                         }
 
-                        var translations = GetFileParser(handle.Result.text).Parse();
+                        var translations = GetParser(handle.Result.text).Parse(handle.Result.text);
                         foreach (var keyValuePair in translations) {
                             _translations[prefix + keyValuePair.Key] = keyValuePair.Value;
                         }
@@ -139,19 +140,21 @@ namespace Aureola.Translations
             OnError?.Invoke(this, message);
         }
 
-        private IFileParser GetFileParser(string contents)
+        private IParser GetParser(string contents)
         {
-            IFileParser fileParser = null;
-            if (contents.Trim().StartsWith("{")) {
-                fileParser = new JsonFileParser();
-            } else if (contents.Trim().StartsWith("\"")) {
-                fileParser = new CsvFileParser();
-            } else {
-                fileParser = new TextFileParser();
+            string trimmedContents = contents.Trim();
+            if (trimmedContents.StartsWith("{") || trimmedContents.StartsWith("[")) {
+                return new JsonParser();
             }
-            
-            fileParser.SetContents(contents);
-            return fileParser;
+            else if (trimmedContents.Contains(",") && (trimmedContents.StartsWith("\"") || trimmedContents.Split('\n')[0].Count(c => c == ',') > 0)) {
+                return new CSVParser();
+            }
+            else if (trimmedContents.Contains(":") && !trimmedContents.StartsWith("#") && (trimmedContents.Contains("\n") || trimmedContents.Contains(": "))) {
+                return new YamlParser();
+            } 
+            else {
+                return new TextParser();
+            }
         }
     }
 }
