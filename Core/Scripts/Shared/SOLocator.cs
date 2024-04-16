@@ -7,7 +7,10 @@ namespace Aureola
     public class SOLocator : MonoBehaviour
     {
         private static SOLocator _instance;
-        private Dictionary<Type, ScriptableObject> _services = new Dictionary<Type, ScriptableObject>();
+        private Dictionary<Type, ScriptableObject> _services = new();
+
+        [Header("Settings")]
+        [SerializeField] private bool _debug = false;
 
         public static SOLocator Instance
         {
@@ -30,7 +33,9 @@ namespace Aureola
                 // If the scriptable object is a locatable object.
                 if (scriptableObject is ILocatable) {
                     Register(scriptableObject);
-                    Debug.Log("SOLocator: " + scriptableObject.name);
+                    if (_debug) {
+                        Debug.Log($"SOLocator: {scriptableObject.name} registered.");
+                    }
                 }
             }
         }
@@ -56,17 +61,17 @@ namespace Aureola
 
         public static void Register<T>(T service) where T : ScriptableObject
         {
-            SOLocator.Instance.Register(service);
+            Instance.Register(service);
         }
 
         public static void Unregister<T>(T service) where T : ScriptableObject
         {
-            SOLocator.Instance.Unregister(service);
+            Instance.Unregister(service);
         }
 
         public static T Get<T>() where T : ScriptableObject
         {
-            return SOLocator.Instance.Locate<T>();
+            return Instance.Locate<T>();
         }
     }
 }
