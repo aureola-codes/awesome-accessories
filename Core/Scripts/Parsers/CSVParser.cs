@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Aureola
 {
@@ -18,10 +19,18 @@ namespace Aureola
 
             var dictionary = new Dictionary<string, string>();
 
+            Regex linePattern = new Regex(@"^([^" + _valueSeparator + "]+)" + _valueSeparator + "(.*)$");
+
             var lines = contents.Split(_lineSeparator);
             foreach (var line in lines) {
-                var keyValuePair = line.Split(_valueSeparator);
-                dictionary.Add(TrimQuotationMarks(keyValuePair[0]), TrimQuotationMarks(keyValuePair[1]));
+                Match match = linePattern.Match(line);
+                if (match.Success) {
+                    string key = TrimQuotationMarks(match.Groups[1].Value);
+                    string value = TrimQuotationMarks(match.Groups[2].Value);
+                    value = value.Replace(@"\" + _valueSeparator, _valueSeparator);
+                    
+                    dictionary.Add(key, value);
+                }
             }
 
             return dictionary;
