@@ -99,7 +99,7 @@ Your support means a lot to me, and it motivates me to keep working on and impro
 
 This package should work in all currently supported Unity versions. Please let me know, if you run into any compatibility issues.
 
-If you have any questions or need help with the package, join the [Discord Server](https://discord.gg/zFCsAuGAJb) or [open an issue](https://github.com/aureola-codes/awesome-accessories/issues) on GitHub.
+If you have any questions or need help with the package, join the [Discord Server](https://discord.gg/Wyxsr9mh76) or [open an issue](https://github.com/aureola-codes/awesome-accessories/issues) on GitHub.
 
 ## License
 
