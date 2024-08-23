@@ -9,7 +9,7 @@ namespace Aureola.PubSub
         public delegate void Event(IPubSubEvent channelEvent);
 
         private const string DEFAULT_CHANNEL = "Default";
-        private Dictionary<string, Event> _channels;
+        private Dictionary<string, Event> _channels = new Dictionary<string, Event>();
 
         public void Publish(IPubSubEvent channelEvent)
         {
